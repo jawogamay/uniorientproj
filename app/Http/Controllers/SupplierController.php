@@ -2,27 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Customer;
-use App\Passenger;
+use App\Supplier;
 use Illuminate\Http\Request;
 use Auth;
 
-class PassengerController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function  __construct(){
-        return $this->middleware('auth:api');
+    public function __construct()
+    {
+        $this->middleware('auth:api');
     }
     public function index()
     {
         //
-    }
-    public function getCustomer(){
-        return Customer::latest()->get();
     }
 
     /**
@@ -45,46 +42,37 @@ class PassengerController extends Controller
     {
         //
         $this->validate($request,[
-            'account_name' => 'required',
-            'lastname' => 'required',
-            /*'middlename' => 'required',*/
-            'firstname' => 'required',
-            'dob' => 'required',
-            'tel' => 'required',
-
+            'account' => 'required',
+            'category' => 'required',
+            'purchasetype' => 'required'
         ]);
-        return Passenger::create([
+        return Supplier::create([
             'user_id' => Auth::user()->id,
-            'customer_id' => $request['account_name'],
-            'lastname' => $request['lastname'],
-            'firstname' => $request['firstname'],
-            'date_birth' => $request['dob'],
-            'tel' => $request['tel'],
-            'notes' => $request['notes'],
-            'status' => 'Test'
+            'account' => $request['account'],
+            'category' => $request['category'],
+            'purchasetype' => $request['purchasetype']
         ]);
-
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Passenger  $passenger
+     * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function show(Passenger $passenger)
+    public function show(Supplier $supplier)
     {
         //
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Passenger  $passenger
+     * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function edit(Passenger $passenger)
+    public function edit(Supplier $supplier)
     {
         //
     }
@@ -93,10 +81,10 @@ class PassengerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Passenger  $passenger
+     * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Passenger $passenger)
+    public function update(Request $request, Supplier $supplier)
     {
         //
     }
@@ -104,10 +92,10 @@ class PassengerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Passenger  $passenger
+     * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Passenger $passenger)
+    public function destroy(Supplier $supplier)
     {
         //
     }

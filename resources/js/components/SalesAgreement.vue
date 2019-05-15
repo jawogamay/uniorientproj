@@ -1,10 +1,11 @@
 <template>
+    <v-app>
     <div class="container-fluid">
       <div class="row pt-5">
              <div class="col-md-12">
                 <div class="card">
                       <div class="card-header">
-                        <h3 class="card-title">Employee </h3>
+                        <h3 class="card-title">Sales Agreement Summaries </h3>
                         <div class="card-tools">
                             <button class="btn btn-warning" @click="newModal">Add<v-icon color="#fff">add_box</v-icon></button>
                          </div>
@@ -12,7 +13,7 @@
                      <template>
   <v-card>
     <v-card-title>
-      Employee Table
+      Sales Agreements Information
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -58,64 +59,54 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Customer</h5>
+                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Supplier</h5>
                             <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update User's Info</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>   
                         </div>
-                       <form @submit.prevent="createEmployee()">
+                       <form @submit.prevent="editmode ? updateUser() :createSupplier()">
                         <div class="modal-body">
-                            <input type="text" placeholder="Employee Name" class="form-control" name="name" v-model="form.name"  :class="{'is-invalid': form.errors.has('name') }"><br>
-                            <has-error :form="form" field="name"></has-error>
-                            <br>
-                             <input type="text" placeholder="Code" class="form-control" name="code" v-model="form.code"  :class="{'is-invalid': form.errors.has('code') }"><br><has-error :form="form" field="code"></has-error>
-                            <br>
-                            <label for="dob">Date of Birth:</label>
-                            <input type="date" class="form-control" placeholder="Date of Birth" name="dob" v-model="form.dob"  :class="{'is-invalid': form.errors.has('dob') }"><br>
-                            <has-error :form="form" field="dob"></has-error><br>
-                            <label for="dob">Hired Date:</label>
-                            <input type="date" class="form-control" placeholder="Hired Data" name="hired" v-model="form.hired"  :class="{'is-invalid': form.errors.has('hired') }"><br>
-                            <has-error :form="form" field="hired"></has-error><br>
-                            <select class="form-control" name="type" v-model="form.type"  :class="{'is-invalid': form.errors.has('type') }">
-                               <option value="" disabled selected>--Employee Type--</option>
-                               <option value="consultant">Travel Consultant</option>
-                               <option value="admin">Admin</option>
+                            <select class="form-control" name="category" v-model="form.category"> 
+                                <option value="" disabled selected>Select SA#</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
                             </select>
-                            <br>
-                            <has-error :form="form" field="type"></has-error><br>
-                            <input type="email" name="email" class="form-control" placeholder="Email address" v-model="form.email"  :class="{'is-invalid': form.errors.has('email') }"><br>
-                            <has-error :form="form" field="email"></has-error><br>
-                            <input type="password" name="password" class="form-control" placeholder="Password" v-model="form.password"  :class="{'is-invalid': form.errors.has('password') }"><br>
-                            <has-error :form="form" field="password"></has-error><br>
+                            <br><br>
+                            <select class="form-control" name="purchasetype" v-model="form.purchasetype">
+                                <option value="" disabled selected>Select Customer Account</option>
+                                <option value="ticket-am-sb">TICKET-AM-SB</option>
+                            </select>
+                            <br><br>
+                              <select class="form-control" name="purchasetype" v-model="form.purchasetype">
+                                <option value="" disabled selected>Select Passenger Account</option>
+                                <option value="ticket-am-sb">TICKET-AM-SB</option>
+                            </select>
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
-                        <button v-show="!editmode" type="submit" class="btn btn-primary">Submit <i v-if="spinner"class="fa fa-spinner fa-spin"></i></button>
+                        <button v-show="!editmode" type="submit" class="btn btn-primary">Submit</button>
                      </div>
                      </form>
                 </div>
             </div>
             </div>
         </div>
+    </v-app>
 </template>
 <script type="text/javascript">
     export default{
         data(){
             return{
                  search: '',
-                spinner:false,
-                 form: new Form({
-                    id:'',
-                    name:'',
-                    email:'',
-                    password:'',
-                    type:'',
-                    dob:'',
-                    hired:'',
-                    code:'',
-                 }),
+                     editmode: false,
+                form: new Form({
+                    id: '',
+                    account:'',
+                    category:'',
+                    purchasetype:''
+                }),
         headers: [
           {
             text: '',
@@ -194,7 +185,8 @@
            
           },
         ],
-       }
+            
+            }
         
         },
 
@@ -204,19 +196,11 @@
                 this.form.reset();
                 $('#addNew').modal('show');
             },
-            createEmployee(){
-                this.form.post('api/user')
+            createSupplier(){
+                this.form.post('api/supplier')
                 .then((response)=>{
-                  this.spinner = true;
-                  $('#addNew').modal('hide');
-                  toast.fire({
-                    type: 'success',
-                    title: 'Employee Created Successfully'
-                  });
-                  
-                
-                })
-                setTimeout(()=> {this.spinner = false},1000)
+                    
+                });
             }
         }
     };

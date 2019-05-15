@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Auth;
 use App\Customer;
 use Illuminate\Http\Request;
 
@@ -12,9 +12,16 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+        public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     public function index()
     {
         //
+        $user = Auth::user()->id;
+        return Customer::where('user_id',$user)->with('user')->get();
+
     }
 
     /**
@@ -36,6 +43,35 @@ class CustomerController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'account_name' => 'required',
+            'address' => 'required',
+            'nature' => 'required',
+            'company' => 'required',
+            'firstname' => 'required',
+            'middlename' => 'required',
+            'lastname' => 'required',
+            'term' => 'required',
+            'sss' => 'required',
+            'secreg' => 'required',
+            'tin' => 'required'
+        ]);
+
+        return Customer::create([
+            'account_name' => $request['account_name'],
+            'address' => $request['address'],
+            'nature' => $request['nature'],
+            'company' => $request['company'],
+            'firstname' => $request['firstname'],
+            'middlename' => $request['middlename'],
+            'lastname' => $request['lastname'],
+            'user_id' => Auth::user()->id,
+            'term' => $request['term'],
+            'sss' => $request ['sss'],
+            'secreg' => $request ['secreg'],
+            'tin' => $request ['tin'],
+            'contact' => $request['contact']
+        ]);
     }
 
     /**

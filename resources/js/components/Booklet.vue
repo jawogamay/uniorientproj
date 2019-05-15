@@ -64,22 +64,25 @@
                             <span aria-hidden="true">&times;</span>
                             </button>   
                         </div>
-                       <form @submit.prevent="editmode ? updateUser() :createPost()">
+                       <form @submit.prevent="editmode ? updateUser() :createBooklet()">
                         <div class="modal-body">
   
-                            <span>Travel Consultant:</span><select class="form-control">
-                                <option> -Assign Travel Consultant - </option>
+                            <span>Travel Consultant:</span><select class="form-control" name="name_assign" v-model="form.name_assign">
+                                <option value="" disabled selected> -Assign Travel Consultant - </option>
+                                <option v-for="travelconsultant in travelconsultants" :value="travelconsultant.id">
+                                  {{travelconsultant.name}}
+                                </option>
                             </select>
                             <br><br>
                              <p><b> Booklet Number: </b></p>
                                  <div class="row" style="margin:0 auto; text-align:center;">
                                  <div class="col-md-6">
-                                    <input type="number" placeholder="Enter first number" class="form-control mr-5 ml-3" name="f1" v-model="form.f1" :class="{ 'is-invalid': form.errors.has('f1') }" style="width:100%;">
-                                     <has-error :form="form" field="f1"></has-error>
+                                    <input type="number" placeholder="Enter first number" class="form-control mr-5 ml-3" name="initial" v-model="form.initial" :class="{ 'is-invalid': form.errors.has('initial') }" style="width:100%;">
+                                     <has-error :form="form" field="initial"></has-error>
                                  </div>
                                   <div class="col-md-6">
-                                    <input type="number" placeholder="Enter second number" class="form-control" name="f2" v-model="form.f2" :class="{ 'is-invalid': form.errors.has('f2') }" style="width:100%;">
-                                    <has-error :form="form" field="f2"></has-error>
+                                    <input type="number" placeholder="Enter second number" class="form-control" name="end" v-model="form.end" :class="{ 'is-invalid': form.errors.has('end') }" style="width:100%;">
+                                    <has-error :form="form" field="end"></has-error>
                                   </div>
                                  </div>
                                  <br> 
@@ -88,7 +91,7 @@
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
-                        <button v-show="!editmode" type="submit" class="btn btn-primary">Post</button>
+                        <button v-show="!editmode" type="submit" class="btn btn-primary">Submit <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
                      </div>
                      </form>
                 </div>
@@ -101,6 +104,15 @@
         data(){
             return{
                  search: '',
+                 spinner:false,
+                   editmode: false,
+                form: new Form({
+                    id: '',
+                    iniital:'',
+                    end:'',
+                    name_assign:'',
+                }),
+                 travelconsultants:[],
         headers: [
           {
             text: '',
@@ -179,22 +191,35 @@
            
           },
         ],
-                editmode: false,
-                form: new Form({
-                    id: '',
-                    content:'',
-                    title:'',
-                    image:'',
-                })
+              
             }
         
         },
-
+        mounted(){
+          this.getTC();
+        },
         methods: {
             newModal(){
                 this.editmode = false;
                 this.form.reset();
                 $('#addNew').modal('show');
+            },
+            getTC(){
+              axios.get('api/getTC').then(({data})=>{
+                this.travelconsultants = data;
+              })
+            },
+            createBooklet(){
+                this.form.post('api/booklet')
+                .then((response)=>{
+                  this.spinner = true;
+                  $('#addNew').modal('hide');
+                      toast({
+                        type: 'success',
+                        title: 'Book;et Created Successfully'
+                    })
+                    setTimeout(()=> {this.spinner = false},1000)
+                })
             }
         }
     };

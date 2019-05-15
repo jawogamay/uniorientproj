@@ -58,33 +58,30 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Customer</h5>
+                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Supplier</h5>
                             <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update User's Info</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>   
                         </div>
-                       <form @submit.prevent="editmode ? updateUser() :createPost()">
+                       <form @submit.prevent="editmode ? updateUser() :createSupplier()">
                         <div class="modal-body">
-                            <input type="text" placeholder="Name" class="form-control"><br>
-                              <p style="font-size:12px; color:#c2c2c2;"> (PASSENGER NAME IS COMPOSED OF LAST NAME, FIRST NAME , AND MIDDLE NAME)</p>
-                            <br>
-                            <input type="text" class="form-control" placeholder="Last Name"><br><br>
-                            <input type="text" class="form-control" placeholder="First Name"><br><br>
-                            <span>Prefix:</span><select class="form-control">
-                                <option> -PREFIX - </option>
+                            <input type="text" class="form-control" placeholder="Account Name" v-model="form.account" name="account"><br><br>
+                            <select class="form-control" name="category" v-model="form.category"> 
+                                <option value="" disabled selected>Select Category</option>
+                                <option value="operator">Operator</option>
+                                <option value="test">Test</option>
                             </select>
                             <br><br>
-                            <input type="text" class="form-control" placeholder="Tel"><br><br>
-                            <span> Notes: </span>   
-                            <textarea class="form-control" style="height:150px;">
-                              
-                            </textarea>
+                            <select class="form-control" name="purchasetype" v-model="form.purchasetype">
+                                <option value="" disabled selected>Select Purchase Type</option>
+                                <option value="ticket-am-sb">TICKET-AM-SB</option>
+                            </select>
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
-                        <button v-show="!editmode" type="submit" class="btn btn-primary">Post</button>
+                        <button v-show="!editmode" type="submit" class="btn btn-primary">Submit</button>
                      </div>
                      </form>
                 </div>
@@ -97,6 +94,13 @@
         data(){
             return{
                  search: '',
+                     editmode: false,
+                form: new Form({
+                    id: '',
+                    account:'',
+                    category:'',
+                    purchasetype:''
+                }),
         headers: [
           {
             text: '',
@@ -175,13 +179,7 @@
            
           },
         ],
-                editmode: false,
-                form: new Form({
-                    id: '',
-                    content:'',
-                    title:'',
-                    image:'',
-                })
+            
             }
         
         },
@@ -191,6 +189,12 @@
                 this.editmode = false;
                 this.form.reset();
                 $('#addNew').modal('show');
+            },
+            createSupplier(){
+                this.form.post('api/supplier')
+                .then((response)=>{
+                    
+                });
             }
         }
     };

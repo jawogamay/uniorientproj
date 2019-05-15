@@ -72,49 +72,7 @@
                         <!-- ============================================================== -->
                         <!-- Comment -->
                         <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="mdi mdi-message"></i>
-                                <div class="notify"> <span class="heartbit"></span> <span class="point"></span> </div>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right mailbox scale-up">
-                                <ul>
-                                    <li>
-                                        <div class="drop-title">Notifications</div>
-                                    </li>
-                                    <li>
-                                        <div class="message-center">
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-danger btn-circle"><i class="fa fa-link"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Luanch Admin</h5> <span class="mail-desc">Just see the my new admin!</span> <span class="time">9:30 AM</span> </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-success btn-circle"><i class="ti-calendar"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Event today</h5> <span class="mail-desc">Just a reminder that you have event</span> <span class="time">9:10 AM</span> </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-info btn-circle"><i class="ti-settings"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Settings</h5> <span class="mail-desc">You can customize this template as you want</span> <span class="time">9:08 AM</span> </div>
-                                            </a>
-                                            <!-- Message -->
-                                            <a href="#">
-                                                <div class="btn btn-primary btn-circle"><i class="ti-user"></i></div>
-                                                <div class="mail-contnet">
-                                                    <h5>Pavan kumar</h5> <span class="mail-desc">Just see the my admin!</span> <span class="time">9:02 AM</span> </div>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <a class="nav-link text-center" href="javascript:void(0);"> <strong>Check all notifications</strong> <i class="fa fa-angle-right"></i> </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                    
                         <!-- ============================================================== -->
                         <!-- End Comment -->
                         <!-- ============================================================== -->
@@ -136,18 +94,22 @@
                                         <div class="dw-user-box">
                                             <div class="u-img"><img src="../assets/images/users/1.jpg" alt="user"></div>
                                             <div class="u-text">
-                                                <h4>Steave Jobs</h4>
-                                                <p class="text-muted">varun@gmail.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+                                                <h4>{{Auth::user()->name}}</h4>
+                                                <p class="text-muted">{{Auth::user()->email}}</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
                                         </div>
                                     </li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
                                     <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
-                                    <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
                                     <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
+                                    <li><a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Logout</a> 
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form></li>
                                 </ul>
                             </div>
                         </li>
@@ -173,14 +135,19 @@
                     <div class="profile-text"> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">{{Auth::user()->name}}</a>
                         <div class="dropdown-menu animated flipInY"> <a href="#" class="dropdown-item"><i class="ti-user"></i> My Profile</a> <a href="#" class="dropdown-item"><i class="ti-wallet"></i> My Balance</a> <a href="#" class="dropdown-item"><i class="ti-email"></i> Inbox</a>
                             <div class="dropdown-divider"></div> <a href="#" class="dropdown-item"><i class="ti-settings"></i> Account Setting</a>
-                            <div class="dropdown-divider"></div> <a href="login.html" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a> </div>
+                            <div class="dropdown-divider"></div> <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="dropdown-item"><i class="fa fa-power-off"></i> Logout</a> <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form></div>
                     </div>
                 </div>
                 <!-- End User profile text-->
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li class="nav-small-cap">PERSONAL</li>
+                        <li class="nav-small-cap"><b>{{strtoupper(Auth::user()->type)}}</b></li>
+                        @can('admin')
                         <li> <a href="/home" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
                     
                         </li>
@@ -192,6 +159,7 @@
                                 <li><a href="../material-rtl/index4.html">Banks</a></li>
                             </ul>
                         </li>
+                        @endcan
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fas fa-file"></i><span class="hide-menu">Set Up Files</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="/airlanerate">Airline Rate Entry</a></li>
@@ -200,13 +168,13 @@
                                 <li><a href="/employee">Travel Consultant</a></li>
                                 <li><a href="/booklet">SA Booklet Series</a></li>
                                 <li><a href="/supplier">Supplier</a></li>
-                                <li><a href="app-contact-detail.html">Item Code (SALES)</a></li>
-                                <li><a href="app-contact-detail.html">Box Petty Cash</a></li>
+                                <li><a href="/itemcode">Item Code (SALES)</a></li>
+                                <li><a href="/petty">Box Petty Cash</a></li>
                             </ul>
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fas fa-shopping-cart"></i><span class="hide-menu">Sales</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="app-email.html">Sales Agreement</a></li>
+                                <li><a href="/salesagreement">Sales Agreement</a></li>
                                 <li><a href="app-email-detail.html">TC Monitoring</a></li>
 
                             </ul>
@@ -273,11 +241,10 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
     <script src="/js/app.js"></script>
-    <script src="/assets/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="/assets/plugins/popper/popper.min.js"></script>
     <script src="/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
+   
     <script src="/js/jquery.slimscroll.js"></script>
     <!--Wave Effects -->
     <script src="/js/waves.js"></script>

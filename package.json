@@ -24,9 +24,11 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "vue-router": "^3.0.6",
-        "vuetify": "^1.5.13",
+        "sweetalert2": "^8.10.7",
         "vform": "^1.0.0",
-        "vue-fullcalendar": "^1.0.9"
+        "vue-button-spinner": "^2.2.1",
+        "vue-fullcalendar": "^1.0.9",
+        "vue-router": "^3.0.6",
+        "vuetify": "^1.5.13"
     }
 }

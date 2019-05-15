@@ -2,27 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Customer;
-use App\Passenger;
+use App\Booklet;
+use App\SaleAgreement;
+use App\User;
 use Illuminate\Http\Request;
-use Auth;
 
-class PassengerController extends Controller
+class BookletController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function  __construct(){
-        return $this->middleware('auth:api');
+    public function getTC(){
+        return User::where('type','consultant')->latest()->get();
     }
     public function index()
     {
         //
-    }
-    public function getCustomer(){
-        return Customer::latest()->get();
     }
 
     /**
@@ -45,35 +46,38 @@ class PassengerController extends Controller
     {
         //
         $this->validate($request,[
-            'account_name' => 'required',
-            'lastname' => 'required',
-            /*'middlename' => 'required',*/
-            'firstname' => 'required',
-            'dob' => 'required',
-            'tel' => 'required',
-
-        ]);
-        return Passenger::create([
-            'user_id' => Auth::user()->id,
-            'customer_id' => $request['account_name'],
-            'lastname' => $request['lastname'],
-            'firstname' => $request['firstname'],
-            'date_birth' => $request['dob'],
-            'tel' => $request['tel'],
-            'notes' => $request['notes'],
-            'status' => 'Test'
+            'name_assign' => 'required',
+            'initial' => 'required|integer|min:1',
+            'end => required|integer'
         ]);
 
-
+        $f1 = (int)$request['initial'];
+        $f2 = (int) $request['end'];
+        $user =(int) $request['name_assign'];
+        $bookNum = $f1."-".$f2;
+        Booklet::create([
+            'first' => $f1,
+            'second' => $f2,
+            'user_id' => $user,
+            'bookletNumber' =>$bookNum
+        ]);
+         $arr = [];
+        foreach(range($f1,$f2) as $val){
+           $arr [] = SaleAgreement::create([
+            'saNumber' => $val,
+            'user_id' => $user
+           ]);
+       
+     }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Passenger  $passenger
+     * @param  \App\Booklet  $booklet
      * @return \Illuminate\Http\Response
      */
-    public function show(Passenger $passenger)
+    public function show(Booklet $booklet)
     {
         //
     }
@@ -81,10 +85,10 @@ class PassengerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Passenger  $passenger
+     * @param  \App\Booklet  $booklet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Passenger $passenger)
+    public function edit(Booklet $booklet)
     {
         //
     }
@@ -93,10 +97,10 @@ class PassengerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Passenger  $passenger
+     * @param  \App\Booklet  $booklet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Passenger $passenger)
+    public function update(Request $request, Booklet $booklet)
     {
         //
     }
@@ -104,10 +108,10 @@ class PassengerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Passenger  $passenger
+     * @param  \App\Booklet  $booklet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Passenger $passenger)
+    public function destroy(Booklet $booklet)
     {
         //
     }

@@ -18,11 +18,16 @@ class CreateCustomersTable extends Migration
             $table->string('account_name');
             $table->string('address');
             $table->string('nature');
-            $table->string('tc');
+            $table->string('company');
+            $table->string('firstname');
+            $table->string('middlename');
+            $table->string('lastname');
+            $table->unsignedInteger('user_id');
             $table->string('term');
             $table->string('sss');
+            $table->string('secreg');
             $table->string('tin');
-            $table->string('contact_details')->nullable();
+            $table->string('contact')->nullable();
             $table->timestamps();
         });
     }

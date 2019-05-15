@@ -15,10 +15,12 @@ class CreatePassengersTable extends Migration
     {
         Schema::create('passengers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('passenger_name');
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('customer_id');
             $table->string('lastname');
+            $table->string('middlename');
             $table->string('firstname');
-            $table->string('prefix');
+            $table->string('prefix')->nullable();
             $table->date('date_birth');
             $table->string('tel');
             $table->string('notes')->nullable();

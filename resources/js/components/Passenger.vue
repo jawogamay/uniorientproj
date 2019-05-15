@@ -60,27 +60,39 @@
                             <span aria-hidden="true">&times;</span>
                             </button>   
                         </div>
-                       <form @submit.prevent="editmode ? updateUser() :createPost()">
+                       <form @submit.prevent="createPassenger()">
                         <div class="modal-body">
-                            <input type="text" placeholder="Name" class="form-control"><br>
+                          <select class="form-control" name="account_name" v-model="form.account_name">
+                            <option value="" disabled selected>Account Name</option>
+                            <option v-for="customer in customers" :value="customer.id">{{customer.account_name}}</option>
+                          </select>
+                          <br><br>
+                           <!--  <input type="text" placeholder="Name" class="form-control"><br>
                               <p style="font-size:12px; color:#c2c2c2;"> (PASSENGER NAME IS COMPOSED OF LAST NAME, FIRST NAME , AND MIDDLE NAME)</p>
-                            <br>
-                            <input type="text" class="form-control" placeholder="Last Name"><br><br>
-                            <input type="text" class="form-control" placeholder="First Name"><br><br>
-                            <span>Prefix:</span><select class="form-control">
-                                <option> -PREFIX - </option>
+                            <br> -->
+                            <input type="text" class="form-control" placeholder="Last Name" name="lastname" 
+                            v-model="form.lastname"><br><br>
+                            <input type="text" class="form-control" placeholder="Middle Name" name="middename" 
+                            v-model="form.middename"><br><br>
+                            <input type="text" class="form-control" placeholder="First Name" name="firstname" 
+                            v-model="form.firstname"><br><br>
+                            <span>Prefix:</span><select class="form-control" name="prefix" v-model="form.prefix">
+                                <option value="test"> -PREFIX - </option>
                             </select>
                             <br><br>
-                            <input type="text" class="form-control" placeholder="Tel"><br><br>
+                            <label for="dob">Date of Birth:</label>
+                            <input type="date" class="form-control" placeholder="Date of Birth" name="dob" v-model="form.dob"  :class="{'is-invalid': form.errors.has('dob') }"><br>
+                            <has-error :form="form" field="dob"></has-error><br>
+                            <input type="text" class="form-control" placeholder="Tel" name="tel" v-model="form.tel"><br><br>
                             <span> Notes: </span>   
-                            <textarea class="form-control" style="height:150px;">
-                              
+                            <textarea class="form-control" style="height:150px;" name="notes" v-model="form.notes">
+                                
                             </textarea>
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
-                        <button v-show="!editmode" type="submit" class="btn btn-primary">Post</button>
+                        <button v-show="!editmode" type="submit" class="btn btn-primary">Submit <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
                      </div>
                      </form>
                 </div>
@@ -92,7 +104,21 @@
     export default{
         data(){
             return{
+                spinner:false,
                  search: '',
+                 customers:[],
+                  form: new Form({
+                    id: '',
+                    account_name:'',
+                    lastname:'',
+                    middlename:'',
+                    firstname:'',
+                    tel:'',
+                    dob:'',
+                    prefix:'',
+                    notes:'',
+
+                }),
         headers: [
           {
             text: '',
@@ -172,21 +198,31 @@
           },
         ],
                 editmode: false,
-                form: new Form({
-                    id: '',
-                    content:'',
-                    title:'',
-                    image:'',
-                })
+        
             }
         
         },
+         mounted(){
+          axios.get('api/getCustomer').then(({data}) => this.customers = data);
+         },
 
         methods: {
             newModal(){
                 this.editmode = false;
                 this.form.reset();
                 $('#addNew').modal('show');
+            },
+            createPassenger(){
+                this.form.post('api/passenger')
+                .then((response) => {
+                    this.spinner = true;
+                    $('#addNew').modal('hide');
+                    toast.fire({
+                      type: 'success',
+                      title: 'Passenger Created Successfully'
+                    });
+                    setTimeout(()=> {this.spinner = false},1000)
+                })
             }
         }
     };
