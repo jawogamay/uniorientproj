@@ -1,4 +1,5 @@
 <template>
+  <v-app>
     <div class="container-fluid">
       <div class="row pt-5">
              <div class="col-md-12">
@@ -73,6 +74,7 @@
             </div>
             </div>
         </div>
+      </v-app>
 </template>
 <script type="text/javascript">
     export default{
@@ -95,35 +97,35 @@
         ],
         desserts: [
           {
-            date: 'January 15th 2019',
+            date: 'Jan 15th 2019',
             airlane: 52.22,
             usdphp: 54.2,
             phpusd: 50,
            
           },
           {
-            date: 'January 19th 2019',
+            date: 'Jan 19th 2019',
             airlane: 52.22,
             usdphp: 54.2,
             phpusd: 50,
            
           },
           {
-            date: 'January 24th 2019',
+            date: 'Jan 24th 2019',
             airlane: 52.22,
             usdphp: 54.2,
             phpusd: 50,
            
           },
           {
-            date: 'February 15th 2019',
+            date: 'Feb 15th 2019',
             airlane: 52.22,
             usdphp: 54.2,
             phpusd: 50,
            
           },
           {
-            date: 'August 15th 2019',
+            date: 'Aug 15th 2019',
             airlane: 52.22,
             usdphp: 54.2,
             phpusd: 50,

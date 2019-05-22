@@ -74,10 +74,15 @@ Global Styles
 *******************/
 * {
   outline: none; }
+@font-face{
+  font-family: Inconsalata;
+  src:url(/fonts/Inconsolata.otf);
+}
 
 body {
   background: #fff;
-  /*font-family: "Poppins", sans-serif;*/
+  font-family: Inconsalata;
+
   margin: 0;
   overflow-x: hidden;
   color: #67757c;
@@ -5400,7 +5405,7 @@ sidebar footer
   -o-transition: 0.2s ease-out;
   transition: 0.2s ease-out;
   width: 240px;
-  background: #fff;
+  background: #e6e4e4c2;
   border-top: 1px solid rgba(120, 130, 140, 0.13); }
   .sidebar-footer a {
     padding: 15px;
@@ -5413,10 +5418,11 @@ sidebar footer
 sidebar navigation
 ******************/
 .collapse.in {
-  display: block; }
+  display: block; 
+     background-color: #e7e6e6;}
 
 .sidebar-nav {
-  background: #fff;
+  background: #e6e4e4c2;
   padding: 15px; }
   .sidebar-nav > ul {
     padding: 0px 0px 60px; }

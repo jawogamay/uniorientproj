@@ -4,7 +4,7 @@
              <div class="col-md-12">
                 <div class="card">
                       <div class="card-header">
-                        <h3 class="card-title">Passenger </h3>
+                        <h3 class="card-title">Add Passenger </h3>
                         <div class="card-tools">
                             <button class="btn btn-warning" @click="newModal">Add<v-icon color="#fff">add_box</v-icon></button>
                          </div>
@@ -24,17 +24,15 @@
     </v-card-title>
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="passengers"
       :search="search"
     >
       <template v-slot:items="props">
-        <td>{{ props.item.date }}</td>
-        <td class="text-xs-left">{{ props.item.airlane }}</td>
-        <td class="text-xs-left">{{ props.item.usdphp }}</td>
-        <td class="text-xs-left">{{ props.item.phpusd }}</td>
-        <td class="text-xs-left">{{ props.item.verified }}</td>
+        <td>{{ props.item.id }}</td>
+        <td class="text-xs-left">{{ props.item.lastname }},{{props.item.firstname}}</td>
+        <td class="text-xs-left">{{ props.item.date_birth | myDate}}</td>
+        <td class="text-xs-left">{{ props.item.tel }}</td>
         <td class="text-xs-left">{{ props.item.notes }}</td>
-        <td class="text-xs-left">{{ props.item.details }}</td>
         <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
       </template>
       <template v-slot:no-results>
@@ -54,7 +52,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Customer</h5>
+                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Passenger</h5>
                             <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update User's Info</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -106,7 +104,7 @@
             return{
                 spinner:false,
                  search: '',
-                 customers:[],
+                 passengers:[],
                   form: new Form({
                     id: '',
                     account_name:'',
@@ -124,14 +122,12 @@
             text: '',
             align: 'left',
             sortable: false,
-            value: 'date'
+            value: 'id'
           },
-          { text: 'Account name', value: 'airlane' },
-          { text: 'Address', value: 'usdphp' },
-          { text: 'Nature', value: 'phpusd' },
-          { text: 'TC', value: 'verified' },
-          { text: 'Term', value: 'notes' },
-          {text: 'Contact Details', value: 'details'},
+          { text: 'PASSENGER NAME', value: 'airlane' },
+          { text: 'DATE OF BIRTH', value: 'usdphp' },
+          { text: 'CONTACT NUMBER', value: 'phpusd' },
+          { text: 'NOTES', value: 'verified' },
           {text:'Actions',value:'actios'}
         ],
         desserts: [
@@ -204,6 +200,7 @@
         },
          mounted(){
           axios.get('api/getCustomer').then(({data}) => this.customers = data);
+          this.getPassenger();
          },
 
         methods: {
@@ -223,6 +220,9 @@
                     });
                     setTimeout(()=> {this.spinner = false},1000)
                 })
+            },
+            getPassenger(){
+              axios.get('api/passenger').then(({data})=> this.passengers = data);
             }
         }
     };

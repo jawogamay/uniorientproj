@@ -26,6 +26,22 @@
     <link href="/css/colors/blue.css" id="theme" rel="stylesheet">
    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
      <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+     <style type="text/css">
+
+         .collapse.in{
+            background: #e8e8e8;
+         }
+         @font-face{
+  font-family: Inconsalata;
+  src:url(/fonts/Inconsolata.otf);
+}
+body{
+    font-family: Inconsalata;
+}
+table.v-table tbody td, table.v-table tbody th{
+    height: 20px;
+}
+     </style>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -148,38 +164,45 @@
                     <ul id="sidebarnav">
                         <li class="nav-small-cap"><b>{{strtoupper(Auth::user()->type)}}</b></li>
                         @can('admin')
-                        <li> <a href="/home" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Dashboard </span></a>
+                        <li> <a href="/home" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">DASHBOARD </span></a>
                     
                         </li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fas fa-cog"></i><span class="hide-menu">Settings</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="../minisidebar/index.html">Company Profile</a></li>
-                                <li><a href="../horizontal/index2.html">Branches</a></li>
-                                <li><a href="../dark/index3.html">User Groups</a></li>
-                                <li><a href="../material-rtl/index4.html">Banks</a></li>
+                                <li><a href="../minisidebar/index.html">COMPANY PROFILE</a></li>
+                                <li><a href="../horizontal/index2.html">BRANCHES</a></li>
+                                <li><a href="../dark/index3.html">USER GROUP</a></li>
+                                <li><a href="../material-rtl/index4.html">BANKS</a></li>
                             </ul>
                         </li>
                         @endcan
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fas fa-file"></i><span class="hide-menu">Set Up Files</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fas fa-file"></i><span class="hide-menu">SETUP FILES</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="/airlanerate">Airline Rate Entry</a></li>
-                                <li><a href="/customer">Customer Accounts</a></li>
-                                <li><a href="/passenger">Passenger Details</a></li>
-                                <li><a href="/employee">Travel Consultant</a></li>
-                                <li><a href="/booklet">SA Booklet Series</a></li>
-                                <li><a href="/supplier">Supplier</a></li>
-                                <li><a href="/itemcode">Item Code (SALES)</a></li>
-                                <li><a href="/petty">Box Petty Cash</a></li>
+                                <li><a href="/airlanerate">AIRLINE RATE</a></li>
+                                <li><a href="/customer">CUSTOMER ACCOUNTS</a></li>
+                                <li><a href="/passenger">PASSENGER DETAILS</a></li>
+                                <li><a href="/employee">ITEM CODE</a></li>
+                                <li><a href="/booklet">SA BOOKLET SERIES</a></li>
+                                <li><a href="/supplier">USER</a></li>
+                                <li><a href="/itemcode">SUPPLIER</a></li>
+                                <li><a href="#" class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                    <span class="hide-menu">START SERIES</span></a>
+                                    <ul aria-expanded="false" class="collapse">
+                                         <li><a href="/petty">BOX PETTY CASH</a></li>
+                                         <li><a href="/petty">SOA#</a></li>
+                                         <li><a href="/petty">BOOKLET</a></li>
+                                    </ul>
+                                </li>
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fas fa-shopping-cart"></i><span class="hide-menu">Sales</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fas fa-shopping-cart"></i><span class="hide-menu">SALES</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="/salesagreement">Sales Agreement</a></li>
-                                <li><a href="app-email-detail.html">TC Monitoring</a></li>
+                                <li><a href="/salesagreement">SALES AGREEMENT</a></li>
+                                <li><a href="app-email-detail.html">TC MONITORING</a></li>
 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fas fa-plane"></i><span class="hide-menu">Airline Tickets</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="fas fa-plane"></i><span class="hide-menu">AIRLINE TICKETS</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="ui-cards.html">IATA - AMADEUS</a></li>
                                 <li><a href="ui-user-card.html">IATA - SABRE</a></li>
@@ -187,25 +210,26 @@
                                 <li><a href="ui-modals.html">SKYLINER</a></li>
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">Purchases</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">PURCHASES</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="form-basic.html">PO</a></li>
-                                <li><a href="form-layout.html">Cash Slip</a></li>
+                                <li><a href="form-layout.html">CASH SLIP</a></li>
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Payments</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">PAYMENTS</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="table-basic.html">Official Reciept</a></li>
-                                <li><a href="table-layout.html">Provisional Receipt</a></li>
-                                <li><a href="table-data-table.html">Discount Slip</a></li>
-                                <li><a href="table-footable.html">Check Voucher</a></li>
-                                <li><a href="table-jsgrid.html">Cash Voucher</a></li>
+                                <li><a href="table-basic.html">OFFICIAL RECIEPT</a></li>
+                                <li><a href="table-layout.html">PROVISIONAL RECEIPT</a></li>
+                                <li><a href="table-data-table.html">DISCOUNT SLIP</a></li>
+                                <li><a href="table-footable.html">CHECK VOUCHER</a></li>
+                                <li><a href="table-jsgrid.html">CASH VOUCHER</a></li>
                             </ul>
                         </li>
                         <li> <a class="waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-widgets"></i><span class="hide-menu">Refunds</span></a>
                          
                         </li>
-                 
+                  
+                        
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -259,8 +283,8 @@
     <!-- This page plugins -->
     <!-- ============================================================== -->
     <!-- chartist chart -->
-    <script src="/assets/plugins/chartist-js/dist/chartist.min.js"></script>
-    <script src="/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script>
+{{--     <script src="/assets/plugins/chartist-js/dist/chartist.min.js"></script>
+    <script src="/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script> --}}
     <!--c3 JavaScript -->
     <script src="/assets/plugins/d3/d3.min.js"></script>
     <script src="/assets/plugins/c3-master/c3.min.js"></script>

@@ -16,6 +16,7 @@ import SalesAgreement from './components/SalesAgreement'
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 import swal from 'sweetalert2'
+import moment from 'moment'
 import { Form, HasError, AlertError } from 'vform';
 
 Vue.component(HasError.name, HasError)
@@ -31,6 +32,9 @@ const toast = swal.mixin({
 window.toast = toast;
 Vue.use(VueRouter)
 Vue.use(Vuetify)
+Vue.filter('myDate',function(created){
+    return moment(created).format('MMM DD,YYYY');
+});
 import 'vuetify/dist/vuetify.min.css'
 
 
