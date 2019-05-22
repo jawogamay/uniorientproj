@@ -181,10 +181,10 @@ table.v-table tbody td, table.v-table tbody th{
                                 <li><a href="/airlanerate">AIRLINE RATE</a></li>
                                 <li><a href="/customer">CUSTOMER ACCOUNTS</a></li>
                                 <li><a href="/passenger">PASSENGER DETAILS</a></li>
-                                <li><a href="/employee">ITEM CODE</a></li>
+                                <li><a href="/itemcode">ITEM CODE</a></li>
                                 <li><a href="/booklet">SA BOOKLET SERIES</a></li>
-                                <li><a href="/supplier">USER</a></li>
-                                <li><a href="/itemcode">SUPPLIER</a></li>
+                                <li><a href="/employee">USER</a></li>
+                                <li><a href="/supplier">SUPPLIER</a></li>
                                 <li><a href="#" class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                                     <span class="hide-menu">START SERIES</span></a>
                                     <ul aria-expanded="false" class="collapse">
