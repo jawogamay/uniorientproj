@@ -4,12 +4,12 @@ Author: Themedesigner
 Email: niravjoshi87@gmail.com
 File: js
 */
-/*$(function () {
-    "use strict";*/
+$(function () {
+    "use strict";
     // ============================================================== 
     // Sales overview
     // ============================================================== 
-  /*  var chart2 = new Chartist.Bar('.amp-pxl', {
+    var chart2 = new Chartist.Bar('.amp-pxl', {
           labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
           series: [
             [9, 5, 3, 7, 5, 10, 3],
@@ -30,14 +30,14 @@ File: js
         plugins: [
             Chartist.plugins.tooltip()
         ]
-    });*/
+    });
     
     
     // ============================================================== 
     // Our visitor
     // ============================================================== 
     
-/*    var chart = c3.generate({
+    var chart = c3.generate({
         bindto: '#visitor',
         data: {
             columns: [
@@ -69,7 +69,7 @@ File: js
         color: {
               pattern: ['#eceff1', '#745af2', '#26c6da', '#1e88e5']
         }
-    });*/
+    });
  
      
 

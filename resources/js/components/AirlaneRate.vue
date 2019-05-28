@@ -97,38 +97,38 @@
         ],
         desserts: [
           {
-            date: 'Jan 15th 2019',
+            date: 'Jan 15, 2019',
             airlane: 52.22,
-            usdphp: 54.2,
-            phpusd: 50,
+            usdphp: 54.20,
+            phpusd: 50.00,
            
           },
           {
-            date: 'Jan 19th 2019',
+            date: 'Jan 19, 2019',
             airlane: 52.22,
-            usdphp: 54.2,
-            phpusd: 50,
+            usdphp: 54.20,
+            phpusd: 50.00,
            
           },
           {
-            date: 'Jan 24th 2019',
+            date: 'Jan 24, 2019',
             airlane: 52.22,
-            usdphp: 54.2,
-            phpusd: 50,
+            usdphp: 54.20,
+            phpusd: 50.00,
            
           },
           {
-            date: 'Feb 15th 2019',
+            date: 'Feb 15, 2019',
             airlane: 52.22,
-            usdphp: 54.2,
-            phpusd: 50,
+            usdphp: 54.20,
+            phpusd: 50.00,
            
           },
           {
-            date: 'Aug 15th 2019',
+            date: 'Aug 15, 2019',
             airlane: 52.22,
-            usdphp: 54.2,
-            phpusd: 50,
+            usdphp: 54.20,
+            phpusd: 50.00,
            
           }
         ],

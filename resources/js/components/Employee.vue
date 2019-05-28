@@ -1,4 +1,5 @@
 <template>
+  <v-app>
     <div class="container-fluid">
       <div class="row pt-5">
              <div class="col-md-12">
@@ -99,6 +100,7 @@
             </div>
             </div>
         </div>
+      </v-app>
 </template>
 <script type="text/javascript">
     export default{
