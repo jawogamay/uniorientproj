@@ -7,7 +7,7 @@
                       <div class="card-header">
                         <h3 class="card-title">AIRLANE RATE </h3>
                         <div class="card-tools">
-                            <button class="btn btn-warning" @click="newModal">Add<v-icon color="#fff">add_box</v-icon></button>
+                            <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
                          </div>
                      </div>
                      <template>

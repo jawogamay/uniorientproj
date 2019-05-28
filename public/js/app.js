@@ -62074,7 +62074,7 @@ var render = function() {
                       on: { click: _vm.newModal }
                     },
                     [
-                      _vm._v("Add"),
+                      _vm._v("ADD"),
                       _c("v-icon", { attrs: { color: "#fff" } }, [
                         _vm._v("add_box")
                       ])
@@ -62382,7 +62382,7 @@ var render = function() {
                     on: { click: _vm.newModal }
                   },
                   [
-                    _vm._v("Add"),
+                    _vm._v("ADD"),
                     _c("v-icon", { attrs: { color: "#fff" } }, [
                       _vm._v("add_box")
                     ])
@@ -62894,7 +62894,7 @@ var render = function() {
                       on: { click: _vm.newModal }
                     },
                     [
-                      _vm._v("Add"),
+                      _vm._v("ADD"),
                       _c("v-icon", { attrs: { color: "#fff" } }, [
                         _vm._v("add_box")
                       ])
@@ -64481,7 +64481,7 @@ var render = function() {
                     on: { click: _vm.newModal }
                   },
                   [
-                    _vm._v("Add"),
+                    _vm._v("ADD"),
                     _c("v-icon", { attrs: { color: "#fff" } }, [
                       _vm._v("add_box")
                     ])
