@@ -166,6 +166,10 @@
                   this.spinner = true;
                    $('#addNew').modal('hide')
 
+                     toast.fire({
+                      type: 'success',
+                      title: 'Customer Created Successfully'
+                    });
               })
               setTimeout(()=> {this.spinner = false},1000)
             },
