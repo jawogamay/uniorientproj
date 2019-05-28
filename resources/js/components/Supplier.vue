@@ -1,18 +1,30 @@
 <template>
     <div class="container-fluid">
+       <div class="row page-titles">
+                    <div class="col-md-5 col-8 align-self-center">
+                        <h3 class="text-themecolor">SUPPLIER</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">SETUP FILES</a></li>
+                            <li class="breadcrumb-item active">SUPLLIER</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-7 col-4 align-self-center">
+              
+                    </div>
+                </div>
       <div class="row pt-5">
              <div class="col-md-12">
                 <div class="card">
                       <div class="card-header">
-                        <h3 class="card-title">Supplier </h3>
+                        <h3 class="card-title">SUPPLIER INFORMATION </h3>
                         <div class="card-tools">
-                            <button class="btn btn-warning" @click="newModal">Add<v-icon color="#fff">add_box</v-icon></button>
+                            <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
                          </div>
                      </div>
                      <template>
   <v-card>
     <v-card-title>
-      Supplier Table
+      SUPPLIER DATA
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -108,31 +120,31 @@
             sortable: false,
             value: 'date'
           },
-          { text: 'Account name', value: 'airlane' },
-          { text: 'Address', value: 'usdphp' },
-          { text: 'Nature', value: 'phpusd' },
+          { text: 'ACCOUNT NAME', value: 'airlane' },
+          { text: 'ADDRESS', value: 'usdphp' },
+          { text: 'NATURE', value: 'phpusd' },
           { text: 'TC', value: 'verified' },
-          { text: 'Term', value: 'notes' },
-          {text: 'Contact Details', value: 'details'},
-          {text:'Actions',value:'actios'}
+          { text: 'TERM', value: 'notes' },
+          {text: 'CONTACT DETAILS', value: 'details'},
+          {text:'ACTIONS',value:'actios'}
         ],
         desserts: [
           {
             date: '1',
-            airlane: '101 Restaurant City Inc',
+            airlane: '101 RESTAURANT CITY INC',
             usdphp: '',
-            phpusd: 'Private',
+            phpusd: 'PRIVATE',
             verified: 'RCO',
-            notes: '30 Days',
+            notes: '30 DAYS',
             details: ' ',
            
           },
 
            {
             date: '2',
-            airlane: '3-1 Marketing',
+            airlane: '3-1 MARKETING',
             usdphp: '',
-            phpusd: 'Private',
+            phpusd: 'PRIVATE',
             verified: 'LAL',
             notes: 'CASH',
             details: ' ',
@@ -140,19 +152,19 @@
           },
           {
             date: '3',
-            airlane: '77 Living Inc',
+            airlane: '77 LIVING INC',
             usdphp: '',
-            phpusd: 'Sub Agent',
+            phpusd: 'SUB AGENT',
             verified: 'RMR',
-            notes: '30 Days',
+            notes: '30 DAYS',
             details: ' ',
            
           },
           {
             date: '4',
-            airlane: 'Ame Travel & Tours',
+            airlane: 'AME TRAVEL & TOURS',
             usdphp: '',
-            phpusd: 'Private',
+            phpusd: 'PRIVATE',
             verified: 'MNH',
             notes: 'CASH',
             details: ' ',
@@ -160,9 +172,9 @@
           },
           {
             date: '5',
-            airlane: 'Amigo Travel & Tours',
+            airlane: 'AMIGO TRAVEL & TOURS',
             usdphp: '',
-            phpusd: 'Sub Agent',
+            phpusd: 'SUB AGENT',
             verified: 'LAL',
             notes: 'CASH',
             details: ' ',
@@ -170,9 +182,9 @@
           },
             {
             date: '6',
-            airlane: 'Amigo Travel & Tours',
+            airlane: 'AMIGO TRAVEL & TOURS',
             usdphp: '',
-            phpusd: 'Sub Agent',
+            phpusd: 'SUB AGENT',
             verified: 'LAL',
             notes: 'CASH',
             details: ' ',
@@ -199,3 +211,9 @@
         }
     };
 </script>
+<style type="text/css" scoped>
+  table.v-table tbody td{
+    font-weight: 300;
+    font-size: 15px;
+}
+</style>

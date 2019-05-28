@@ -29,6 +29,7 @@ const toast = swal.mixin({
     showConfirmButton:false,
     timer:3000
 });
+window.Fire =  new Vue();
 window.toast = toast;
 Vue.use(VueRouter)
 Vue.use(Vuetify)

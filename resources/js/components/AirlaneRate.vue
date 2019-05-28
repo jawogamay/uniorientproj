@@ -1,11 +1,23 @@
 <template>
   <v-app>
     <div class="container-fluid">
+          <div class="row page-titles">
+                    <div class="col-md-5 col-8 align-self-center">
+                        <h3 class="text-themecolor">AIRLINE RATE</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">SETUP FILES</a></li>
+                            <li class="breadcrumb-item active">AIRLINE</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-7 col-4 align-self-center">
+              
+                    </div>
+                </div>
       <div class="row pt-5">
              <div class="col-md-12">
                 <div class="card">
                       <div class="card-header">
-                        <h3 class="card-title">AIRLANE RATE </h3>
+                        <h3 class="card-title">AIRLINE RATE INFORMATION</h3>
                         <div class="card-tools">
                             <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
                          </div>
@@ -13,7 +25,7 @@
                      <template>
   <v-card>
     <v-card-title>
-      AIRLANE RATE INFORMATION
+      AIRLINE RATE DATA
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -88,7 +100,7 @@
             sortable: false,
             value: 'date'
           },
-          { text: 'AIRLANTE RATE', value: 'airlane' },
+          { text: 'AIRLINE RATE', value: 'airlane' },
           { text: 'USD TO PHP', value: 'usdphp' },
           { text: 'PHP TO USD', value: 'phpusd' },
           { text: 'VERIFIED BY', value: 'verified' },
@@ -152,3 +164,9 @@
         }
     };
 </script>
+<style type="text/css" scoped>
+  table.v-table tbody td{
+    font-weight: 300;
+    font-size: 15px;
+}
+</style>

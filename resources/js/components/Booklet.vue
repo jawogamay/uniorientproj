@@ -1,10 +1,22 @@
 <template>
     <div class="container-fluid">
+        <div class="row page-titles">
+                    <div class="col-md-5 col-8 align-self-center">
+                        <h3 class="text-themecolor">BOOKLET</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">SETUP FILES</a></li>
+                            <li class="breadcrumb-item active">SA BOOKLET SERIES</li>
+                        </ol>
+                    </div>
+                    <div class="col-md-7 col-4 align-self-center">
+              
+                    </div>
+                </div>
       <div class="row pt-5">
              <div class="col-md-12">
                 <div class="card">
                       <div class="card-header">
-                        <h3 class="card-title">BOOKLET </h3>
+                        <h3 class="card-title">BOOKLET SERIES INFORMATION </h3>
                         <div class="card-tools">
                             <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
                          </div>
@@ -12,7 +24,7 @@
                      <template>
   <v-card>
     <v-card-title>
-      BOOKLET TABLE
+      BOOKLET SERIES DATA
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -24,21 +36,20 @@
     </v-card-title>
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="booklets"
       :search="search"
     >
       <template v-slot:items="props">
-        <td>{{ props.item.date }}</td>
-        <td class="text-xs-left">{{ props.item.airlane | capitalize}}</td>
-        <td class="text-xs-left">{{ props.item.usdphp | capitalize}}</td>
-        <td class="text-xs-left">{{ props.item.phpusd | capitalize}}</td>
-        <td class="text-xs-left">{{ props.item.verified | capitalize}}</td>
+        <td></td>
+        <td class="text-xs-left">{{ props.item.bookletNumber | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.user.name | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.created_at | myDate | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.notes | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.details | capitalize}}</td>
         <td class="text-xs-left">
 
-            <a href="#" class="btn btn-success">View</a>
-            <a href="#" class="btn btn-warning">Edit</a> 
+            <a href="#" class="btn btn-success">VIEW</a>
+            <a href="#" class="btn btn-warning">EDIT</a> 
         </td>
       </template>
       <template v-slot:no-results>
@@ -67,14 +78,14 @@
                        <form @submit.prevent="editmode ? updateUser() :createBooklet()">
                         <div class="modal-body">
   
-                            <span>Travel Consultant:</span><select class="form-control" name="name_assign" v-model="form.name_assign">
+                            <label>Travel Consultant:</label><select class="form-control" name="name_assign" v-model="form.name_assign">
                                 <option value="" disabled selected> -Assign Travel Consultant - </option>
                                 <option v-for="travelconsultant in travelconsultants" :value="travelconsultant.id">
                                   {{travelconsultant.name}}
                                 </option>
                             </select>
                             <br><br>
-                             <p><b> Booklet Number: </b></p>
+                             <label><b> Booklet Number: </b></label>
                                  <div class="row" style="margin:0 auto; text-align:center;">
                                  <div class="col-md-6">
                                     <input type="number" placeholder="Enter first number" class="form-control mr-5 ml-3" name="initial" v-model="form.initial" :class="{ 'is-invalid': form.errors.has('initial') }" style="width:100%;">
@@ -106,6 +117,7 @@
                  search: '',
                  spinner:false,
                    editmode: false,
+                   booklets:[],
                 form: new Form({
                     id: '',
                     iniital:'',
@@ -120,83 +132,21 @@
             sortable: false,
             value: 'date'
           },
-          { text: 'ACCOUNT NAME', value: 'airlane' },
-          { text: 'ADDRESS', value: 'usdphp' },
-          { text: 'NATURE', value: 'phpusd' },
-          { text: 'TC', value: 'verified' },
-          { text: 'TERM', value: 'notes' },
-          {text: 'CONTACT DETAILS', value: 'details'},
-          {text:'ACTIONS',value:'actios'}
+          { text: 'SA BOOKLET SERIES', value: 'airlane' },
+          { text: 'TRAVEL CONSULTANT', value: 'usdphp' },
+          { text: 'DATE CREATED', value: 'phpusd' },
+          { text: 'STATUS', value: 'verified' },
+          { text: 'NOTES', value: 'notes' },
+          {text:'ACTIONS',value:'actions'}
         ],
-        desserts: [
-          {
-            date: '1',
-            airlane: '101 Restaurant City Inc',
-            usdphp: '',
-            phpusd: 'Private',
-            verified: 'RCO',
-            notes: '30 Days',
-            details: ' ',
-           
-          },
-
-           {
-            date: '2',
-            airlane: '3-1 Marketing',
-            usdphp: '',
-            phpusd: 'Private',
-            verified: 'LAL',
-            notes: 'CASH',
-            details: ' ',
-           
-          },
-          {
-            date: '3',
-            airlane: '77 Living Inc',
-            usdphp: '',
-            phpusd: 'Sub Agent',
-            verified: 'RMR',
-            notes: '30 Days',
-            details: ' ',
-           
-          },
-          {
-            date: '4',
-            airlane: 'Ame Travel & Tours',
-            usdphp: '',
-            phpusd: 'Private',
-            verified: 'MNH',
-            notes: 'CASH',
-            details: ' ',
-           
-          },
-          {
-            date: '5',
-            airlane: 'Amigo Travel & Tours',
-            usdphp: '',
-            phpusd: 'Sub Agent',
-            verified: 'LAL',
-            notes: 'CASH',
-            details: ' ',
-           
-          },
-            {
-            date: '6',
-            airlane: 'Amigo Travel & Tours',
-            usdphp: '',
-            phpusd: 'Sub Agent',
-            verified: 'LAL',
-            notes: 'CASH',
-            details: ' ',
-           
-          },
-        ],
+     
               
             }
         
         },
         mounted(){
           this.getTC();
+          this.getBooklet();
         },
         methods: {
             newModal(){
@@ -220,10 +170,16 @@
                     })
                     setTimeout(()=> {this.spinner = false},1000)
                 })
+            },
+            getBooklet(){
+              axios.get('api/booklet').then(({data})=> this.booklets = data)
             }
         }
     };
 </script>
-<style>
-
+<style type="text/css" scoped>
+  table.v-table tbody td{
+    font-weight: 300;
+    font-size: 15px;
+}
 </style>

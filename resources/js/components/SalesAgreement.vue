@@ -206,3 +206,9 @@
         }
     };
 </script>
+<style type="text/css" scoped>
+  table.v-table tbody td{
+    font-weight: 300;
+    font-size: 15px;
+}
+</style>

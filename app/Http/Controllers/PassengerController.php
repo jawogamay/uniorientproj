@@ -59,6 +59,7 @@ class PassengerController extends Controller
             'lastname' => $request['lastname'],
             'firstname' => $request['firstname'],
             'date_birth' => $request['dob'],
+            'prefix' => $request['prefix'],
             'tel' => $request['tel'],
             'notes' => $request['notes'],
             'status' => 'Test'

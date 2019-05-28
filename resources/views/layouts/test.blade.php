@@ -41,11 +41,37 @@
   font-family: Inconsalata;
   src:url(/fonts/Inconsolata.otf);
 }
+.page-wrapper,.card-header,.card-title,.form-control,label { 
+    font-family: Inconsalata;
+}
+::placeholder{
+    color:#000000;
+}
+
+.form-control{
+    color:#000000;
+}
+.form-control,label{
+    font-size:18px;
+}
+label{
+    color:#1e88e5;
+   
+}
+
 body{
     font-family: Inconsalata;
 }
 table.v-table tbody td, table.v-table tbody th{
     height: 20px;
+    
+     font-family: Inconsalata;
+}
+
+table.v-table thead th.sortable{
+    font-weight: 800;
+    font-size: 14px;
+    color:rgb(30,136,229);
 }
      </style>
 </head>

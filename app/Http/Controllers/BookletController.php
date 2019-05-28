@@ -6,6 +6,7 @@ use App\Booklet;
 use App\SaleAgreement;
 use App\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class BookletController extends Controller
 {
@@ -24,6 +25,8 @@ class BookletController extends Controller
     public function index()
     {
         //
+        $user = Auth::user()->id;
+        return Booklet::where('user_id',$user)->with('user')->get();
     }
 
     /**
