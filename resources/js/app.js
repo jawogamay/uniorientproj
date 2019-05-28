@@ -35,6 +35,15 @@ Vue.use(Vuetify)
 Vue.filter('myDate',function(created){
     return moment(created).format('MMM DD,YYYY');
 });
+Vue.filter('capitalize', function (value) {
+  if (!value) {
+    return ''
+}
+else{
+  value = value.toString()
+  return value.toUpperCase()
+}
+})
 import 'vuetify/dist/vuetify.min.css'
 
 

@@ -29,12 +29,12 @@
     >
       <template v-slot:items="props">
         <td>{{ props.item.date }}</td>
-        <td class="text-xs-left">{{ props.item.airlane }}</td>
-        <td class="text-xs-left">{{ props.item.usdphp }}</td>
-        <td class="text-xs-left">{{ props.item.phpusd }}</td>
-        <td class="text-xs-left">{{ props.item.verified }}</td>
-        <td class="text-xs-left">{{ props.item.notes }}</td>
-        <td class="text-xs-left">{{ props.item.details }}</td>
+        <td class="text-xs-left">{{ props.item.airlane | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.usdphp | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.phpusd | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.verified | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.notes | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.details | capitalize}}</td>
         <td class="text-xs-left">
 
             <a href="#" class="btn btn-success">View</a>
@@ -120,13 +120,13 @@
             sortable: false,
             value: 'date'
           },
-          { text: 'Account name', value: 'airlane' },
-          { text: 'Address', value: 'usdphp' },
-          { text: 'Nature', value: 'phpusd' },
+          { text: 'ACCOUNT NAME', value: 'airlane' },
+          { text: 'ADDRESS', value: 'usdphp' },
+          { text: 'NATURE', value: 'phpusd' },
           { text: 'TC', value: 'verified' },
-          { text: 'Term', value: 'notes' },
-          {text: 'Contact Details', value: 'details'},
-          {text:'Actions',value:'actios'}
+          { text: 'TERM', value: 'notes' },
+          {text: 'CONTACT DETAILS', value: 'details'},
+          {text:'ACTIONS',value:'actios'}
         ],
         desserts: [
           {

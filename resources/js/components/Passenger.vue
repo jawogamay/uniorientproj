@@ -29,10 +29,10 @@
     >
       <template v-slot:items="props">
         <td>{{ props.item.id }}</td>
-        <td class="text-xs-left">{{ props.item.lastname }},{{props.item.firstname}}</td>
-        <td class="text-xs-left">{{ props.item.date_birth | myDate}}</td>
-        <td class="text-xs-left">{{ props.item.tel }}</td>
-        <td class="text-xs-left">{{ props.item.notes }}</td>
+        <td class="text-xs-left">{{ props.item.lastname | capitalize}},{{props.item.firstname | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.date_birth | myDate | capitalizes}}</td>
+        <td class="text-xs-left">{{ props.item.tel | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.notes | capitalize}}</td>
         <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
       </template>
       <template v-slot:no-results>

@@ -30,12 +30,12 @@
     >
       <template v-slot:items="props">
         <td>{{ props.item.id }}</td>
-        <td class="text-xs-left">{{ props.item.account_name}}</td>
-        <td class="text-xs-left">{{ props.item.address }}</td>
-        <td class="text-xs-left">{{ props.item.nature }}</td>
-        <td class="text-xs-left">{{ props.item.user.code }}</td>
-        <td class="text-xs-left">{{ props.item.term }}</td>
-        <td class="text-xs-left">{{ props.item.contact }}</td>
+        <td class="text-xs-left">{{ props.item.account_name | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.address | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.nature | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.user.code | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.term | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.contact |capitalize}}</td>
         <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
       </template>
       <template v-slot:no-results>
@@ -123,13 +123,13 @@
             sortable: false,
             value: 'date'
           },
-          { text: 'Account name', value: 'account_name' },
-          { text: 'Address', value: 'address' },
-          { text: 'Nature', value: 'nature' },
+          { text: 'ACCOUNT NAME', value: 'account_name' },
+          { text: 'ADDRESS', value: 'address' },
+          { text: 'NATURE', value: 'nature' },
           { text: 'TC', value: 'user.code' },
-          { text: 'Term', value: 'term' },
-          {text: 'Contact Details', value: 'contact'},
-          {text:'Actions',value:'actios'}
+          { text: 'TERM', value: 'term' },
+          {text: 'CONTACT DETAILS', value: 'contact'},
+          {text:'ACTIONS',value:'actios'}
         ],
                 editmode: false,
                 form: new Form({

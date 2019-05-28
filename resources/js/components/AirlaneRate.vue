@@ -83,35 +83,35 @@
                  search: '',
         headers: [
           {
-            text: 'Date',
+            text: 'DATE',
             align: 'left',
             sortable: false,
             value: 'date'
           },
-          { text: 'Airlane Rate', value: 'airlane' },
+          { text: 'AIRLANTE RATE', value: 'airlane' },
           { text: 'USD to PHP', value: 'usdphp' },
           { text: 'PHP to USD', value: 'phpusd' },
-          { text: 'Verified By', value: 'verified' },
-          { text: 'Notes', value: 'notes' },
-          {text: 'Actions', value: 'action'}
+          { text: 'VERIFIED BY', value: 'verified' },
+          { text: 'NOTES', value: 'notes' },
+          {text: 'ACTIONS', value: 'action'}
         ],
         desserts: [
           {
-            date: 'Jan 15, 2019',
+            date: 'JAN 15, 2019',
             airlane: 52.22,
             usdphp: 54.20,
             phpusd: 50.00,
            
           },
           {
-            date: 'Jan 19, 2019',
+            date: 'JAN 19, 2019',
             airlane: 52.22,
             usdphp: 54.20,
             phpusd: 50.00,
            
           },
           {
-            date: 'Jan 24, 2019',
+            date: 'JAN 24, 2019',
             airlane: 52.22,
             usdphp: 54.20,
             phpusd: 50.00,
@@ -125,7 +125,7 @@
            
           },
           {
-            date: 'Aug 15, 2019',
+            date: 'AUG 15, 2019',
             airlane: 52.22,
             usdphp: 54.20,
             phpusd: 50.00,

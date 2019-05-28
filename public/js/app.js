@@ -1846,12 +1846,12 @@ __webpack_require__.r(__webpack_exports__);
     return {
       search: '',
       headers: [{
-        text: 'Date',
+        text: 'DATE',
         align: 'left',
         sortable: false,
         value: 'date'
       }, {
-        text: 'Airlane Rate',
+        text: 'AIRLANTE RATE',
         value: 'airlane'
       }, {
         text: 'USD to PHP',
@@ -1860,27 +1860,27 @@ __webpack_require__.r(__webpack_exports__);
         text: 'PHP to USD',
         value: 'phpusd'
       }, {
-        text: 'Verified By',
+        text: 'VERIFIED BY',
         value: 'verified'
       }, {
-        text: 'Notes',
+        text: 'NOTES',
         value: 'notes'
       }, {
-        text: 'Actions',
+        text: 'ACTIONS',
         value: 'action'
       }],
       desserts: [{
-        date: 'Jan 15, 2019',
+        date: 'JAN 15, 2019',
         airlane: 52.22,
         usdphp: 54.20,
         phpusd: 50.00
       }, {
-        date: 'Jan 19, 2019',
+        date: 'JAN 19, 2019',
         airlane: 52.22,
         usdphp: 54.20,
         phpusd: 50.00
       }, {
-        date: 'Jan 24, 2019',
+        date: 'JAN 24, 2019',
         airlane: 52.22,
         usdphp: 54.20,
         phpusd: 50.00
@@ -1890,7 +1890,7 @@ __webpack_require__.r(__webpack_exports__);
         usdphp: 54.20,
         phpusd: 50.00
       }, {
-        date: 'Aug 15, 2019',
+        date: 'AUG 15, 2019',
         airlane: 52.22,
         usdphp: 54.20,
         phpusd: 50.00
@@ -2044,25 +2044,25 @@ __webpack_require__.r(__webpack_exports__);
         sortable: false,
         value: 'date'
       }, {
-        text: 'Account name',
+        text: 'ACCOUNT NAME',
         value: 'airlane'
       }, {
-        text: 'Address',
+        text: 'ADDRESS',
         value: 'usdphp'
       }, {
-        text: 'Nature',
+        text: 'NATURE',
         value: 'phpusd'
       }, {
         text: 'TC',
         value: 'verified'
       }, {
-        text: 'Term',
+        text: 'TERM',
         value: 'notes'
       }, {
-        text: 'Contact Details',
+        text: 'CONTACT DETAILS',
         value: 'details'
       }, {
-        text: 'Actions',
+        text: 'ACTIONS',
         value: 'actios'
       }],
       desserts: [{
@@ -2285,25 +2285,25 @@ __webpack_require__.r(__webpack_exports__);
         sortable: false,
         value: 'date'
       }, {
-        text: 'Account name',
+        text: 'ACCOUNT NAME',
         value: 'account_name'
       }, {
-        text: 'Address',
+        text: 'ADDRESS',
         value: 'address'
       }, {
-        text: 'Nature',
+        text: 'NATURE',
         value: 'nature'
       }, {
         text: 'TC',
         value: 'user.code'
       }, {
-        text: 'Term',
+        text: 'TERM',
         value: 'term'
       }, {
-        text: 'Contact Details',
+        text: 'CONTACT DETAILS',
         value: 'contact'
       }, {
-        text: 'Actions',
+        text: 'ACTIONS',
         value: 'actios'
       }],
       editmode: false,
@@ -2340,6 +2340,10 @@ __webpack_require__.r(__webpack_exports__);
       this.form.post('api/customer').then(function (response) {
         _this.spinner = true;
         $('#addNew').modal('hide');
+        toast.fire({
+          type: 'success',
+          title: 'Customer Created Successfully'
+        });
       });
       setTimeout(function () {
         _this.spinner = false;
@@ -62431,27 +62435,41 @@ var render = function() {
                             _c("td", [_vm._v(_vm._s(props.item.date))]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-xs-left" }, [
-                              _vm._v(_vm._s(props.item.airlane))
+                              _vm._v(
+                                _vm._s(_vm._f("capitalize")(props.item.airlane))
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-xs-left" }, [
-                              _vm._v(_vm._s(props.item.usdphp))
+                              _vm._v(
+                                _vm._s(_vm._f("capitalize")(props.item.usdphp))
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-xs-left" }, [
-                              _vm._v(_vm._s(props.item.phpusd))
+                              _vm._v(
+                                _vm._s(_vm._f("capitalize")(props.item.phpusd))
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-xs-left" }, [
-                              _vm._v(_vm._s(props.item.verified))
+                              _vm._v(
+                                _vm._s(
+                                  _vm._f("capitalize")(props.item.verified)
+                                )
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-xs-left" }, [
-                              _vm._v(_vm._s(props.item.notes))
+                              _vm._v(
+                                _vm._s(_vm._f("capitalize")(props.item.notes))
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-xs-left" }, [
-                              _vm._v(_vm._s(props.item.details))
+                              _vm._v(
+                                _vm._s(_vm._f("capitalize")(props.item.details))
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-xs-left" }, [
@@ -62929,27 +62947,51 @@ var render = function() {
                               _c("td", [_vm._v(_vm._s(props.item.id))]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(_vm._s(props.item.account_name))
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("capitalize")(
+                                      props.item.account_name
+                                    )
+                                  )
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(_vm._s(props.item.address))
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("capitalize")(props.item.address)
+                                  )
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(_vm._s(props.item.nature))
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("capitalize")(props.item.nature)
+                                  )
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(_vm._s(props.item.user.code))
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("capitalize")(props.item.user.code)
+                                  )
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(_vm._s(props.item.term))
+                                _vm._v(
+                                  _vm._s(_vm._f("capitalize")(props.item.term))
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(_vm._s(props.item.contact))
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("capitalize")(props.item.contact)
+                                  )
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
@@ -64493,24 +64535,36 @@ var render = function() {
                             _vm._v(" "),
                             _c("td", { staticClass: "text-xs-left" }, [
                               _vm._v(
-                                _vm._s(props.item.lastname) +
+                                _vm._s(
+                                  _vm._f("capitalize")(props.item.lastname)
+                                ) +
                                   "," +
-                                  _vm._s(props.item.firstname)
+                                  _vm._s(
+                                    _vm._f("capitalize")(props.item.firstname)
+                                  )
                               )
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-xs-left" }, [
                               _vm._v(
-                                _vm._s(_vm._f("myDate")(props.item.date_birth))
+                                _vm._s(
+                                  _vm._f("capitalizes")(
+                                    _vm._f("myDate")(props.item.date_birth)
+                                  )
+                                )
                               )
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-xs-left" }, [
-                              _vm._v(_vm._s(props.item.tel))
+                              _vm._v(
+                                _vm._s(_vm._f("capitalize")(props.item.tel))
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-xs-left" }, [
-                              _vm._v(_vm._s(props.item.notes))
+                              _vm._v(
+                                _vm._s(_vm._f("capitalize")(props.item.notes))
+                              )
                             ]),
                             _vm._v(" "),
                             _c("td", { staticClass: "text-xs-left" }, [
@@ -106819,6 +106873,14 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_10__["default"]);
 Vue.use(vuetify__WEBPACK_IMPORTED_MODULE_11___default.a);
 Vue.filter('myDate', function (created) {
   return moment__WEBPACK_IMPORTED_MODULE_13___default()(created).format('MMM DD,YYYY');
+});
+Vue.filter('capitalize', function (value) {
+  if (!value) {
+    return '';
+  } else {
+    value = value.toString();
+    return value.toUpperCase();
+  }
 });
 
 var routes = [{
