@@ -1854,10 +1854,10 @@ __webpack_require__.r(__webpack_exports__);
         text: 'AIRLANTE RATE',
         value: 'airlane'
       }, {
-        text: 'USD to PHP',
+        text: 'USD TO PHP',
         value: 'usdphp'
       }, {
-        text: 'PHP to USD',
+        text: 'PHP TO USD',
         value: 'phpusd'
       }, {
         text: 'VERIFIED BY',
@@ -62063,7 +62063,7 @@ var render = function() {
             [
               _c("div", { staticClass: "card-header" }, [
                 _c("h3", { staticClass: "card-title" }, [
-                  _vm._v("Airlane Rate ")
+                  _vm._v("AIRLANE RATE ")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-tools" }, [
@@ -62091,7 +62091,7 @@ var render = function() {
                     _c(
                       "v-card-title",
                       [
-                        _vm._v("\n      Nutrition\n      "),
+                        _vm._v("\n      AIRLANE RATE INFORMATION\n      "),
                         _c("v-spacer"),
                         _vm._v(" "),
                         _c("v-text-field", {
@@ -62235,7 +62235,7 @@ var render = function() {
                       staticClass: "modal-title",
                       attrs: { id: "addNewLabel" }
                     },
-                    [_vm._v("Add Post")]
+                    [_vm._v("ADD AIRLANE RATE")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -62372,7 +62372,7 @@ var render = function() {
           { staticClass: "card" },
           [
             _c("div", { staticClass: "card-header" }, [
-              _c("h3", { staticClass: "card-title" }, [_vm._v("Booklet ")]),
+              _c("h3", { staticClass: "card-title" }, [_vm._v("BOOKLET ")]),
               _vm._v(" "),
               _c("div", { staticClass: "card-tools" }, [
                 _c(
@@ -62399,7 +62399,7 @@ var render = function() {
                   _c(
                     "v-card-title",
                     [
-                      _vm._v("\n      Booklet Table\n      "),
+                      _vm._v("\n      BOOKLET TABLE\n      "),
                       _c("v-spacer"),
                       _vm._v(" "),
                       _c("v-text-field", {
@@ -62883,7 +62883,7 @@ var render = function() {
             [
               _c("div", { staticClass: "card-header" }, [
                 _c("h3", { staticClass: "card-title" }, [
-                  _vm._v("Customer Information ")
+                  _vm._v("CUSTOMER INFORMATION ")
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-tools" }, [
@@ -62911,7 +62911,7 @@ var render = function() {
                     _c(
                       "v-card-title",
                       [
-                        _vm._v("\n      Nutrition\n      "),
+                        _vm._v("\n      CUSTOMER DATA\n      "),
                         _c("v-spacer"),
                         _vm._v(" "),
                         _c("v-text-field", {
@@ -64470,7 +64470,7 @@ var render = function() {
           [
             _c("div", { staticClass: "card-header" }, [
               _c("h3", { staticClass: "card-title" }, [
-                _vm._v("Add Passenger ")
+                _vm._v("ADD PASSENGER ")
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "card-tools" }, [
@@ -64498,7 +64498,7 @@ var render = function() {
                   _c(
                     "v-card-title",
                     [
-                      _vm._v("\n      Passenger Table\n      "),
+                      _vm._v("\n      PASSENGER INFORMATION\n      "),
                       _c("v-spacer"),
                       _vm._v(" "),
                       _c("v-text-field", {

@@ -5,7 +5,7 @@
              <div class="col-md-12">
                 <div class="card">
                       <div class="card-header">
-                        <h3 class="card-title">Airlane Rate </h3>
+                        <h3 class="card-title">AIRLANE RATE </h3>
                         <div class="card-tools">
                             <button class="btn btn-warning" @click="newModal">Add<v-icon color="#fff">add_box</v-icon></button>
                          </div>
@@ -13,7 +13,7 @@
                      <template>
   <v-card>
     <v-card-title>
-      Nutrition
+      AIRLANE RATE INFORMATION
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -54,7 +54,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Post</h5>
+                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">ADD AIRLANE RATE</h5>
                             <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update User's Info</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -89,8 +89,8 @@
             value: 'date'
           },
           { text: 'AIRLANTE RATE', value: 'airlane' },
-          { text: 'USD to PHP', value: 'usdphp' },
-          { text: 'PHP to USD', value: 'phpusd' },
+          { text: 'USD TO PHP', value: 'usdphp' },
+          { text: 'PHP TO USD', value: 'phpusd' },
           { text: 'VERIFIED BY', value: 'verified' },
           { text: 'NOTES', value: 'notes' },
           {text: 'ACTIONS', value: 'action'}

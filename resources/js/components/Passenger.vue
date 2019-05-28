@@ -4,7 +4,7 @@
              <div class="col-md-12">
                 <div class="card">
                       <div class="card-header">
-                        <h3 class="card-title">Add Passenger </h3>
+                        <h3 class="card-title">ADD PASSENGER </h3>
                         <div class="card-tools">
                             <button class="btn btn-warning" @click="newModal">Add<v-icon color="#fff">add_box</v-icon></button>
                          </div>
@@ -12,7 +12,7 @@
                      <template>
   <v-card>
     <v-card-title>
-      Passenger Table
+      PASSENGER INFORMATION
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"

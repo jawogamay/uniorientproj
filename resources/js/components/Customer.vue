@@ -5,7 +5,7 @@
     <div class="col-md-12">
       <div class="card">
                       <div class="card-header">
-                        <h3 class="card-title">Customer Information </h3>
+                        <h3 class="card-title">CUSTOMER INFORMATION </h3>
                         <div class="card-tools">
                             <button class="btn btn-warning" @click="newModal">Add<v-icon color="#fff">add_box</v-icon></button>
                          </div>
@@ -13,7 +13,7 @@
                      <template>
   <v-card>
     <v-card-title>
-      Nutrition
+      CUSTOMER DATA
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
