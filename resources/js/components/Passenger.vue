@@ -75,7 +75,10 @@
                             <input type="text" class="form-control" placeholder="First Name" name="firstname" 
                             v-model="form.firstname"><br><br>
                             <span>Prefix:</span><select class="form-control" name="prefix" v-model="form.prefix">
-                                <option value="test"> -PREFIX - </option>
+                                <option value="" selected disabled> -PREFIX - </option>
+                                <option value="MR">MR</option>
+                                <option value="MS">MS</option>
+                                <option value="MRS">MRS</option>
                             </select>
                             <br><br>
                             <label for="dob">Date of Birth:</label>
