@@ -31,8 +31,8 @@
       <template v-slot:items="props">
         <td>{{ props.item.date }}</td>
         <td class="text-xs-left">PHP {{ props.item.airlane }}</td>
-        <td class="text-xs-left">PHP {{ props.item.usdphp }}</td>
-        <td class="text-xs-left">PHP {{ props.item.phpusd }}</td>
+        <td class="text-xs-left">PHP {{ props.item.usdphp }}0</td>
+        <td class="text-xs-left">PHP {{ props.item.phpusd }}.00</td>
         <td class="text-xs-left">{{ props.item.verified }}</td>
         <td class="text-xs-left">{{ props.item.notes }}</td>
         <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>

@@ -62128,11 +62128,13 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v("PHP " + _vm._s(props.item.usdphp))
+                                _vm._v("PHP " + _vm._s(props.item.usdphp) + "0")
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v("PHP " + _vm._s(props.item.phpusd))
+                                _vm._v(
+                                  "PHP " + _vm._s(props.item.phpusd) + ".00"
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
@@ -64715,34 +64717,6 @@ var render = function() {
                               return
                             }
                             _vm.$set(_vm.form, "lastname", $event.target.value)
-                          }
-                        }
-                      }),
-                      _c("br"),
-                      _c("br"),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.middename,
-                            expression: "form.middename"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Middle Name",
-                          name: "middename"
-                        },
-                        domProps: { value: _vm.form.middename },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(_vm.form, "middename", $event.target.value)
                           }
                         }
                       }),

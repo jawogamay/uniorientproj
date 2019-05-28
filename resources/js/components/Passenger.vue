@@ -70,8 +70,8 @@
                             <br> -->
                             <input type="text" class="form-control" placeholder="Last Name" name="lastname" 
                             v-model="form.lastname"><br><br>
-                            <input type="text" class="form-control" placeholder="Middle Name" name="middename" 
-                            v-model="form.middename"><br><br>
+                 <!--            <input type="text" class="form-control" placeholder="Middle Name" name="middename" 
+                            v-model="form.middename"><br><br> -->
                             <input type="text" class="form-control" placeholder="First Name" name="firstname" 
                             v-model="form.firstname"><br><br>
                             <span>Prefix:</span><select class="form-control" name="prefix" v-model="form.prefix">
