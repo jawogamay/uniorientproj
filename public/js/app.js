@@ -2867,7 +2867,6 @@ __webpack_require__.r(__webpack_exports__);
         id: '',
         account_name: '',
         lastname: '',
-        middlename: '',
         firstname: '',
         tel: '',
         dob: '',

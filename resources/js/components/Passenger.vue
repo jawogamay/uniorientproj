@@ -112,7 +112,6 @@
                     id: '',
                     account_name:'',
                     lastname:'',
-                    middlename:'',
                     firstname:'',
                     tel:'',
                     dob:'',

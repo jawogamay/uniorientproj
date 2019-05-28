@@ -18,7 +18,7 @@ class CreatePassengersTable extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('customer_id');
             $table->string('lastname');
-            $table->string('middlename');
+            $table->string('middlename')->nullable();
             $table->string('firstname');
             $table->string('prefix')->nullable();
             $table->date('date_birth');
