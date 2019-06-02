@@ -1,4 +1,5 @@
 <template>
+  <v-app>
     <div class="container-fluid">
         <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
@@ -109,6 +110,7 @@
             </div>
             </div>
         </div>
+      </v-app>
 </template>
 <script type="text/javascript">
     export default{

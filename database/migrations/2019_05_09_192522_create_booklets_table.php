@@ -16,8 +16,8 @@ class CreateBookletsTable extends Migration
         Schema::create('booklets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedInteger('user_id');
-            $table->integer('first');
-            $table->integer('second');
+            $table->integer('initial');
+            $table->integer('end');
             $table->string('bookletNumber')->unique();
             $table->timestamps();
         });

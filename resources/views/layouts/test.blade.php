@@ -21,11 +21,12 @@
     <!--This page css - Morris CSS -->
     <link href="/assets/plugins/c3-master/c3.min.css" rel="stylesheet">
     <!-- Custom CSS -->
-    <link href="/css/style.css" rel="stylesheet">
+  
     <!-- You can change the theme colors from here -->
-    <link href="/css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="/css/colors/blues.css" id="theme" rel="stylesheet">
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
      <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons' rel="stylesheet">
+       <link href="/css/styles.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -71,7 +72,10 @@ table.v-table tbody td, table.v-table tbody th{
 table.v-table thead th.sortable{
     font-weight: 800;
     font-size: 14px;
-    color:rgb(30,136,229);
+    color:rgb(0,0,0);
+}
+#this-left{
+    padding-left: 22%;
 }
      </style>
 </head>
@@ -85,69 +89,16 @@ table.v-table thead th.sortable{
         <svg class="circular" viewBox="25 25 50 50">
             <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
     </div>
+    <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
     <div id="main-wrapper">
+
         <!-- ============================================================== -->
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
-        <header class="topbar">
-            <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                <!-- ============================================================== -->
-                <!-- Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-header">
-                 
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-collapse">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav mr-auto mt-md-0">
-                                          </ul>
-                    <!-- ============================================================== -->
-                    <!-- User profile and search -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav my-lg-0">
-                       
-                        <!-- Profile -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="../assets/images/user.png" alt="user" class="profile-pic" /></a>
-                            <div class="dropdown-menu dropdown-menu-right scale-up">
-                                <ul class="dropdown-user">
-                                    <li>
-                                        <div class="dw-user-box">
-                                            <div class="u-img"><img src="../assets/images/user.png" alt="user"></div>
-                                            <div class="u-text">
-                                                <h4>{{strtoupper(Auth::user()->name)}}</h4>
-                                                <p class="text-muted">{{Auth::user()->email}}</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
-                                        </div>
-                                    </li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="ti-settings"></i> Account Setting</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();"><i class="fa fa-power-off"></i> Logout</a>
-                                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                                 </li>
-                                </ul>
-                            </div>
-                        </li>
-                     
-                    </ul>
-                </div>
-            </nav>
-        </header>
+        
         <!-- ============================================================== -->
         <!-- End Topbar header -->
         <!-- ============================================================== -->
@@ -162,7 +113,7 @@ table.v-table thead th.sortable{
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">PERSONAL</li>
                         <li>
-                            <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">DASHBOARD </span></a>
+                            <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu">DASHBOARD |</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="index.html">COMPANY PROFILE</a></li>
                                 <li><a href="index2.html">BRANCHES</a></li>
@@ -170,9 +121,9 @@ table.v-table thead th.sortable{
                                 <li><a href="index4.html">BANKS</a></li>
                             </ul>
                         </li>
-
+<!-- 
                            <li>
-                            <a class="has-arrow" href="#" aria-expanded="false"><i class="fas fa-file"></i><span class="hide-menu">SETUP FILES </span></a>
+                            <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu">| SETUP FILES |</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="/airlanerate">AIRLINE RATE</a></li>
                                 <li><a href="/customer">CUSTOMER ACCOUNTS</a></li>
@@ -190,16 +141,16 @@ table.v-table thead th.sortable{
                                     </ul>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         <li>
-                            <a class="has-arrow" href="#" aria-expanded="false"><i class="fas fa-shopping-cart"></i><span class="hide-menu">SALES </span></a>
+                            <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu">SALES |</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="/salesagreement">SALES AGREEMENT</a></li>
                                 <li><a href="app-email-detail.html">TC MONITORING</a></li>
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="#" aria-expanded="false"><i class="fas fa-plane"></i><span class="hide-menu">AIRLINE TICKETS </span></a>
+                            <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu">AIRLINE TICKETS |</span></a>
                             <ul aria-expanded="false" class="collapse">
                                   <li><a href="ui-cards.html">IATA - AMADEUS</a></li>
                                 <li><a href="ui-user-card.html">IATA - SABRE</a></li>
@@ -208,14 +159,14 @@ table.v-table thead th.sortable{
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-file"></i><span class="hide-menu">PURCHASES</span></a>
+                            <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu">PURCHASES |</span></a>
                             <ul aria-expanded="false" class="collapse">
                                  <li><a href="form-basic.html">PO</a></li>
                                 <li><a href="form-layout.html">CASH SLIP</a></li>
                             </ul>
                         </li>
                          <li>
-                            <a class="has-arrow" href="#" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">PAYMENTS</span></a>
+                            <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu">PAYMENTS |</span></a>
                             <ul aria-expanded="false" class="collapse">
                                  <li><a href="table-basic.html">OFFICIAL RECIEPT</a></li>
                                 <li><a href="table-layout.html">PROVISIONAL RECEIPT</a></li>
@@ -225,12 +176,42 @@ table.v-table thead th.sortable{
                             </ul>
                         </li>
                         <li>
-                            <a class="has-arrow" href="#" aria-expanded="false"><i class="fas fa-shopping-cart"></i><span class="hide-menu">REFUNDS</span></a>
+                            <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu"> REFUNDS</span></a>
                           
                         </li>
-
+                          <li id="this-left">
+                            <a class="has-arrow" href="#" aria-expanded="false"><i class="fas fa-cog"></i></a>
+                                <ul aria-expanded="false" class="collapse">
+                                <li><a href="/airlanerate">AIRLINE RATE</a></li>
+                                <li><a href="/customer">CUSTOMER ACCOUNTS</a></li>
+                                <li><a href="/passenger">PASSENGER DETAILS</a></li>
+                                <li><a href="/itemcode">ITEM CODE</a></li>
+                                <li><a href="/booklet">SA BOOKLET SERIES</a></li>
+                                <li><a href="/employee">USER</a></li>
+                                <li><a href="/supplier">SUPPLIER</a></li>
+                                <li><a href="#" class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                    <span class="hide-menu">START SERIES</span></a>
+                                    <ul aria-expanded="false" class="collapse">
+                                         <li><a href="/petty">BOX PETTY CASH</a></li>
+                                         <li><a href="/petty">SOA#</a></li>
+                                         <li><a href="/petty">BOOKLET</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                          
+                        </li>
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false"><i class="fas fa-user"></i></a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="index.html">COMPANY PROFILE</a></li>
+                                <li><a href="index2.html">BRANCHES</a></li>
+                                <li><a href="index3.html">USER GROUP</a></li>
+                                <li><a href="index4.html">BANKS</a></li>
+                            </ul>
+                        </li>
         
                     </ul>
+
                 </nav>
                 <!-- End Sidebar navigation -->
             </div>

@@ -50,7 +50,7 @@ class BookletController extends Controller
         //
         $this->validate($request,[
             'name_assign' => 'required',
-            'initial' => 'required|integer|min:1',
+            'initial' => 'required|integer|min:1|unique:booklets',
             'end => required|integer'
         ]);
 

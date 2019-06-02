@@ -1852,7 +1852,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1936,6 +1935,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -2665,86 +2666,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var demoEvents = [{
   title: 'Test',
   start: '2019-04-25',
@@ -2781,7 +2702,6 @@ var demoEvents = [{
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -62429,10 +62349,6 @@ var render = function() {
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row page-titles" }, [
         _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-          _c("h3", { staticClass: "text-themecolor" }, [
-            _vm._v("AIRLINE RATE")
-          ]),
-          _vm._v(" "),
           _c("ol", { staticClass: "breadcrumb" }, [
             _c("li", { staticClass: "breadcrumb-item" }, [
               _c("a", { attrs: { href: "javascript:void(0)" } }, [
@@ -62758,522 +62674,519 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid" }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "row pt-5" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c(
-          "div",
-          { staticClass: "card" },
-          [
-            _c("div", { staticClass: "card-header" }, [
-              _c("h3", { staticClass: "card-title" }, [
-                _vm._v("BOOKLET SERIES INFORMATION ")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-tools" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-warning",
-                    on: { click: _vm.newModal }
-                  },
-                  [
-                    _vm._v("ADD"),
-                    _c("v-icon", { attrs: { color: "#fff" } }, [
-                      _vm._v("add_box")
-                    ])
-                  ],
-                  1
-                )
+  return _c("v-app", [
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "row page-titles" }, [
+        _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
+          _c("h3", { staticClass: "text-themecolor" }, [_vm._v("BOOKLET")]),
+          _vm._v(" "),
+          _c("ol", { staticClass: "breadcrumb" }, [
+            _c("li", { staticClass: "breadcrumb-item" }, [
+              _c("a", { attrs: { href: "javascript:void(0)" } }, [
+                _vm._v("SETUP FILES")
               ])
             ]),
             _vm._v(" "),
+            _c("li", { staticClass: "breadcrumb-item active" }, [
+              _vm._v("SA BOOKLET SERIES")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row pt-5" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c(
+            "div",
+            { staticClass: "card" },
             [
-              _c(
-                "v-card",
-                [
+              _c("div", { staticClass: "card-header" }, [
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v("BOOKLET SERIES INFORMATION ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-tools" }, [
                   _c(
-                    "v-card-title",
+                    "button",
+                    {
+                      staticClass: "btn btn-warning",
+                      on: { click: _vm.newModal }
+                    },
                     [
-                      _vm._v("\n      BOOKLET SERIES DATA\n      "),
-                      _c("v-spacer"),
-                      _vm._v(" "),
-                      _c("v-text-field", {
-                        attrs: {
-                          "append-icon": "search",
-                          label: "Search",
-                          "single-line": "",
-                          "hide-details": ""
-                        },
-                        model: {
-                          value: _vm.search,
-                          callback: function($$v) {
-                            _vm.search = $$v
-                          },
-                          expression: "search"
-                        }
-                      })
+                      _vm._v("ADD"),
+                      _c("v-icon", { attrs: { color: "#fff" } }, [
+                        _vm._v("add_box")
+                      ])
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c("v-data-table", {
-                    attrs: {
-                      headers: _vm.headers,
-                      items: _vm.booklets,
-                      search: _vm.search
-                    },
-                    scopedSlots: _vm._u([
-                      {
-                        key: "items",
-                        fn: function(props) {
-                          return [
-                            _c("td"),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-xs-left" }, [
-                              _vm._v(
-                                _vm._s(
-                                  _vm._f("capitalize")(props.item.bookletNumber)
-                                )
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-xs-left" }, [
-                              _vm._v(
-                                _vm._s(
-                                  _vm._f("capitalize")(props.item.user.name)
-                                )
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-xs-left" }, [
-                              _vm._v(
-                                _vm._s(
-                                  _vm._f("capitalize")(
-                                    _vm._f("myDate")(props.item.created_at)
-                                  )
-                                )
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-xs-left" }, [
-                              _vm._v(
-                                _vm._s(_vm._f("capitalize")(props.item.notes))
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-xs-left" }, [
-                              _vm._v(
-                                _vm._s(_vm._f("capitalize")(props.item.details))
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", { staticClass: "text-xs-left" }, [
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "btn btn-success",
-                                  attrs: { href: "#" }
-                                },
-                                [_vm._v("VIEW")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "btn btn-warning",
-                                  attrs: { href: "#" }
-                                },
-                                [_vm._v("EDIT")]
-                              )
-                            ])
-                          ]
-                        }
-                      },
-                      {
-                        key: "no-results",
-                        fn: function() {
-                          return [
-                            _c(
-                              "v-alert",
-                              {
-                                staticStyle: { "background-color": "red" },
-                                attrs: {
-                                  value: true,
-                                  color: "error",
-                                  icon: "warning"
-                                }
-                              },
-                              [
-                                _vm._v(
-                                  '\n          Your search for "' +
-                                    _vm._s(_vm.search) +
-                                    '" found no results.\n        '
-                                )
-                              ]
-                            )
-                          ]
-                        },
-                        proxy: true
-                      }
-                    ])
-                  })
-                ],
-                1
-              )
-            ]
-          ],
-          2
-        )
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "addNew",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "addNewLabel",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered  modal-md",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "h5",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: !_vm.editmode,
-                        expression: "!editmode"
-                      }
-                    ],
-                    staticClass: "modal-title",
-                    attrs: { id: "addNewLabel" }
-                  },
-                  [_vm._v("Add Customer")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "h5",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.editmode,
-                        expression: "editmode"
-                      }
-                    ],
-                    staticClass: "modal-title",
-                    attrs: { id: "addNewLabel" }
-                  },
-                  [_vm._v("Update User's Info")]
-                ),
-                _vm._v(" "),
-                _vm._m(1)
+                  )
+                ])
               ]),
               _vm._v(" "),
-              _c(
-                "form",
-                {
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      _vm.editmode ? _vm.updateUser() : _vm.createBooklet()
-                    }
-                  }
-                },
-                [
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c("label", [_vm._v("Travel Consultant:")]),
+              [
+                _c(
+                  "v-card",
+                  [
                     _c(
-                      "select",
-                      {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.form.name_assign,
-                            expression: "form.name_assign"
-                          }
-                        ],
-                        staticClass: "form-control",
-                        attrs: { name: "name_assign" },
-                        on: {
-                          change: function($event) {
-                            var $$selectedVal = Array.prototype.filter
-                              .call($event.target.options, function(o) {
-                                return o.selected
-                              })
-                              .map(function(o) {
-                                var val = "_value" in o ? o._value : o.value
-                                return val
-                              })
-                            _vm.$set(
-                              _vm.form,
-                              "name_assign",
-                              $event.target.multiple
-                                ? $$selectedVal
-                                : $$selectedVal[0]
-                            )
-                          }
-                        }
-                      },
+                      "v-card-title",
                       [
-                        _c(
-                          "option",
-                          { attrs: { value: "", disabled: "", selected: "" } },
-                          [_vm._v(" -Assign Travel Consultant - ")]
-                        ),
+                        _vm._v("\n      BOOKLET SERIES DATA\n      "),
+                        _c("v-spacer"),
                         _vm._v(" "),
-                        _vm._l(_vm.travelconsultants, function(
-                          travelconsultant
-                        ) {
-                          return _c(
-                            "option",
-                            { domProps: { value: travelconsultant.id } },
-                            [
-                              _vm._v(
-                                "\n                                  " +
-                                  _vm._s(travelconsultant.name) +
-                                  "\n                                "
-                              )
-                            ]
-                          )
+                        _c("v-text-field", {
+                          attrs: {
+                            "append-icon": "search",
+                            label: "Search",
+                            "single-line": "",
+                            "hide-details": ""
+                          },
+                          model: {
+                            value: _vm.search,
+                            callback: function($$v) {
+                              _vm.search = $$v
+                            },
+                            expression: "search"
+                          }
                         })
                       ],
-                      2
+                      1
                     ),
                     _vm._v(" "),
-                    _c("br"),
-                    _c("br"),
-                    _vm._v(" "),
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "row",
-                        staticStyle: {
-                          margin: "0 auto",
-                          "text-align": "center"
-                        }
+                    _c("v-data-table", {
+                      attrs: {
+                        headers: _vm.headers,
+                        items: _vm.booklets,
+                        search: _vm.search
                       },
-                      [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-6" },
-                          [
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.initial,
-                                  expression: "form.initial"
-                                }
-                              ],
-                              staticClass: "form-control mr-5 ml-3",
-                              class: {
-                                "is-invalid": _vm.form.errors.has("initial")
-                              },
-                              staticStyle: { width: "100%" },
-                              attrs: {
-                                type: "number",
-                                placeholder: "Enter first number",
-                                name: "initial"
-                              },
-                              domProps: { value: _vm.form.initial },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
-                                  }
-                                  _vm.$set(
-                                    _vm.form,
-                                    "initial",
-                                    $event.target.value
+                      scopedSlots: _vm._u([
+                        {
+                          key: "items",
+                          fn: function(props) {
+                            return [
+                              _c("td"),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("capitalize")(
+                                      props.item.bookletNumber
+                                    )
                                   )
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("has-error", {
-                              attrs: { form: _vm.form, field: "initial" }
-                            })
-                          ],
-                          1
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          { staticClass: "col-md-6" },
-                          [
-                            _c("input", {
-                              directives: [
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("capitalize")(props.item.user.name)
+                                  )
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("capitalize")(
+                                      _vm._f("myDate")(props.item.created_at)
+                                    )
+                                  )
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(
+                                  _vm._s(_vm._f("capitalize")(props.item.notes))
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("capitalize")(props.item.details)
+                                  )
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { href: "#" }
+                                  },
+                                  [_vm._v("VIEW")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-warning",
+                                    attrs: { href: "#" }
+                                  },
+                                  [_vm._v("EDIT")]
+                                )
+                              ])
+                            ]
+                          }
+                        },
+                        {
+                          key: "no-results",
+                          fn: function() {
+                            return [
+                              _c(
+                                "v-alert",
                                 {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.end,
-                                  expression: "form.end"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              class: {
-                                "is-invalid": _vm.form.errors.has("end")
-                              },
-                              staticStyle: { width: "100%" },
-                              attrs: {
-                                type: "number",
-                                placeholder: "Enter second number",
-                                name: "end"
-                              },
-                              domProps: { value: _vm.form.end },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                                  staticStyle: { "background-color": "red" },
+                                  attrs: {
+                                    value: true,
+                                    color: "error",
+                                    icon: "warning"
                                   }
-                                  _vm.$set(_vm.form, "end", $event.target.value)
-                                }
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("has-error", {
-                              attrs: { form: _vm.form, field: "end" }
-                            })
-                          ],
-                          1
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("br")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-footer" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { type: "button", "data-dismiss": "modal" }
-                      },
-                      [_vm._v("Close")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.editmode,
-                            expression: "editmode"
-                          }
-                        ],
-                        staticClass: "btn btn-success",
-                        attrs: { type: "submit" }
-                      },
-                      [_vm._v("Update")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: !_vm.editmode,
-                            expression: "!editmode"
-                          }
-                        ],
-                        staticClass: "btn btn-primary",
-                        attrs: { type: "submit" }
-                      },
-                      [
-                        _vm._v("Submit "),
-                        _vm.spinner
-                          ? _c("i", { staticClass: "fa fa-spinner fa-spin" })
-                          : _vm._e()
-                      ]
-                    )
-                  ])
-                ]
-              )
-            ])
-          ]
-        )
-      ]
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row page-titles" }, [
-      _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-        _c("h3", { staticClass: "text-themecolor" }, [_vm._v("BOOKLET")]),
-        _vm._v(" "),
-        _c("ol", { staticClass: "breadcrumb" }, [
-          _c("li", { staticClass: "breadcrumb-item" }, [
-            _c("a", { attrs: { href: "javascript:void(0)" } }, [
-              _vm._v("SETUP FILES")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "breadcrumb-item active" }, [
-            _vm._v("SA BOOKLET SERIES")
-          ])
+                                },
+                                [
+                                  _vm._v(
+                                    '\n          Your search for "' +
+                                      _vm._s(_vm.search) +
+                                      '" found no results.\n        '
+                                  )
+                                ]
+                              )
+                            ]
+                          },
+                          proxy: true
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ]
+            ],
+            2
+          )
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "addNew",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "addNewLabel",
+            "aria-hidden": "true"
+          }
+        },
+        [
+          _c(
+            "div",
+            {
+              staticClass: "modal-dialog modal-dialog-centered  modal-md",
+              attrs: { role: "document" }
+            },
+            [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header" }, [
+                  _c(
+                    "h5",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: !_vm.editmode,
+                          expression: "!editmode"
+                        }
+                      ],
+                      staticClass: "modal-title",
+                      attrs: { id: "addNewLabel" }
+                    },
+                    [_vm._v("Add Customer")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "h5",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.editmode,
+                          expression: "editmode"
+                        }
+                      ],
+                      staticClass: "modal-title",
+                      attrs: { id: "addNewLabel" }
+                    },
+                    [_vm._v("Update User's Info")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "close",
+                      attrs: {
+                        type: "button",
+                        "data-dismiss": "modal",
+                        "aria-label": "Close"
+                      }
+                    },
+                    [
+                      _c("span", { attrs: { "aria-hidden": "true" } }, [
+                        _vm._v("×")
+                      ])
+                    ]
+                  )
+                ]),
+                _vm._v(" "),
+                _c(
+                  "form",
+                  {
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        _vm.editmode ? _vm.updateUser() : _vm.createBooklet()
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c("label", [_vm._v("Travel Consultant:")]),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.name_assign,
+                              expression: "form.name_assign"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: { name: "name_assign" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.form,
+                                "name_assign",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            }
+                          }
+                        },
+                        [
+                          _c(
+                            "option",
+                            {
+                              attrs: { value: "", disabled: "", selected: "" }
+                            },
+                            [_vm._v(" -Assign Travel Consultant - ")]
+                          ),
+                          _vm._v(" "),
+                          _vm._l(_vm.travelconsultants, function(
+                            travelconsultant
+                          ) {
+                            return _c(
+                              "option",
+                              { domProps: { value: travelconsultant.id } },
+                              [
+                                _vm._v(
+                                  "\n                                  " +
+                                    _vm._s(travelconsultant.name) +
+                                    "\n                                "
+                                )
+                              ]
+                            )
+                          })
+                        ],
+                        2
+                      ),
+                      _vm._v(" "),
+                      _c("br"),
+                      _c("br"),
+                      _vm._v(" "),
+                      _c("label", [_c("b", [_vm._v(" Booklet Number: ")])]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass: "row",
+                          staticStyle: {
+                            margin: "0 auto",
+                            "text-align": "center"
+                          }
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "col-md-6" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.initial,
+                                    expression: "form.initial"
+                                  }
+                                ],
+                                staticClass: "form-control mr-5 ml-3",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("initial")
+                                },
+                                staticStyle: { width: "100%" },
+                                attrs: {
+                                  type: "number",
+                                  placeholder: "Enter first number",
+                                  name: "initial"
+                                },
+                                domProps: { value: _vm.form.initial },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "initial",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "initial" }
+                              })
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            { staticClass: "col-md-6" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.form.end,
+                                    expression: "form.end"
+                                  }
+                                ],
+                                staticClass: "form-control",
+                                class: {
+                                  "is-invalid": _vm.form.errors.has("end")
+                                },
+                                staticStyle: { width: "100%" },
+                                attrs: {
+                                  type: "number",
+                                  placeholder: "Enter second number",
+                                  name: "end"
+                                },
+                                domProps: { value: _vm.form.end },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.form,
+                                      "end",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("has-error", {
+                                attrs: { form: _vm.form, field: "end" }
+                              })
+                            ],
+                            1
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("br")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-footer" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { type: "button", "data-dismiss": "modal" }
+                        },
+                        [_vm._v("Close")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.editmode,
+                              expression: "editmode"
+                            }
+                          ],
+                          staticClass: "btn btn-success",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("Update")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: !_vm.editmode,
+                              expression: "!editmode"
+                            }
+                          ],
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit" }
+                        },
+                        [
+                          _vm._v("Submit "),
+                          _vm.spinner
+                            ? _c("i", { staticClass: "fa fa-spinner fa-spin" })
+                            : _vm._e()
+                        ]
+                      )
+                    ])
+                  ]
+                )
+              ])
+            ]
+          )
+        ]
+      )
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close",
-        attrs: {
-          type: "button",
-          "data-dismiss": "modal",
-          "aria-label": "Close"
-        }
-      },
-      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", [_c("b", [_vm._v(" Booklet Number: ")])])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -64875,133 +64788,11 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container-fluid" },
-    [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("full-calendar", { attrs: { events: _vm.fcEvents, locale: "en" } })
-    ],
+    [_c("full-calendar", { attrs: { events: _vm.fcEvents, locale: "en" } })],
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "pt-5" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-lg-4 col-md-4" }, [
-          _c("div", { staticClass: "card card-inverse card-primary" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "d-flex" }, [
-                _c("div", { staticClass: "m-r-20 align-self-center" }, [
-                  _c("h1", { staticClass: "text-white" }, [
-                    _c("i", { staticClass: "ti-user" })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("h3", { staticClass: "card-title" }, [_vm._v("Customer")]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "card-subtitle" }, [_vm._v("2019")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-4 align-self-center" }, [
-                  _c("h2", { staticClass: "font-light text-white" }, [
-                    _vm._v("34")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "col-8 p-t-10 p-b-20 align-self-center" },
-                  [
-                    _c("div", {
-                      staticClass: "usage chartist-chart",
-                      staticStyle: { height: "65px" }
-                    })
-                  ]
-                )
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-lg-4 col-md-4" }, [
-          _c("div", { staticClass: "card card-inverse card-success" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "d-flex" }, [
-                _c("div", { staticClass: "m-r-20 align-self-center" }, [
-                  _c("h1", { staticClass: "text-white" }, [
-                    _c("i", { staticClass: "ti-thought" })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("h3", { staticClass: "card-title" }, [_vm._v("Employee")]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "card-subtitle" }, [_vm._v("2019")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-4 align-self-center" }, [
-                  _c("h2", { staticClass: "font-light text-white" }, [
-                    _vm._v("21")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-8 p-t-10 p-b-20 text-right" }, [
-                  _c("div", {
-                    staticClass: "spark-count",
-                    staticStyle: { height: "65px" }
-                  })
-                ])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col-lg-4 col-md-4" }, [
-          _c("div", { staticClass: "card card-inverse card-warning" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "d-flex" }, [
-                _c("div", { staticClass: "m-r-20 align-self-center" }, [
-                  _c("h1", { staticClass: "text-white" }, [
-                    _c("i", { staticClass: "ti-thought" })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", [
-                  _c("h3", { staticClass: "card-title" }, [_vm._v("Supplier")]),
-                  _vm._v(" "),
-                  _c("h6", { staticClass: "card-subtitle" }, [_vm._v("2019")])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-4 align-self-center" }, [
-                  _c("h2", { staticClass: "font-light text-white" }, [
-                    _vm._v("38")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-8 p-t-10 p-b-20 text-right" }, [
-                  _c("div", {
-                    staticClass: "spark-count",
-                    staticStyle: { height: "65px" }
-                  })
-                ])
-              ])
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -65051,8 +64842,6 @@ var render = function() {
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row page-titles" }, [
         _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-          _c("h3", { staticClass: "text-themecolor" }, [_vm._v("PASSENGER")]),
-          _vm._v(" "),
           _c("ol", { staticClass: "breadcrumb" }, [
             _c("li", { staticClass: "breadcrumb-item" }, [
               _c("a", { attrs: { href: "javascript:void(0)" } }, [
@@ -108187,15 +107976,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!***********************************************!*\
   !*** ./resources/js/components/Passenger.vue ***!
   \***********************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Passenger_vue_vue_type_template_id_2e4221bf_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Passenger.vue?vue&type=template&id=2e4221bf&scoped=true& */ "./resources/js/components/Passenger.vue?vue&type=template&id=2e4221bf&scoped=true&");
 /* harmony import */ var _Passenger_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Passenger.vue?vue&type=script&lang=js& */ "./resources/js/components/Passenger.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _Passenger_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _Passenger_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _Passenger_vue_vue_type_style_index_0_id_2e4221bf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Passenger.vue?vue&type=style&index=0&id=2e4221bf&scoped=true&lang=css& */ "./resources/js/components/Passenger.vue?vue&type=style&index=0&id=2e4221bf&scoped=true&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Passenger_vue_vue_type_style_index_0_id_2e4221bf_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Passenger.vue?vue&type=style&index=0&id=2e4221bf&scoped=true&lang=css& */ "./resources/js/components/Passenger.vue?vue&type=style&index=0&id=2e4221bf&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -108227,7 +108015,7 @@ component.options.__file = "resources/js/components/Passenger.vue"
 /*!************************************************************************!*\
   !*** ./resources/js/components/Passenger.vue?vue&type=script&lang=js& ***!
   \************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
