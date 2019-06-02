@@ -2048,7 +2048,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2144,7 +2143,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -2420,7 +2418,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -3148,7 +3145,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -7830,7 +7826,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-0e3cfc1b]{\n    font-weight: 300;\n    font-size: 15px;\n}\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-0e3cfc1b]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-0e3cfc1b]{\n  font-size: 18px;\n}\n", ""]);
 
 // exports
 
@@ -7849,7 +7845,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-7bb0a2f7]{\n    font-weight: 300;\n    font-size: 15px;\n}\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-7bb0a2f7]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-7bb0a2f7]{\n  font-size:18px;\n}\n", ""]);
 
 // exports
 
@@ -7868,7 +7864,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-4fd97649]{\n    font-weight: 300;\n    font-size: 15px;\n}\n\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-4fd97649]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-4fd97649]{\n  font-size:18px;\n}\n\n", ""]);
 
 // exports
 
@@ -7906,7 +7902,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-2e4221bf]{\n    font-weight: 300;\n    font-size: 15px;\n}\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-2e4221bf]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-2e4221bf]{\n  font-size:18px;\n}\n", ""]);
 
 // exports
 
@@ -7944,7 +7940,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-dc6d6d92]{\n    font-weight: 300;\n    font-size: 15px;\n}\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-dc6d6d92]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-dc6d6d92]{\n  font-size:18px;\n}\n", ""]);
 
 // exports
 
@@ -62349,7 +62345,7 @@ var render = function() {
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row page-titles" }, [
         _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-          _c("ol", { staticClass: "breadcrumb" }, [
+          _c("ol", { staticClass: "breadcrumb mt-2" }, [
             _c("li", { staticClass: "breadcrumb-item" }, [
               _c("a", { attrs: { href: "javascript:void(0)" } }, [
                 _vm._v("SETUP FILES")
@@ -62365,7 +62361,7 @@ var render = function() {
         _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row pt-5" }, [
+      _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" }, [
           _c(
             "div",
@@ -62678,9 +62674,7 @@ var render = function() {
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row page-titles" }, [
         _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-          _c("h3", { staticClass: "text-themecolor" }, [_vm._v("BOOKLET")]),
-          _vm._v(" "),
-          _c("ol", { staticClass: "breadcrumb" }, [
+          _c("ol", { staticClass: "breadcrumb mt-2" }, [
             _c("li", { staticClass: "breadcrumb-item" }, [
               _c("a", { attrs: { href: "javascript:void(0)" } }, [
                 _vm._v("SETUP FILES")
@@ -62696,7 +62690,7 @@ var render = function() {
         _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row pt-5" }, [
+      _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" }, [
           _c(
             "div",
@@ -63212,9 +63206,7 @@ var render = function() {
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row page-titles" }, [
         _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-          _c("h3", { staticClass: "text-themecolor" }, [_vm._v("CUSTOMER")]),
-          _vm._v(" "),
-          _c("ol", { staticClass: "breadcrumb" }, [
+          _c("ol", { staticClass: "breadcrumb mt-2" }, [
             _c("li", { staticClass: "breadcrumb-item" }, [
               _c("a", { attrs: { href: "javascript:void(0)" } }, [
                 _vm._v("SETUP FILES")
@@ -63230,7 +63222,7 @@ var render = function() {
         _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row pt-5" }, [
+      _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" }, [
           _c(
             "div",
@@ -64080,9 +64072,7 @@ var render = function() {
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row page-titles" }, [
         _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-          _c("h3", { staticClass: "text-themecolor" }, [_vm._v("EMPLOYEE")]),
-          _vm._v(" "),
-          _c("ol", { staticClass: "breadcrumb" }, [
+          _c("ol", { staticClass: "breadcrumb mt-2" }, [
             _c("li", { staticClass: "breadcrumb-item" }, [
               _c("a", { attrs: { href: "javascript:void(0)" } }, [
                 _vm._v("SETUP FILES")
@@ -64098,7 +64088,7 @@ var render = function() {
         _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row pt-5" }, [
+      _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" }, [
           _c(
             "div",
@@ -64787,7 +64777,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "container-fluid" },
+    { staticClass: "container-fluid mt-4" },
     [_c("full-calendar", { attrs: { events: _vm.fcEvents, locale: "en" } })],
     1
   )
@@ -64842,7 +64832,7 @@ var render = function() {
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row page-titles" }, [
         _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-          _c("ol", { staticClass: "breadcrumb" }, [
+          _c("ol", { staticClass: "breadcrumb mt-2" }, [
             _c("li", { staticClass: "breadcrumb-item" }, [
               _c("a", { attrs: { href: "javascript:void(0)" } }, [
                 _vm._v("SETUP FILES")
@@ -64858,7 +64848,7 @@ var render = function() {
         _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row pt-5" }, [
+      _c("div", { staticClass: "row" }, [
         _c("div", { staticClass: "col-md-12" }, [
           _c(
             "div",
@@ -65501,7 +65491,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("v-app", [
     _c("div", { staticClass: "container-fluid" }, [
-      _c("div", { staticClass: "row pt-5" }, [
+      _c("div", { staticClass: "row pt-2" }, [
         _c("div", { staticClass: "col-md-12" }, [
           _c(
             "div",
@@ -65974,7 +65964,7 @@ var render = function() {
   return _c("div", { staticClass: "container-fluid" }, [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "row pt-5" }, [
+    _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c(
           "div",
@@ -66388,9 +66378,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row page-titles" }, [
       _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-        _c("h3", { staticClass: "text-themecolor" }, [_vm._v("SUPPLIER")]),
-        _vm._v(" "),
-        _c("ol", { staticClass: "breadcrumb" }, [
+        _c("ol", { staticClass: "breadcrumb mt-2" }, [
           _c("li", { staticClass: "breadcrumb-item" }, [
             _c("a", { attrs: { href: "javascript:void(0)" } }, [
               _vm._v("SETUP FILES")

@@ -1,7 +1,7 @@
 <template>
     <v-app>
     <div class="container-fluid">
-      <div class="row pt-5">
+      <div class="row pt-2">
              <div class="col-md-12">
                 <div class="card">
                       <div class="card-header">

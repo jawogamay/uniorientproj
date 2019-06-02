@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid">
+    <div class="container-fluid mt-4">
       
             <full-calendar :events="fcEvents" locale="en"></full-calendar>
     </div>

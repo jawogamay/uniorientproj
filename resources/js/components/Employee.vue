@@ -3,8 +3,7 @@
     <div class="container-fluid">
         <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor">EMPLOYEE</h3>
-                        <ol class="breadcrumb">
+                        <ol class="breadcrumb mt-2">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">SETUP FILES</a></li>
                             <li class="breadcrumb-item active">USER</li>
                         </ol>
@@ -12,11 +11,11 @@
                     <div class="col-md-7 col-4 align-self-center">
               
                     </div>
-                </div>
-      <div class="row pt-5">
+                </div> 
+      <div class="row">
              <div class="col-md-12">
                 <div class="card">
-                      <div class="card-header">
+                     <div class="card-header">
                         <h3 class="card-title">EMPLOYEE INFORMATION</h3>
                         <div class="card-tools">
                             <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>

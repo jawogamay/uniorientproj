@@ -2,8 +2,7 @@
     <div class="container-fluid">
        <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor">SUPPLIER</h3>
-                        <ol class="breadcrumb">
+                        <ol class="breadcrumb mt-2">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">SETUP FILES</a></li>
                             <li class="breadcrumb-item active">SUPLLIER</li>
                         </ol>
@@ -12,7 +11,7 @@
               
                     </div>
                 </div>
-      <div class="row pt-5">
+      <div class="row">
              <div class="col-md-12">
                 <div class="card">
                       <div class="card-header">
@@ -215,5 +214,8 @@
   table.v-table tbody td{
     font-weight: 300;
     font-size: 15px;
+}
+.v-icon{
+  font-size:18px;
 }
 </style>
