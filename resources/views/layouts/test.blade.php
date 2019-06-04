@@ -70,6 +70,7 @@ table.v-table tbody td, table.v-table tbody th{
      font-family: Inconsalata;
 }
 
+
 table.v-table thead th.sortable{
     font-weight: 800;
     font-size: 14px;
@@ -81,7 +82,9 @@ table.v-table thead th.sortable{
 .v-icon{
     font-size:14px;
 }
+
      </style>
+
 </head>
 
 <body class="fix-header fix-sidebar card-no-border logo-center">
@@ -186,7 +189,7 @@ table.v-table thead th.sortable{
                           <li id="this-left">
                             <a class="has-arrow" href="#" aria-expanded="false"><i class="fas fa-cog"></i></a>
                                 <ul aria-expanded="false" class="collapse">
-                                <li><a href="/airlanerate">AIRLINE RATE</a></li>
+                                <li><a href="/airlinerate">AIRLINE RATE</a></li>
                                 <li><a href="/customer">CUSTOMER ACCOUNTS</a></li>
                                 <li><a href="/passenger">PASSENGER DETAILS</a></li>
                                 <li><a href="/itemcode">ITEM CODE</a></li>

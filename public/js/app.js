@@ -7826,7 +7826,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-0e3cfc1b]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-0e3cfc1b]{\n  font-size: 18px;\n}\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-0e3cfc1b]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-0e3cfc1b]{\n  font-size: 18px;\n}\ntable.v-table tbody td[data-v-0e3cfc1b], table.v-table tbody th[data-v-0e3cfc1b]{\n  height: 26px;\n}\n.v-input__slot[data-v-0e3cfc1b]{\n    align-items: center;\n    color: inherit;\n    display: flex;\n    margin-bottom: 8px;\n    min-height: inherit;\n    position: relative;\n    transition: .3s cubic-bezier(.25,.8,.5,1);\n    width: 56%;\n}\n", ""]);
 
 // exports
 
@@ -7845,7 +7845,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-7bb0a2f7]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-7bb0a2f7]{\n  font-size:18px;\n}\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-7bb0a2f7]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-7bb0a2f7]{\n  font-size:18px;\n}\ntable.v-table tbody td[data-v-7bb0a2f7], table.v-table tbody th[data-v-7bb0a2f7]{\n  height: 26px;\n}\n\n", ""]);
 
 // exports
 
@@ -7864,7 +7864,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-4fd97649]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-4fd97649]{\n  font-size:18px;\n}\n\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-4fd97649]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-4fd97649]{\n  font-size:18px;\n}\ntable.v-table tbody td[data-v-4fd97649], table.v-table tbody th[data-v-4fd97649]{\n  height: 26px;\n}\n", ""]);
 
 // exports
 
@@ -7883,7 +7883,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-99aa15ce]{\n    font-weight: 300;\n    font-size: 15px;\n}\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-99aa15ce]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-99aa15ce]{\n    font-size: 18px;\n}\ntable.v-table tbody td[data-v-99aa15ce], table.v-table tbody th[data-v-99aa15ce]{\n  height: 26px;\n}\n", ""]);
 
 // exports
 
@@ -62372,22 +62372,7 @@ var render = function() {
                   _vm._v("AIRLINE RATE INFORMATION")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-tools" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-warning",
-                      on: { click: _vm.newModal }
-                    },
-                    [
-                      _vm._v("ADD"),
-                      _c("v-icon", { attrs: { color: "#fff" } }, [
-                        _vm._v("add_box")
-                      ])
-                    ],
-                    1
-                  )
-                ])
+                _c("div", { staticClass: "card-tools" })
               ]),
               _vm._v(" "),
               [
@@ -62397,7 +62382,21 @@ var render = function() {
                     _c(
                       "v-card-title",
                       [
-                        _vm._v("\n      AIRLINE RATE DATA\n      "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-warning",
+                            on: { click: _vm.newModal }
+                          },
+                          [
+                            _vm._v("ADD"),
+                            _c("v-icon", { attrs: { color: "#fff" } }, [
+                              _vm._v("add_box")
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
                         _c("v-spacer"),
                         _vm._v(" "),
                         _c("v-text-field", {
@@ -62701,22 +62700,7 @@ var render = function() {
                   _vm._v("BOOKLET SERIES INFORMATION ")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-tools" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-warning",
-                      on: { click: _vm.newModal }
-                    },
-                    [
-                      _vm._v("ADD"),
-                      _c("v-icon", { attrs: { color: "#fff" } }, [
-                        _vm._v("add_box")
-                      ])
-                    ],
-                    1
-                  )
-                ])
+                _c("div", { staticClass: "card-tools" })
               ]),
               _vm._v(" "),
               [
@@ -62726,7 +62710,21 @@ var render = function() {
                     _c(
                       "v-card-title",
                       [
-                        _vm._v("\n      BOOKLET SERIES DATA\n      "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-warning",
+                            on: { click: _vm.newModal }
+                          },
+                          [
+                            _vm._v("ADD"),
+                            _c("v-icon", { attrs: { color: "#fff" } }, [
+                              _vm._v("add_box")
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
                         _c("v-spacer"),
                         _vm._v(" "),
                         _c("v-text-field", {
@@ -63233,22 +63231,7 @@ var render = function() {
                   _vm._v("CUSTOMER INFORMATION ")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-tools" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-warning",
-                      on: { click: _vm.newModal }
-                    },
-                    [
-                      _vm._v("ADD"),
-                      _c("v-icon", { attrs: { color: "#fff" } }, [
-                        _vm._v("add_box")
-                      ])
-                    ],
-                    1
-                  )
-                ])
+                _c("div", { staticClass: "card-tools" })
               ]),
               _vm._v(" "),
               [
@@ -63258,7 +63241,21 @@ var render = function() {
                     _c(
                       "v-card-title",
                       [
-                        _vm._v("\n      CUSTOMER DATA\n      "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-warning",
+                            on: { click: _vm.newModal }
+                          },
+                          [
+                            _vm._v("ADD"),
+                            _c("v-icon", { attrs: { color: "#fff" } }, [
+                              _vm._v("add_box")
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
                         _c("v-spacer"),
                         _vm._v(" "),
                         _c("v-text-field", {
@@ -64099,22 +64096,7 @@ var render = function() {
                   _vm._v("EMPLOYEE INFORMATION")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-tools" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-warning",
-                      on: { click: _vm.newModal }
-                    },
-                    [
-                      _vm._v("ADD"),
-                      _c("v-icon", { attrs: { color: "#fff" } }, [
-                        _vm._v("add_box")
-                      ])
-                    ],
-                    1
-                  )
-                ])
+                _c("div", { staticClass: "card-tools" })
               ]),
               _vm._v(" "),
               [
@@ -64124,7 +64106,21 @@ var render = function() {
                     _c(
                       "v-card-title",
                       [
-                        _vm._v("\n      EMPLOYEE DATA\n      "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-warning",
+                            on: { click: _vm.newModal }
+                          },
+                          [
+                            _vm._v("ADD"),
+                            _c("v-icon", { attrs: { color: "#fff" } }, [
+                              _vm._v("add_box")
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
                         _c("v-spacer"),
                         _vm._v(" "),
                         _c("v-text-field", {
@@ -64859,22 +64855,7 @@ var render = function() {
                   _vm._v("PASSENGER INFORMATION ")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-tools" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-warning",
-                      on: { click: _vm.newModal }
-                    },
-                    [
-                      _vm._v("ADD"),
-                      _c("v-icon", { attrs: { color: "#fff" } }, [
-                        _vm._v("add_box")
-                      ])
-                    ],
-                    1
-                  )
-                ])
+                _c("div", { staticClass: "card-tools" })
               ]),
               _vm._v(" "),
               [
@@ -64884,7 +64865,21 @@ var render = function() {
                     _c(
                       "v-card-title",
                       [
-                        _vm._v("\n      PASSENGER DATA\n      "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-warning",
+                            on: { click: _vm.newModal }
+                          },
+                          [
+                            _vm._v("ADD"),
+                            _c("v-icon", { attrs: { color: "#fff" } }, [
+                              _vm._v("add_box")
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
                         _c("v-spacer"),
                         _vm._v(" "),
                         _c("v-text-field", {
@@ -65502,22 +65497,7 @@ var render = function() {
                   _vm._v("Sales Agreement Summaries ")
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-tools" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-warning",
-                      on: { click: _vm.newModal }
-                    },
-                    [
-                      _vm._v("Add"),
-                      _c("v-icon", { attrs: { color: "#fff" } }, [
-                        _vm._v("add_box")
-                      ])
-                    ],
-                    1
-                  )
-                ])
+                _c("div", { staticClass: "card-tools" })
               ]),
               _vm._v(" "),
               [
@@ -65527,7 +65507,21 @@ var render = function() {
                     _c(
                       "v-card-title",
                       [
-                        _vm._v("\n      Sales Agreements Information\n      "),
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-warning",
+                            on: { click: _vm.newModal }
+                          },
+                          [
+                            _vm._v("Add"),
+                            _c("v-icon", { attrs: { color: "#fff" } }, [
+                              _vm._v("add_box")
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
                         _c("v-spacer"),
                         _vm._v(" "),
                         _c("v-text-field", {
@@ -65970,28 +65964,7 @@ var render = function() {
           "div",
           { staticClass: "card" },
           [
-            _c("div", { staticClass: "card-header" }, [
-              _c("h3", { staticClass: "card-title" }, [
-                _vm._v("SUPPLIER INFORMATION ")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-tools" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-warning",
-                    on: { click: _vm.newModal }
-                  },
-                  [
-                    _vm._v("ADD"),
-                    _c("v-icon", { attrs: { color: "#fff" } }, [
-                      _vm._v("add_box")
-                    ])
-                  ],
-                  1
-                )
-              ])
-            ]),
+            _vm._m(1),
             _vm._v(" "),
             [
               _c(
@@ -66000,7 +65973,21 @@ var render = function() {
                   _c(
                     "v-card-title",
                     [
-                      _vm._v("\n      SUPPLIER DATA\n      "),
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-warning",
+                          on: { click: _vm.newModal }
+                        },
+                        [
+                          _vm._v("ADD"),
+                          _c("v-icon", { attrs: { color: "#fff" } }, [
+                            _vm._v("add_box")
+                          ])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
                       _c("v-spacer"),
                       _vm._v(" "),
                       _c("v-text-field", {
@@ -66175,7 +66162,7 @@ var render = function() {
                   [_vm._v("Update User's Info")]
                 ),
                 _vm._v(" "),
-                _vm._m(1)
+                _vm._m(2)
               ]),
               _vm._v(" "),
               _c(
@@ -66392,6 +66379,18 @@ var staticRenderFns = [
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [
+        _vm._v("SUPPLIER INFORMATION ")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" })
     ])
   },
   function() {
@@ -107321,7 +107320,7 @@ Vue.filter('capitalize', function (value) {
 });
 
 var routes = [{
-  path: '/airlanerate',
+  path: '/airlinerate',
   component: _components_AirlaneRate__WEBPACK_IMPORTED_MODULE_0__["default"]
 }, {
   path: '/customer',

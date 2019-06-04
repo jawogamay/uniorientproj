@@ -18,13 +18,13 @@
                       <div class="card-header">
                         <h3 class="card-title">BOOKLET SERIES INFORMATION </h3>
                         <div class="card-tools">
-                            <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+                           
                          </div>
                      </div>
                      <template>
   <v-card>
     <v-card-title>
-      BOOKLET SERIES DATA
+       <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -186,4 +186,8 @@
 .v-icon{
   font-size:18px;
 }
+table.v-table tbody td, table.v-table tbody th{
+  height: 26px;
+}
+
 </style>

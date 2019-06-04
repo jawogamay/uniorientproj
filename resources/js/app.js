@@ -49,7 +49,7 @@ import 'vuetify/dist/vuetify.min.css'
 
 
 let routes = [
-    {path:'/airlanerate',component:AirlaneRate},
+    {path:'/airlinerate',component:AirlaneRate},
     {path:'/customer',component:Customer},
     {path:'/passenger',component:Passenger},
     {path:'/employee',component:Employee},
