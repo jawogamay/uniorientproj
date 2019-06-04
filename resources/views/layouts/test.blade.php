@@ -119,6 +119,9 @@ table.v-table thead th.sortable{
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="nav-small-cap">PERSONAL</li>
+                        <li style="padding-left: 10px;">
+                            <img src="/assets/images/logo.jpg" width="40" height="40">
+                        </li>
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu">DASHBOARD |</span></a>
                             <ul aria-expanded="false" class="collapse">
