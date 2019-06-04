@@ -5,14 +5,14 @@
                     <div class="col-md-5 col-8 align-self-center">
                         <ol class="breadcrumb mt-2">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">SETUP FILES</a></li>
-                            <li class="breadcrumb-item active">AIRLINE</li>
+                            <li class="breadcrumb-item active">AIRLINE RATE</li>
                         </ol>
                     </div>
                     <div class="col-md-7 col-4 align-self-center">
               
                     </div>
                 </div>
-      <div class="row">
+     <!--  <div class="row">
              <div class="col-md-12">
                 <div class="card">
                       <div class="card-header">
@@ -20,7 +20,7 @@
                         <div class="card-tools">
                             
                          </div>
-                     </div>
+                     </div> -->
                      <template>
   <v-card>
     <v-card-title>
@@ -168,11 +168,11 @@
     font-weight: 300;
     font-size: 15px;
 }
-.v-icon{
-  font-size: 18px;
-}
+  .v-icon{
+    font-size: 18px;
+  }
 table.v-table tbody td, table.v-table tbody th{
-  height: 26px;
+  height: 24px;
 }
 .v-input__slot{
     align-items: center;
