@@ -24,7 +24,7 @@
                      <template>
   <v-card>
     <v-card-title>
-    <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+    <button class="btn btn-warning" @click="newModal">ADD <v-icon color="#fff">add_box</v-icon></button>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"

@@ -215,4 +215,7 @@
 .v-icon{
   font-size:18px;
 }
+table.v-table tbody td, table.v-table tbody th{
+  height: 24px;
+}
 </style>

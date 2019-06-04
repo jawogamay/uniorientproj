@@ -7902,7 +7902,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-2e4221bf]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-2e4221bf]{\n  font-size:18px;\n}\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-2e4221bf]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-2e4221bf]{\n  font-size:18px;\n}\ntable.v-table tbody td[data-v-2e4221bf], table.v-table tbody th[data-v-2e4221bf]{\n  height: 24px;\n}\n", ""]);
 
 // exports
 
@@ -62378,7 +62378,7 @@ var render = function() {
                       on: { click: _vm.newModal }
                     },
                     [
-                      _vm._v("ADD"),
+                      _vm._v("ADD "),
                       _c("v-icon", { attrs: { color: "#fff" } }, [
                         _vm._v("add_box")
                       ])
