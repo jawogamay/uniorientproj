@@ -64846,8 +64846,7 @@ var render = function() {
                             return [
                               _c("td", { staticClass: "text-xs-left" }, [
                                 _vm._v(
-                                  "," +
-                                    _vm._s(props.item.prefix) +
+                                  _vm._s(props.item.prefix) +
                                     "." +
                                     _vm._s(
                                       _vm._f("capitalize")(props.item.firstname)
