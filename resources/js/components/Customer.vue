@@ -3,11 +3,11 @@
  <div class="container-fluid">
   <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <ol class="breadcrumb mt-2">
+                      <!--   <ol class="breadcrumb mt-2">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">SETUP FILES</a></li>
                             <li class="breadcrumb-item active">CUSTOMER ACCOUNTS</li>
                         </ol>
-                    </div>
+ -->                    </div>
                     <div class="col-md-7 col-4 align-self-center">
               
                     </div>
@@ -40,7 +40,7 @@
       :search="search"
     >
       <template v-slot:items="props">
-        <td>{{ props.item.id }}</td>
+        
         <td class="text-xs-left">{{ props.item.account_name | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.address | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.nature | capitalize}}</td>
@@ -158,12 +158,7 @@
                  spinner:false,
                  customers:[],
         headers: [
-          {
-            text: '',
-            align: 'left',
-            sortable: false,
-            value: 'date'
-          },
+     
           { text: 'ACCOUNT NAME', value: 'account_name' },
           { text: 'ADDRESS', value: 'address' },
           { text: 'NATURE', value: 'nature' },

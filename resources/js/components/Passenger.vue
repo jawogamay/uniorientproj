@@ -3,10 +3,10 @@
     <div class="container-fluid">
         <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <ol class="breadcrumb mt-2">
+                       <!--  <ol class="breadcrumb mt-2">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">SETUP FILES</a></li>
                             <li class="breadcrumb-item active">PASSENGER DETAILS</li>
-                        </ol>
+                        </ol> -->
                     </div>
                     <div class="col-md-7 col-4 align-self-center">
               
@@ -40,11 +40,12 @@
       :search="search"
     >
       <template v-slot:items="props">
-        <td>{{ props.item.id }}</td>
-        <td class="text-xs-left">{{ props.item.lastname | capitalize}},{{props.item.firstname | capitalize}},{{props.item.prefix}}</td>
+       
+        <td class="text-xs-left">{{ props.item.lastname | capitalize}} {{props.item.firstname | capitalize}},{{props.item.prefix}}</td>
         <td class="text-xs-left">{{ props.item.date_birth | myDate | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.tel | capitalize}}</td>
-        <td class="text-xs-left">{{ props.item.notes | capitalize}}</td>
+        <td class="text-xs-left" v-if="props.item.notes.length<20">{{ props.item.notes | capitalize}}</td>
+        <td class="text-xs-left" v-if="props.item.notes.length>20">{{ props.item.notes.substring(0,20)+"..." | capitalize}}</td>
         <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
       </template>
       <template v-slot:no-results>
@@ -146,12 +147,7 @@
 
                 }),
         headers: [
-          {
-            text: '',
-            align: 'left',
-            sortable: false,
-            value: 'id'
-          },
+        
           { text: 'PASSENGER NAME', value: 'lastname' },
           { text: 'DATE OF BIRTH', value: 'dob' },
           { text: 'CONTACT NUMBER', value: 'tel' },

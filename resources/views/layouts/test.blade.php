@@ -56,7 +56,7 @@
     font-size:18px;
 }
 label{
-    color:#1e88e5;
+    color:#676464;
    
 }
 
@@ -77,12 +77,14 @@ table.v-table thead th.sortable{
     color:rgb(0,0,0);
 }
 #this-left{
-    padding-left: 22%;
+    margin-left: 43%;
 }
 .v-icon{
     font-size:14px;
 }
-
+.sidebar-nav ul li .left-nav {
+    right: 0;
+}
      </style>
 
 </head>
@@ -125,10 +127,10 @@ table.v-table thead th.sortable{
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu">DASHBOARD |</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="index.html">COMPANY PROFILE</a></li>
-                                <li><a href="index2.html">BRANCHES</a></li>
-                                <li><a href="index3.html">USER GROUP</a></li>
-                                <li><a href="index4.html">BANKS</a></li>
+                                <li><a href="index.html" class="dropdown-item">COMPANY PROFILE</a></li>
+                                <li><a href="index2.html" class="dropdown-item">BRANCHES</a></li>
+                                <li><a href="index3.html" class="dropdown-item">USER GROUP</a></li>
+                                <li><a href="index4.html" class="dropdown-item">BANKS</a></li>
                             </ul>
                         </li>
 <!-- 
@@ -155,34 +157,34 @@ table.v-table thead th.sortable{
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu">SALES |</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                <li><a href="/salesagreement">SALES AGREEMENT</a></li>
-                                <li><a href="app-email-detail.html">TC MONITORING</a></li>
+                                <li><a href="/salesagreement" class="dropdown-item">SALES AGREEMENT</a></li>
+                                <li><a href="app-email-detail.html" class="dropdown-item">TC MONITORING</a></li>
                             </ul>
                         </li>
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu">AIRLINE TICKETS |</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                  <li><a href="ui-cards.html">IATA - AMADEUS</a></li>
-                                <li><a href="ui-user-card.html">IATA - SABRE</a></li>
-                                <li><a href="ui-buttons.html">PAL - DOM</a></li>
-                                <li><a href="ui-modals.html">SKYLINER</a></li>
+                                  <li><a href="ui-cards.html" class="dropdown-item">IATA - AMADEUS</a></li>
+                                <li><a href="ui-user-card.html" class="dropdown-item">IATA - SABRE</a></li>
+                                <li><a href="ui-buttons.html" class="dropdown-item">PAL - DOM</a></li>
+                                <li><a href="ui-modals.html" class="dropdown-item">SKYLINER</a></li>
                             </ul>
                         </li>
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu">PURCHASES |</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                 <li><a href="form-basic.html">PO</a></li>
-                                <li><a href="form-layout.html">CASH SLIP</a></li>
+                                 <li><a href="form-basic.html" class="dropdown-item">PO</a></li>
+                                <li><a href="form-layout.html" class="dropdown-item">CASH SLIP</a></li>
                             </ul>
                         </li>
                          <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu">PAYMENTS |</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                 <li><a href="table-basic.html">OFFICIAL RECIEPT</a></li>
-                                <li><a href="table-layout.html">PROVISIONAL RECEIPT</a></li>
-                                <li><a href="table-data-table.html">DISCOUNT SLIP</a></li>
-                                <li><a href="table-footable.html">CHECK VOUCHER</a></li>
-                                <li><a href="table-jsgrid.html">CASH VOUCHER</a></li>
+                                 <li><a href="table-basic.html" class="dropdown-item">OFFICIAL RECIEPT</a></li>
+                                <li><a href="table-layout.html" class="dropdown-item">PROVISIONAL RECEIPT</a></li>
+                                <li><a href="table-data-table.html" class="dropdown-item">DISCOUNT SLIP</a></li>
+                                <li><a href="table-footable.html" class="dropdown-item">CHECK VOUCHER</a></li>
+                                <li><a href="table-jsgrid.html" class="dropdown-item">CASH VOUCHER</a></li>
                             </ul>
                         </li>
                         <li>
@@ -191,14 +193,14 @@ table.v-table thead th.sortable{
                         </li>
                           <li id="this-left">
                             <a class="has-arrow" href="#" aria-expanded="false"><i class="fas fa-cog"></i></a>
-                                <ul aria-expanded="false" class="collapse">
-                                <li><a href="/airlinerate">AIRLINE RATE</a></li>
-                                <li><a href="/customer">CUSTOMER ACCOUNTS</a></li>
-                                <li><a href="/passenger">PASSENGER DETAILS</a></li>
-                                <li><a href="/itemcode">ITEM CODE</a></li>
-                                <li><a href="/booklet">SA BOOKLET SERIES</a></li>
-                                <li><a href="/employee">USER</a></li>
-                                <li><a href="/supplier">SUPPLIER</a></li>
+                                <ul aria-expanded="false" class="collapse left-nav" >
+                                <li><a href="/airlinerate" class="dropdown-item">AIRLINE RATE</a></li>
+                                <li><a href="/customer" class="dropdown-item">CUSTOMER ACCOUNTS</a></li>
+                                <li><a href="/passenger" class="dropdown-item">PASSENGER DETAILS</a></li>
+                                <li><a href="/itemcode" class="dropdown-item">ITEM CODE</a></li>
+                                <li><a href="/booklet" class="dropdown-item">SA BOOKLET SERIES</a></li>
+                                <li><a href="/employee" class="dropdown-item">USER</a></li>
+                                <li><a href="/supplier" class="dropdown-item">SUPPLIER</a></li>
                                 <li><a href="#" class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                                     <span class="hide-menu">START SERIES</span></a>
                                     <ul aria-expanded="false" class="collapse">
@@ -212,11 +214,20 @@ table.v-table thead th.sortable{
                         </li>
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><i class="fas fa-user"></i></a>
-                            <ul aria-expanded="false" class="collapse">
-                                <li><a href="index.html">COMPANY PROFILE</a></li>
-                                <li><a href="index2.html">BRANCHES</a></li>
-                                <li><a href="index3.html">USER GROUP</a></li>
-                                <li><a href="index4.html">BANKS</a></li>
+                            <ul aria-expanded="false" class="collapse left-nav" style="text-align: center; margin: 0 auto;">
+                              <img src="/assets/images/user.png"> 
+                              <h4 style="color:#fff;">{{Auth::user()->name}}</h4> 
+                              <p>{{Auth::user()->type}}</p>
+                              <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+
                             </ul>
                         </li>
         

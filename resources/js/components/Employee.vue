@@ -3,10 +3,10 @@
     <div class="container-fluid">
         <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <ol class="breadcrumb mt-2">
+                        <!-- <ol class="breadcrumb mt-2">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">SETUP FILES</a></li>
                             <li class="breadcrumb-item active">USER</li>
-                        </ol>
+                        </ol> -->
                     </div>
                     <div class="col-md-7 col-4 align-self-center">
               
@@ -40,7 +40,7 @@
       :search="search"
     >
       <template v-slot:items="props">
-        <td>{{ props.item.id }}</td>
+       
         <td class="text-xs-left">{{ props.item.name | capitalize }}</td>
         <td class="text-xs-left">{{ props.item.code | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.dob | myDate | capitalize }}</td>
@@ -134,12 +134,7 @@
                     code:'',
                  }),
         headers: [
-          {
-            text: '',
-            align: 'left',
-            sortable: false,
-            value: 'date'
-          },
+       
           { text: 'EMPLOYEE NAME', value: 'airlane' },
           { text: 'CODE', value: 'usdphp' },
           { text: 'DATE OF BIRTH', value: 'phpusd' },
@@ -153,6 +148,7 @@
         },
         mounted(){
           this.getEmployee();
+          this.createdEmployee();
         },
         methods: {
             newModal(){
@@ -164,6 +160,7 @@
                 this.form.post('api/user')
                 .then((response)=>{
                   this.spinner = true;
+                  Fire.$emit('createdEmployee')
                   $('#addNew').modal('hide');
                   toast.fire({
                     type: 'success',
@@ -176,6 +173,12 @@
             },
             getEmployee(){
               axios.get('api/user').then(({data}) => this.employees = data)
+            },
+            createdEmployee(){
+              this.getEmployee()
+              Fire.$on('createdEmployee',()=>{
+                this.getEmployee()
+              })
             }
         }
     };

@@ -3,10 +3,10 @@
     <div class="container-fluid">
         <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <ol class="breadcrumb mt-2">
+                   <!--      <ol class="breadcrumb mt-2">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">SETUP FILES</a></li>
                             <li class="breadcrumb-item active">SA BOOKLET SERIES</li>
-                        </ol>
+                        </ol> -->
                     </div>
                     <div class="col-md-7 col-4 align-self-center">
               
@@ -40,8 +40,7 @@
       :search="search"
     >
       <template v-slot:items="props">
-        <td></td>
-        <td class="text-xs-left">{{ props.item.bookletNumber | capitalize}}</td>
+         <td class="text-xs-left">{{ props.item.bookletNumber | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.user.name | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.created_at | myDate | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.notes | capitalize}}</td>
@@ -127,12 +126,7 @@
                 }),
                  travelconsultants:[],
         headers: [
-          {
-            text: '',
-            align: 'left',
-            sortable: false,
-            value: 'date'
-          },
+       
           { text: 'SA BOOKLET SERIES', value: 'airlane' },
           { text: 'TRAVEL CONSULTANT', value: 'usdphp' },
           { text: 'DATE CREATED', value: 'phpusd' },

@@ -2047,7 +2047,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2063,11 +2062,6 @@ __webpack_require__.r(__webpack_exports__);
       }),
       travelconsultants: [],
       headers: [{
-        text: '',
-        align: 'left',
-        sortable: false,
-        value: 'date'
-      }, {
         text: 'SA BOOKLET SERIES',
         value: 'airlane'
       }, {
@@ -2302,11 +2296,6 @@ __webpack_require__.r(__webpack_exports__);
       spinner: false,
       customers: [],
       headers: [{
-        text: '',
-        align: 'left',
-        sortable: false,
-        value: 'date'
-      }, {
         text: 'ACCOUNT NAME',
         value: 'account_name'
       }, {
@@ -2553,11 +2542,6 @@ __webpack_require__.r(__webpack_exports__);
         code: ''
       }),
       headers: [{
-        text: '',
-        align: 'left',
-        sortable: false,
-        value: 'date'
-      }, {
         text: 'EMPLOYEE NAME',
         value: 'airlane'
       }, {
@@ -2580,6 +2564,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.getEmployee();
+    this.createdEmployee();
   },
   methods: {
     newModal: function newModal() {
@@ -2592,6 +2577,7 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.post('api/user').then(function (response) {
         _this.spinner = true;
+        Fire.$emit('createdEmployee');
         $('#addNew').modal('hide');
         toast.fire({
           type: 'success',
@@ -2608,6 +2594,14 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('api/user').then(function (_ref) {
         var data = _ref.data;
         return _this2.employees = data;
+      });
+    },
+    createdEmployee: function createdEmployee() {
+      var _this3 = this;
+
+      this.getEmployee();
+      Fire.$on('createdEmployee', function () {
+        _this3.getEmployee();
       });
     }
   }
@@ -2827,6 +2821,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2845,11 +2840,6 @@ __webpack_require__.r(__webpack_exports__);
         notes: ''
       }),
       headers: [{
-        text: '',
-        align: 'left',
-        sortable: false,
-        value: 'id'
-      }, {
         text: 'PASSENGER NAME',
         value: 'lastname'
       }, {
@@ -62347,19 +62337,7 @@ var render = function() {
       { staticClass: "container-fluid" },
       [
         _c("div", { staticClass: "row page-titles" }, [
-          _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-            _c("ol", { staticClass: "breadcrumb mt-2" }, [
-              _c("li", { staticClass: "breadcrumb-item" }, [
-                _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                  _vm._v("SETUP FILES")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", { staticClass: "breadcrumb-item active" }, [
-                _vm._v("AIRLINE RATE")
-              ])
-            ])
-          ]),
+          _c("div", { staticClass: "col-md-5 col-8 align-self-center" }),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
         ]),
@@ -62656,19 +62634,7 @@ var render = function() {
   return _c("v-app", [
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row page-titles" }, [
-        _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-          _c("ol", { staticClass: "breadcrumb mt-2" }, [
-            _c("li", { staticClass: "breadcrumb-item" }, [
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _vm._v("SETUP FILES")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "breadcrumb-item active" }, [
-              _vm._v("SA BOOKLET SERIES")
-            ])
-          ])
-        ]),
+        _c("div", { staticClass: "col-md-5 col-8 align-self-center" }),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
       ]),
@@ -62741,8 +62707,6 @@ var render = function() {
                           key: "items",
                           fn: function(props) {
                             return [
-                              _c("td"),
-                              _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
                                 _vm._v(
                                   _vm._s(
@@ -63187,19 +63151,7 @@ var render = function() {
   return _c("v-app", [
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row page-titles" }, [
-        _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-          _c("ol", { staticClass: "breadcrumb mt-2" }, [
-            _c("li", { staticClass: "breadcrumb-item" }, [
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _vm._v("SETUP FILES")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "breadcrumb-item active" }, [
-              _vm._v("CUSTOMER ACCOUNTS")
-            ])
-          ])
-        ]),
+        _c("div", { staticClass: "col-md-5 col-8 align-self-center" }),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
       ]),
@@ -63272,8 +63224,6 @@ var render = function() {
                           key: "items",
                           fn: function(props) {
                             return [
-                              _c("td", [_vm._v(_vm._s(props.item.id))]),
-                              _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
                                 _vm._v(
                                   _vm._s(
@@ -64052,19 +64002,7 @@ var render = function() {
   return _c("v-app", [
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row page-titles" }, [
-        _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-          _c("ol", { staticClass: "breadcrumb mt-2" }, [
-            _c("li", { staticClass: "breadcrumb-item" }, [
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _vm._v("SETUP FILES")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "breadcrumb-item active" }, [
-              _vm._v("USER")
-            ])
-          ])
-        ]),
+        _c("div", { staticClass: "col-md-5 col-8 align-self-center" }),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
       ]),
@@ -64137,8 +64075,6 @@ var render = function() {
                           key: "items",
                           fn: function(props) {
                             return [
-                              _c("td", [_vm._v(_vm._s(props.item.id))]),
-                              _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
                                 _vm._v(
                                   _vm._s(_vm._f("capitalize")(props.item.name))
@@ -64811,19 +64747,7 @@ var render = function() {
   return _c("v-app", [
     _c("div", { staticClass: "container-fluid" }, [
       _c("div", { staticClass: "row page-titles" }, [
-        _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-          _c("ol", { staticClass: "breadcrumb mt-2" }, [
-            _c("li", { staticClass: "breadcrumb-item" }, [
-              _c("a", { attrs: { href: "javascript:void(0)" } }, [
-                _vm._v("SETUP FILES")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "breadcrumb-item active" }, [
-              _vm._v("PASSENGER DETAILS")
-            ])
-          ])
-        ]),
+        _c("div", { staticClass: "col-md-5 col-8 align-self-center" }),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
       ]),
@@ -64896,14 +64820,12 @@ var render = function() {
                           key: "items",
                           fn: function(props) {
                             return [
-                              _c("td", [_vm._v(_vm._s(props.item.id))]),
-                              _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
                                 _vm._v(
                                   _vm._s(
                                     _vm._f("capitalize")(props.item.lastname)
                                   ) +
-                                    "," +
+                                    " " +
                                     _vm._s(
                                       _vm._f("capitalize")(props.item.firstname)
                                     ) +
@@ -64928,11 +64850,28 @@ var render = function() {
                                 )
                               ]),
                               _vm._v(" "),
-                              _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(
-                                  _vm._s(_vm._f("capitalize")(props.item.notes))
-                                )
-                              ]),
+                              props.item.notes.length < 20
+                                ? _c("td", { staticClass: "text-xs-left" }, [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm._f("capitalize")(props.item.notes)
+                                      )
+                                    )
+                                  ])
+                                : _vm._e(),
+                              _vm._v(" "),
+                              props.item.notes.length > 20
+                                ? _c("td", { staticClass: "text-xs-left" }, [
+                                    _vm._v(
+                                      _vm._s(
+                                        _vm._f("capitalize")(
+                                          props.item.notes.substring(0, 20) +
+                                            "..."
+                                        )
+                                      )
+                                    )
+                                  ])
+                                : _vm._e(),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
                                 _c(
@@ -66348,19 +66287,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "row page-titles" }, [
-      _c("div", { staticClass: "col-md-5 col-8 align-self-center" }, [
-        _c("ol", { staticClass: "breadcrumb mt-2" }, [
-          _c("li", { staticClass: "breadcrumb-item" }, [
-            _c("a", { attrs: { href: "javascript:void(0)" } }, [
-              _vm._v("SETUP FILES")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "breadcrumb-item active" }, [
-            _vm._v("SUPLLIER")
-          ])
-        ])
-      ]),
+      _c("div", { staticClass: "col-md-5 col-8 align-self-center" }),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
     ])

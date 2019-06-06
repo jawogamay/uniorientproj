@@ -2,10 +2,10 @@
     <div class="container-fluid">
        <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <ol class="breadcrumb mt-2">
+                 <!--        <ol class="breadcrumb mt-2">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">SETUP FILES</a></li>
                             <li class="breadcrumb-item active">SUPLLIER</li>
-                        </ol>
+                        </ol> -->
                     </div>
                     <div class="col-md-7 col-4 align-self-center">
               
