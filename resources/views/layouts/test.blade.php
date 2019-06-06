@@ -55,6 +55,11 @@
 .form-control,label{
     font-size:18px;
 }
+.v-input__slot{
+  margin-left: 69%;
+  max-width: 28%;
+  
+}
 label{
     color:#676464;
    

@@ -7893,7 +7893,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-2e4221bf]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-2e4221bf]{\n  font-size:18px;\n}\ntable.v-table tbody td[data-v-2e4221bf], table.v-table tbody th[data-v-2e4221bf]{\n  height: 24px;\n}\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-2e4221bf]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-2e4221bf]{\n  font-size:18px;\n}\ntable.v-table tbody td[data-v-2e4221bf], table.v-table tbody th[data-v-2e4221bf]{\n  height: 24px;\n}\n/*.v-input__slot{\n  margin-left: 71%;\n  width: 10%;\n}*/\n", ""]);
 
 // exports
 
@@ -64847,7 +64847,7 @@ var render = function() {
                               _c("td", { staticClass: "text-xs-left" }, [
                                 _vm._v(
                                   _vm._s(props.item.prefix) +
-                                    "." +
+                                    ". " +
                                     _vm._s(
                                       _vm._f("capitalize")(props.item.firstname)
                                     ) +
