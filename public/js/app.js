@@ -64868,7 +64868,7 @@ var render = function() {
                                 )
                               ]),
                               _vm._v(" "),
-                              props.item.notes.length < 20
+                              _vm.passenger.notes.length < 20
                                 ? _c("td", { staticClass: "text-xs-left" }, [
                                     _vm._v(
                                       _vm._s(
@@ -64878,7 +64878,7 @@ var render = function() {
                                   ])
                                 : _vm._e(),
                               _vm._v(" "),
-                              props.item.notes.length > 20
+                              _vm.passenger.notes.length > 20
                                 ? _c("td", { staticClass: "text-xs-left" }, [
                                     _vm._v(
                                       _vm._s(
