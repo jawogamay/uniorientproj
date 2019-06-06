@@ -36,20 +36,21 @@
     </v-card-title>
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="rates"
       :search="search"
     >
       <template v-slot:items="props">
-        <td>{{ props.item.date }}</td>
-        <td class="text-xs-left">PHP {{ props.item.airlane }}</td>
-        <td class="text-xs-left">PHP {{ props.item.usdphp }}0</td>
-        <td class="text-xs-left">PHP {{ props.item.phpusd }}.00</td>
-        <td class="text-xs-left">{{ props.item.verified }}</td>
-        <td class="text-xs-left">{{ props.item.notes }}</td>
+  
+        <td class="text-xs-left">{{props.item.date | myDate | capitalize}}</td>
+
+        <td class="text-xs-left" >PHP {{ props.item.rate |currency}}</span></td>
+        
+      <!--   <td class="text-xs-left">{{ props.item.verified }}</td>
+        <td class="text-xs-left">{{ props.item.notes }}</td> -->
         <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
       </template>
       <template v-slot:no-results>
-        <v-alert :value="true" color="error" icon="warning" style="background-color:red;">
+        <v-alert :value="true" color="error">
           Your search for "{{ search }}" found no results.
         </v-alert>
       </template>
@@ -65,20 +66,21 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">ADD AIRLANE RATE</h5>
+                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">ADD AIRLINE RATE</h5>
                             <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update User's Info</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>   
                         </div>
-                       <form @submit.prevent="editmode ? updateUser() :createPost()">
-                        <div class="modal-body">
-                            <input type="text" class="form-control" placeholder="Enter Dollar Rate">
+                       <form @submit.prevent="editmode ? updateUser() :createRate()">
+                        <div class="modal-body" style="margin:0 auto; text-align:center;">
+
+                            <input type="text" class="form-control" placeholder="Enter Rate" v-model="form.rate" name="rate" style="width:30%;">
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
-                        <button v-show="!editmode" type="submit" class="btn btn-primary">Post</button>
+                        <button v-show="!editmode" type="submit" class="btn btn-primary">Submit</button>
                      </div>
                      </form>
                 </div>
@@ -92,73 +94,57 @@
         data(){
             return{
                  search: '',
+               rates:[],
         headers: [
-          {
-            text: 'DATE',
-            align: 'left',
-            sortable: false,
-            value: 'date'
-          },
+           {text: 'DATE', value:'date'},
           { text: 'AIRLINE RATE', value: 'airlane' },
-          { text: 'USD TO PHP', value: 'usdphp' },
-          { text: 'PHP TO USD', value: 'phpusd' },
+          
+     /*     { text: 'USD TO PHP', value: 'usdphp' },
           { text: 'VERIFIED BY', value: 'verified' },
-          { text: 'NOTES', value: 'notes' },
+          { text: 'NOTES', value: 'notes' },*/
           {text: 'ACTIONS', value: 'action'}
         ],
-        desserts: [
-          {
-            date: 'JAN 15, 2019',
-            airlane: 52.22,
-            usdphp: 54.20,
-            phpusd: 50.00,
-           
-          },
-          {
-            date: 'JAN 19, 2019',
-            airlane: 52.22,
-            usdphp: 54.20,
-            phpusd: 50.00,
-           
-          },
-          {
-            date: 'JAN 24, 2019',
-            airlane: 52.22,
-            usdphp: 54.20,
-            phpusd: 50.00,
-           
-          },
-          {
-            date: 'Feb 15, 2019',
-            airlane: 52.22,
-            usdphp: 54.20,
-            phpusd: 50.00,
-           
-          },
-          {
-            date: 'AUG 15, 2019',
-            airlane: 52.22,
-            usdphp: 54.20,
-            phpusd: 50.00,
-           
-          }
-        ],
+    
                 editmode: false,
                 form: new Form({
                     id: '',
-                    content:'',
-                    title:'',
-                    image:'',
+                    rate:'',
+                   
                 })
             }
         
         },
-
+        mounted(){
+          this.getRate();
+          this.createdRate();
+        },
         methods: {
             newModal(){
                 this.editmode = false;
                 this.form.reset();
                 $('#addNew').modal('show');
+            },
+            createRate(){
+              this.form.post('api/rates')
+              .then((response) => {
+                this.spinner = true;
+                $('#addNew').modal('hide');
+                Fire.$emit('createdRate')
+                toast.fire({
+                  type: 'success',
+                  title: 'Rate successfull created'
+                })
+                 setTimeout(()=> {this.spinner = false},1000)
+              })
+            },
+            getRate(){
+              axios.get('api/rates').then(({data})=> this.rates = data)
+            },
+            createdRate(){
+              this.getRate()
+              Fire.$on('createdRate',()=>{
+                this.getRate()
+              })
             }
         }
     };
@@ -174,14 +160,22 @@
 table.v-table tbody td, table.v-table tbody th{
   height: 24px;
 }
-.v-input__slot{
-    align-items: center;
-    color: inherit;
-    display: flex;
-    margin-bottom: 8px;
-    min-height: inherit;
-    position: relative;
-    transition: .3s cubic-bezier(.25,.8,.5,1);
-    width: 56%;
+.error{
+    background-color: #ffffff !important;
+    border-color:#ffffff !important;
+    border-color:#fff !important;
+    font-weight: 800;
+     text-align: center;
+}
+
+.v-alert.v-alert{
+  border-color:#ffffff !important;
+
+}
+.v-alert{
+    color:#f00;
+    border-color:#ffffff;
+    padding: 5px;
+
 }
 </style>

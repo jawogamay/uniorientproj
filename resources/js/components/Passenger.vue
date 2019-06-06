@@ -49,7 +49,7 @@
         <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
       </template>
       <template v-slot:no-results>
-        <v-alert :value="true" color="error" icon="warning" style="background-color:red;">
+        <v-alert :value="true" color="error">
           Your search for "{{ search }}" found no results.
         </v-alert>
       </template>
@@ -148,11 +148,11 @@
                 }),
         headers: [
         
-          { text: 'PASSENGER NAME', value: 'lastname' },
+          { text: 'PASSENGER NAME', value: 'lastname'+'firstname' },
           { text: 'DATE OF BIRTH', value: 'dob' },
           { text: 'CONTACT NUMBER', value: 'tel' },
           { text: 'NOTES', value: 'notes' },
-          {text:'ACTIONS',value:'actios'}
+          {text:'ACTIONS',value:'actions'}
         ],
        
                 editmode: false,
@@ -218,4 +218,23 @@ table.v-table tbody td, table.v-table tbody th{
   margin-left: 71%;
   width: 10%;
 }*/
+.error{
+    background-color: #ffffff !important;
+    border-color:#ffffff !important;
+    border-color:#fff !important;
+    font-weight: 800;
+     text-align: center;
+}
+
+.v-alert.v-alert{
+  border-color:#ffffff !important;
+
+}
+.v-alert{
+    color:#f00;
+    border-color:#ffffff;
+    padding: 5px;
+
+}
+
 </style>

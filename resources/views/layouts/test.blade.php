@@ -90,6 +90,7 @@ table.v-table thead th.sortable{
 .sidebar-nav ul li .left-nav {
     right: 0;
 }
+
      </style>
 
 </head>

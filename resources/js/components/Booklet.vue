@@ -52,7 +52,7 @@
         </td>
       </template>
       <template v-slot:no-results>
-        <v-alert :value="true" color="error" icon="warning" style="background-color:red;">
+        <v-alert :value="true" color="error">
           Your search for "{{ search }}" found no results.
         </v-alert>
       </template>
@@ -183,5 +183,22 @@
 table.v-table tbody td, table.v-table tbody th{
   height: 26px;
 }
+.error{
+    background-color: #ffffff !important;
+    border-color:#ffffff !important;
+    border-color:#fff !important;
+    font-weight: 800;
+     text-align: center;
+}
 
+.v-alert.v-alert{
+  border-color:#ffffff !important;
+
+}
+.v-alert{
+    color:#f00;
+    border-color:#ffffff;
+    padding: 5px;
+
+}
 </style>

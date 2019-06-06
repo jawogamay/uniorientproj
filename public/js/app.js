@@ -1852,74 +1852,75 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       search: '',
+      rates: [],
       headers: [{
         text: 'DATE',
-        align: 'left',
-        sortable: false,
         value: 'date'
       }, {
         text: 'AIRLINE RATE',
         value: 'airlane'
-      }, {
-        text: 'USD TO PHP',
-        value: 'usdphp'
-      }, {
-        text: 'PHP TO USD',
-        value: 'phpusd'
-      }, {
-        text: 'VERIFIED BY',
-        value: 'verified'
-      }, {
-        text: 'NOTES',
-        value: 'notes'
-      }, {
+      },
+      /*     { text: 'USD TO PHP', value: 'usdphp' },
+           { text: 'VERIFIED BY', value: 'verified' },
+           { text: 'NOTES', value: 'notes' },*/
+      {
         text: 'ACTIONS',
         value: 'action'
-      }],
-      desserts: [{
-        date: 'JAN 15, 2019',
-        airlane: 52.22,
-        usdphp: 54.20,
-        phpusd: 50.00
-      }, {
-        date: 'JAN 19, 2019',
-        airlane: 52.22,
-        usdphp: 54.20,
-        phpusd: 50.00
-      }, {
-        date: 'JAN 24, 2019',
-        airlane: 52.22,
-        usdphp: 54.20,
-        phpusd: 50.00
-      }, {
-        date: 'Feb 15, 2019',
-        airlane: 52.22,
-        usdphp: 54.20,
-        phpusd: 50.00
-      }, {
-        date: 'AUG 15, 2019',
-        airlane: 52.22,
-        usdphp: 54.20,
-        phpusd: 50.00
       }],
       editmode: false,
       form: new Form({
         id: '',
-        content: '',
-        title: '',
-        image: ''
+        rate: ''
       })
     };
+  },
+  mounted: function mounted() {
+    this.getRate();
+    this.createdRate();
   },
   methods: {
     newModal: function newModal() {
       this.editmode = false;
       this.form.reset();
       $('#addNew').modal('show');
+    },
+    createRate: function createRate() {
+      var _this = this;
+
+      this.form.post('api/rates').then(function (response) {
+        _this.spinner = true;
+        $('#addNew').modal('hide');
+        Fire.$emit('createdRate');
+        toast.fire({
+          type: 'success',
+          title: 'Rate successfull created'
+        });
+        setTimeout(function () {
+          _this.spinner = false;
+        }, 1000);
+      });
+    },
+    getRate: function getRate() {
+      var _this2 = this;
+
+      axios.get('api/rates').then(function (_ref) {
+        var data = _ref.data;
+        return _this2.rates = data;
+      });
+    },
+    createdRate: function createdRate() {
+      var _this3 = this;
+
+      this.getRate();
+      Fire.$on('createdRate', function () {
+        _this3.getRate();
+      });
     }
   }
 });
@@ -2842,7 +2843,7 @@ __webpack_require__.r(__webpack_exports__);
       }),
       headers: [{
         text: 'PASSENGER NAME',
-        value: 'lastname'
+        value: 'lastname' + 'firstname'
       }, {
         text: 'DATE OF BIRTH',
         value: 'dob'
@@ -2854,7 +2855,7 @@ __webpack_require__.r(__webpack_exports__);
         value: 'notes'
       }, {
         text: 'ACTIONS',
-        value: 'actios'
+        value: 'actions'
       }],
       editmode: false
     };
@@ -7817,7 +7818,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-0e3cfc1b]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-0e3cfc1b]{\n    font-size: 18px;\n}\ntable.v-table tbody td[data-v-0e3cfc1b], table.v-table tbody th[data-v-0e3cfc1b]{\n  height: 24px;\n}\n.v-input__slot[data-v-0e3cfc1b]{\n    align-items: center;\n    color: inherit;\n    display: flex;\n    margin-bottom: 8px;\n    min-height: inherit;\n    position: relative;\n    transition: .3s cubic-bezier(.25,.8,.5,1);\n    width: 56%;\n}\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-0e3cfc1b]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-0e3cfc1b]{\n    font-size: 18px;\n}\ntable.v-table tbody td[data-v-0e3cfc1b], table.v-table tbody th[data-v-0e3cfc1b]{\n  height: 24px;\n}\n.error[data-v-0e3cfc1b]{\n    background-color: #ffffff !important;\n    border-color:#ffffff !important;\n    border-color:#fff !important;\n    font-weight: 800;\n     text-align: center;\n}\n.v-alert.v-alert[data-v-0e3cfc1b]{\n  border-color:#ffffff !important;\n}\n.v-alert[data-v-0e3cfc1b]{\n    color:#f00;\n    border-color:#ffffff;\n    padding: 5px;\n}\n", ""]);
 
 // exports
 
@@ -7836,7 +7837,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-7bb0a2f7]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-7bb0a2f7]{\n  font-size:18px;\n}\ntable.v-table tbody td[data-v-7bb0a2f7], table.v-table tbody th[data-v-7bb0a2f7]{\n  height: 26px;\n}\n\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-7bb0a2f7]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-7bb0a2f7]{\n  font-size:18px;\n}\ntable.v-table tbody td[data-v-7bb0a2f7], table.v-table tbody th[data-v-7bb0a2f7]{\n  height: 26px;\n}\n.error[data-v-7bb0a2f7]{\n    background-color: #ffffff !important;\n    border-color:#ffffff !important;\n    border-color:#fff !important;\n    font-weight: 800;\n     text-align: center;\n}\n.v-alert.v-alert[data-v-7bb0a2f7]{\n  border-color:#ffffff !important;\n}\n.v-alert[data-v-7bb0a2f7]{\n    color:#f00;\n    border-color:#ffffff;\n    padding: 5px;\n}\n", ""]);
 
 // exports
 
@@ -7855,7 +7856,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-4fd97649]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-4fd97649]{\n  font-size:18px;\n}\ntable.v-table tbody td[data-v-4fd97649], table.v-table tbody th[data-v-4fd97649]{\n  height: 26px;\n}\n.v-input--hide-details>.v-input__control>.v-input__slot[data-v-4fd97649]{\n  width:20%;\n  margin-left: 50%;\n}\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-4fd97649]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-4fd97649]{\n  font-size:18px;\n}\ntable.v-table tbody td[data-v-4fd97649], table.v-table tbody th[data-v-4fd97649]{\n  height: 26px;\n}\n.error[data-v-4fd97649]{\n    background-color: #ffffff !important;\n    border-color:#ffffff !important;\n    border-color:#fff !important;\n    font-weight: 800;\n     text-align: center;\n}\n.v-alert.v-alert[data-v-4fd97649]{\n  border-color:#ffffff !important;\n}\n.v-alert[data-v-4fd97649]{\n    color:#f00;\n    border-color:#ffffff;\n    padding: 5px;\n}\n", ""]);
 
 // exports
 
@@ -7874,7 +7875,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-99aa15ce]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-99aa15ce]{\n    font-size: 18px;\n}\ntable.v-table tbody td[data-v-99aa15ce], table.v-table tbody th[data-v-99aa15ce]{\n  height: 26px;\n}\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-99aa15ce]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-99aa15ce]{\n    font-size: 18px;\n}\ntable.v-table tbody td[data-v-99aa15ce], table.v-table tbody th[data-v-99aa15ce]{\n  height: 26px;\n}\n.error[data-v-99aa15ce]{\n    background-color: #ffffff !important;\n    border-color:#ffffff !important;\n    border-color:#fff !important;\n    font-weight: 800;\n     text-align: center;\n}\n.v-alert.v-alert[data-v-99aa15ce]{\n  border-color:#ffffff !important;\n}\n.v-alert[data-v-99aa15ce]{\n    color:#f00;\n    border-color:#ffffff;\n    padding: 5px;\n}\n", ""]);
 
 // exports
 
@@ -7893,7 +7894,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-2e4221bf]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-2e4221bf]{\n  font-size:18px;\n}\ntable.v-table tbody td[data-v-2e4221bf], table.v-table tbody th[data-v-2e4221bf]{\n  height: 24px;\n}\n/*.v-input__slot{\n  margin-left: 71%;\n  width: 10%;\n}*/\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-2e4221bf]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-2e4221bf]{\n  font-size:18px;\n}\ntable.v-table tbody td[data-v-2e4221bf], table.v-table tbody th[data-v-2e4221bf]{\n  height: 24px;\n}\n/*.v-input__slot{\n  margin-left: 71%;\n  width: 10%;\n}*/\n.error[data-v-2e4221bf]{\n    background-color: #ffffff !important;\n    border-color:#ffffff !important;\n    border-color:#fff !important;\n    font-weight: 800;\n     text-align: center;\n}\n.v-alert.v-alert[data-v-2e4221bf]{\n  border-color:#ffffff !important;\n}\n.v-alert[data-v-2e4221bf]{\n    color:#f00;\n    border-color:#ffffff;\n    padding: 5px;\n}\n\n", ""]);
 
 // exports
 
@@ -62400,7 +62401,7 @@ var render = function() {
                     _c("v-data-table", {
                       attrs: {
                         headers: _vm.headers,
-                        items: _vm.desserts,
+                        items: _vm.rates,
                         search: _vm.search
                       },
                       scopedSlots: _vm._u([
@@ -62408,28 +62409,21 @@ var render = function() {
                           key: "items",
                           fn: function(props) {
                             return [
-                              _c("td", [_vm._v(_vm._s(props.item.date))]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v("PHP " + _vm._s(props.item.airlane))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v("PHP " + _vm._s(props.item.usdphp) + "0")
-                              ]),
-                              _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
                                 _vm._v(
-                                  "PHP " + _vm._s(props.item.phpusd) + ".00"
+                                  _vm._s(
+                                    _vm._f("capitalize")(
+                                      _vm._f("myDate")(props.item.date)
+                                    )
+                                  )
                                 )
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(_vm._s(props.item.verified))
-                              ]),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "text-xs-left" }, [
-                                _vm._v(_vm._s(props.item.notes))
+                                _vm._v(
+                                  "PHP " +
+                                    _vm._s(_vm._f("currency")(props.item.rate))
+                                )
                               ]),
                               _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
@@ -62451,14 +62445,7 @@ var render = function() {
                             return [
                               _c(
                                 "v-alert",
-                                {
-                                  staticStyle: { "background-color": "red" },
-                                  attrs: {
-                                    value: true,
-                                    color: "error",
-                                    icon: "warning"
-                                  }
-                                },
+                                { attrs: { value: true, color: "error" } },
                                 [
                                   _vm._v(
                                     '\n          Your search for "' +
@@ -62519,7 +62506,7 @@ var render = function() {
                       staticClass: "modal-title",
                       attrs: { id: "addNewLabel" }
                     },
-                    [_vm._v("ADD AIRLANE RATE")]
+                    [_vm._v("ADD AIRLINE RATE")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -62563,20 +62550,49 @@ var render = function() {
                     on: {
                       submit: function($event) {
                         $event.preventDefault()
-                        _vm.editmode ? _vm.updateUser() : _vm.createPost()
+                        _vm.editmode ? _vm.updateUser() : _vm.createRate()
                       }
                     }
                   },
                   [
-                    _c("div", { staticClass: "modal-body" }, [
-                      _c("input", {
-                        staticClass: "form-control",
-                        attrs: {
-                          type: "text",
-                          placeholder: "Enter Dollar Rate"
+                    _c(
+                      "div",
+                      {
+                        staticClass: "modal-body",
+                        staticStyle: {
+                          margin: "0 auto",
+                          "text-align": "center"
                         }
-                      })
-                    ]),
+                      },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.rate,
+                              expression: "form.rate"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          staticStyle: { width: "30%" },
+                          attrs: {
+                            type: "text",
+                            placeholder: "Enter Rate",
+                            name: "rate"
+                          },
+                          domProps: { value: _vm.form.rate },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "rate", $event.target.value)
+                            }
+                          }
+                        })
+                      ]
+                    ),
                     _vm._v(" "),
                     _c("div", { staticClass: "modal-footer" }, [
                       _c(
@@ -62619,7 +62635,7 @@ var render = function() {
                           staticClass: "btn btn-primary",
                           attrs: { type: "submit" }
                         },
-                        [_vm._v("Post")]
+                        [_vm._v("Submit")]
                       )
                     ])
                   ]
@@ -62800,14 +62816,7 @@ var render = function() {
                             return [
                               _c(
                                 "v-alert",
-                                {
-                                  staticStyle: { "background-color": "red" },
-                                  attrs: {
-                                    value: true,
-                                    color: "error",
-                                    icon: "warning"
-                                  }
-                                },
+                                { attrs: { value: true, color: "error" } },
                                 [
                                   _vm._v(
                                     '\n          Your search for "' +
@@ -63320,14 +63329,7 @@ var render = function() {
                             return [
                               _c(
                                 "v-alert",
-                                {
-                                  staticStyle: { "background-color": "red" },
-                                  attrs: {
-                                    value: true,
-                                    color: "error",
-                                    icon: "warning"
-                                  }
-                                },
+                                { attrs: { value: true, color: "error" } },
                                 [
                                   _vm._v(
                                     '\n          Your search for "' +
@@ -64165,14 +64167,7 @@ var render = function() {
                             return [
                               _c(
                                 "v-alert",
-                                {
-                                  staticStyle: { "background-color": "red" },
-                                  attrs: {
-                                    value: true,
-                                    color: "error",
-                                    icon: "warning"
-                                  }
-                                },
+                                { attrs: { value: true, color: "error" } },
                                 [
                                   _vm._v(
                                     '\n          Your search for "' +
@@ -64916,14 +64911,7 @@ var render = function() {
                             return [
                               _c(
                                 "v-alert",
-                                {
-                                  staticStyle: { "background-color": "red" },
-                                  attrs: {
-                                    value: true,
-                                    color: "error",
-                                    icon: "warning"
-                                  }
-                                },
+                                { attrs: { value: true, color: "error" } },
                                 [
                                   _vm._v(
                                     '\n          Your search for "' +
@@ -107252,6 +107240,10 @@ Vue.filter('capitalize', function (value) {
     value = value.toString();
     return value.toUpperCase();
   }
+});
+Vue.filter('currency', function (value) {
+  var val = (value / 1).toFixed(2).replace('.', '.');
+  return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 });
 
 var routes = [{

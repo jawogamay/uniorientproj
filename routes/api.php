@@ -23,5 +23,6 @@ Route::apiResources(['customer'=>'CustomerController']);
 Route::apiResources(['booklet' => 'BookletController']);
 Route::apiResources(['passenger' => 'PassengerController']);
 Route::apiResources(['supplier' => 'SupplierController']);
+Route::apiResources(['rates' => 'AirlineRateController']);
 Route::get('getTC','BookletController@getTC');
 Route::get('getCustomer','PassengerController@getCustomer');
