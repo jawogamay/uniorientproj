@@ -73,7 +73,7 @@
                         </div>
                        <form @submit.prevent="editmode ? updateUser() :createPost()">
                         <div class="modal-body">
-                            <input type="">
+                            <input type="text" class="form-control" placeholder="Enter Dollar Rate">
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>

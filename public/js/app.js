@@ -62569,7 +62569,13 @@ var render = function() {
                   },
                   [
                     _c("div", { staticClass: "modal-body" }, [
-                      _c("input", { attrs: { type: "" } })
+                      _c("input", {
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Enter Dollar Rate"
+                        }
+                      })
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "modal-footer" }, [
