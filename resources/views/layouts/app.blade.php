@@ -37,7 +37,7 @@
 
                     </ul>
                     <a class="navbar-brand" href="{{ url('/') }}" style="text-align: center;">
-                    <img src="/assets/images/logo.jpg" width="80" height="80" align="middle">      
+                    <img src="/assets/images/logo.jpg" width="120" height="120" align="middle">      
                 </a>
 
                     <!-- Right Side Of Navbar -->
