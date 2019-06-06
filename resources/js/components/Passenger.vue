@@ -41,7 +41,7 @@
     >
       <template v-slot:items="props">
        
-        <td class="text-xs-left">{{ props.item.lastname | capitalize}} {{props.item.firstname | capitalize}},{{props.item.prefix}}</td>
+        <td class="text-xs-left">,{{props.item.prefix}}.{{props.item.firstname | capitalize}} {{ props.item.lastname | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.date_birth | myDate | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.tel | capitalize}}</td>
         <td class="text-xs-left" v-if="props.item.notes.length<20">{{ props.item.notes | capitalize}}</td>
