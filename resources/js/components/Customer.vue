@@ -32,6 +32,7 @@
         label="Search"
         single-line
         hide-details
+        id="search"
       ></v-text-field>
     </v-card-title>
     <v-data-table
@@ -247,5 +248,9 @@
 }
 table.v-table tbody td, table.v-table tbody th{
   height: 26px;
+}
+.v-input--hide-details>.v-input__control>.v-input__slot{
+  width:20%;
+  margin-left: 50%;
 }
 </style>

@@ -24,9 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container" style="padding:0px;">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="/assets/images/logo.jpg" width="80" height="80">      
-                </a>
+                
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -38,6 +36,9 @@
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
+                    <a class="navbar-brand" href="{{ url('/') }}" style="text-align: center;">
+                    <img src="/assets/images/logo.jpg" width="80" height="80" align="middle">      
+                </a>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">

@@ -2289,6 +2289,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7854,7 +7855,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable.v-table tbody td[data-v-4fd97649]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-4fd97649]{\n  font-size:18px;\n}\ntable.v-table tbody td[data-v-4fd97649], table.v-table tbody th[data-v-4fd97649]{\n  height: 26px;\n}\n", ""]);
+exports.push([module.i, "\ntable.v-table tbody td[data-v-4fd97649]{\n    font-weight: 300;\n    font-size: 15px;\n}\n.v-icon[data-v-4fd97649]{\n  font-size:18px;\n}\ntable.v-table tbody td[data-v-4fd97649], table.v-table tbody th[data-v-4fd97649]{\n  height: 26px;\n}\n.v-input--hide-details>.v-input__control>.v-input__slot[data-v-4fd97649]{\n  width:20%;\n  margin-left: 50%;\n}\n", ""]);
 
 // exports
 
@@ -62332,281 +62333,297 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("v-app", [
-    _c(
-      "div",
-      { staticClass: "container-fluid" },
-      [
-        _c("div", { staticClass: "row page-titles" }, [
-          _c("div", { staticClass: "col-md-5 col-8 align-self-center" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
-        ]),
+    _c("div", { staticClass: "container-fluid" }, [
+      _c("div", { staticClass: "row page-titles" }, [
+        _c("div", { staticClass: "col-md-5 col-8 align-self-center" }),
         _vm._v(" "),
+        _c("div", { staticClass: "col-md-7 col-4 align-self-center" })
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c(
+            "div",
+            { staticClass: "card" },
+            [
+              _c("div", { staticClass: "card-header" }, [
+                _c("h3", { staticClass: "card-title" }, [
+                  _vm._v("AIRLINE RATE INFORMATION")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-tools" })
+              ]),
+              _vm._v(" "),
+              [
+                _c(
+                  "v-card",
+                  [
+                    _c(
+                      "v-card-title",
+                      [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-warning",
+                            on: { click: _vm.newModal }
+                          },
+                          [
+                            _vm._v("ADD "),
+                            _c("v-icon", { attrs: { color: "#fff" } }, [
+                              _vm._v("add_box")
+                            ])
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        _c("v-spacer"),
+                        _vm._v(" "),
+                        _c("v-text-field", {
+                          attrs: {
+                            "append-icon": "search",
+                            label: "Search",
+                            "single-line": "",
+                            "hide-details": ""
+                          },
+                          model: {
+                            value: _vm.search,
+                            callback: function($$v) {
+                              _vm.search = $$v
+                            },
+                            expression: "search"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("v-data-table", {
+                      attrs: {
+                        headers: _vm.headers,
+                        items: _vm.desserts,
+                        search: _vm.search
+                      },
+                      scopedSlots: _vm._u([
+                        {
+                          key: "items",
+                          fn: function(props) {
+                            return [
+                              _c("td", [_vm._v(_vm._s(props.item.date))]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v("PHP " + _vm._s(props.item.airlane))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v("PHP " + _vm._s(props.item.usdphp) + "0")
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(
+                                  "PHP " + _vm._s(props.item.phpusd) + ".00"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(_vm._s(props.item.verified))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _vm._v(_vm._s(props.item.notes))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { href: "#" }
+                                  },
+                                  [_vm._v("View")]
+                                )
+                              ])
+                            ]
+                          }
+                        },
+                        {
+                          key: "no-results",
+                          fn: function() {
+                            return [
+                              _c(
+                                "v-alert",
+                                {
+                                  staticStyle: { "background-color": "red" },
+                                  attrs: {
+                                    value: true,
+                                    color: "error",
+                                    icon: "warning"
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    '\n          Your search for "' +
+                                      _vm._s(_vm.search) +
+                                      '" found no results.\n        '
+                                  )
+                                ]
+                              )
+                            ]
+                          },
+                          proxy: true
+                        }
+                      ])
+                    })
+                  ],
+                  1
+                )
+              ]
+            ],
+            2
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "modal fade",
+          attrs: {
+            id: "addNew",
+            tabindex: "-1",
+            role: "dialog",
+            "aria-labelledby": "addNewLabel",
+            "aria-hidden": "true"
+          }
+        },
         [
           _c(
-            "v-card",
+            "div",
+            {
+              staticClass: "modal-dialog modal-dialog-centered",
+              attrs: { role: "document" }
+            },
             [
-              _c(
-                "v-card-title",
-                [
+              _c("div", { staticClass: "modal-content" }, [
+                _c("div", { staticClass: "modal-header" }, [
+                  _c(
+                    "h5",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: !_vm.editmode,
+                          expression: "!editmode"
+                        }
+                      ],
+                      staticClass: "modal-title",
+                      attrs: { id: "addNewLabel" }
+                    },
+                    [_vm._v("ADD AIRLANE RATE")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "h5",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.editmode,
+                          expression: "editmode"
+                        }
+                      ],
+                      staticClass: "modal-title",
+                      attrs: { id: "addNewLabel" }
+                    },
+                    [_vm._v("Update User's Info")]
+                  ),
+                  _vm._v(" "),
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-warning",
-                      on: { click: _vm.newModal }
+                      staticClass: "close",
+                      attrs: {
+                        type: "button",
+                        "data-dismiss": "modal",
+                        "aria-label": "Close"
+                      }
                     },
                     [
-                      _vm._v("ADD "),
-                      _c("v-icon", { attrs: { color: "#fff" } }, [
-                        _vm._v("add_box")
+                      _c("span", { attrs: { "aria-hidden": "true" } }, [
+                        _vm._v("×")
                       ])
-                    ],
-                    1
-                  ),
-                  _vm._v(" "),
-                  _c("v-spacer"),
-                  _vm._v(" "),
-                  _c("v-text-field", {
-                    attrs: {
-                      "append-icon": "search",
-                      label: "Search",
-                      "single-line": "",
-                      "hide-details": ""
-                    },
-                    model: {
-                      value: _vm.search,
-                      callback: function($$v) {
-                        _vm.search = $$v
-                      },
-                      expression: "search"
-                    }
-                  })
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("v-data-table", {
-                attrs: {
-                  headers: _vm.headers,
-                  items: _vm.desserts,
-                  search: _vm.search
-                },
-                scopedSlots: _vm._u([
-                  {
-                    key: "items",
-                    fn: function(props) {
-                      return [
-                        _c("td", [_vm._v(_vm._s(props.item.date))]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-xs-left" }, [
-                          _vm._v("PHP " + _vm._s(props.item.airlane))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-xs-left" }, [
-                          _vm._v("PHP " + _vm._s(props.item.usdphp) + "0")
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-xs-left" }, [
-                          _vm._v("PHP " + _vm._s(props.item.phpusd) + ".00")
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-xs-left" }, [
-                          _vm._v(_vm._s(props.item.verified))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-xs-left" }, [
-                          _vm._v(_vm._s(props.item.notes))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", { staticClass: "text-xs-left" }, [
-                          _c(
-                            "a",
-                            {
-                              staticClass: "btn btn-success",
-                              attrs: { href: "#" }
-                            },
-                            [_vm._v("View")]
-                          )
-                        ])
-                      ]
-                    }
-                  },
-                  {
-                    key: "no-results",
-                    fn: function() {
-                      return [
-                        _c(
-                          "v-alert",
-                          {
-                            staticStyle: { "background-color": "red" },
-                            attrs: {
-                              value: true,
-                              color: "error",
-                              icon: "warning"
-                            }
-                          },
-                          [
-                            _vm._v(
-                              '\n          Your search for "' +
-                                _vm._s(_vm.search) +
-                                '" found no results.\n        '
-                            )
-                          ]
-                        )
-                      ]
-                    },
-                    proxy: true
-                  }
-                ])
-              })
-            ],
-            1
-          )
-        ]
-      ],
-      2
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "addNew",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "addNewLabel",
-          "aria-hidden": "true"
-        }
-      },
-      [
-        _c(
-          "div",
-          {
-            staticClass: "modal-dialog modal-dialog-centered",
-            attrs: { role: "document" }
-          },
-          [
-            _c("div", { staticClass: "modal-content" }, [
-              _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "h5",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: !_vm.editmode,
-                        expression: "!editmode"
-                      }
-                    ],
-                    staticClass: "modal-title",
-                    attrs: { id: "addNewLabel" }
-                  },
-                  [_vm._v("ADD AIRLANE RATE")]
-                ),
+                    ]
+                  )
+                ]),
                 _vm._v(" "),
                 _c(
-                  "h5",
+                  "form",
                   {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.editmode,
-                        expression: "editmode"
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        _vm.editmode ? _vm.updateUser() : _vm.createPost()
                       }
-                    ],
-                    staticClass: "modal-title",
-                    attrs: { id: "addNewLabel" }
-                  },
-                  [_vm._v("Update User's Info")]
-                ),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass: "close",
-                    attrs: {
-                      type: "button",
-                      "data-dismiss": "modal",
-                      "aria-label": "Close"
                     }
                   },
                   [
-                    _c("span", { attrs: { "aria-hidden": "true" } }, [
-                      _vm._v("×")
+                    _c("div", { staticClass: "modal-body" }, [
+                      _c("input", { attrs: { type: "" } })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "modal-footer" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "btn btn-danger",
+                          attrs: { type: "button", "data-dismiss": "modal" }
+                        },
+                        [_vm._v("Close")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: _vm.editmode,
+                              expression: "editmode"
+                            }
+                          ],
+                          staticClass: "btn btn-success",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("Update")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "button",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: !_vm.editmode,
+                              expression: "!editmode"
+                            }
+                          ],
+                          staticClass: "btn btn-primary",
+                          attrs: { type: "submit" }
+                        },
+                        [_vm._v("Post")]
+                      )
                     ])
                   ]
                 )
-              ]),
-              _vm._v(" "),
-              _c(
-                "form",
-                {
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      _vm.editmode ? _vm.updateUser() : _vm.createPost()
-                    }
-                  }
-                },
-                [
-                  _c("div", { staticClass: "modal-body" }, [
-                    _c("input", { attrs: { type: "" } })
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "modal-footer" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { type: "button", "data-dismiss": "modal" }
-                      },
-                      [_vm._v("Close")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.editmode,
-                            expression: "editmode"
-                          }
-                        ],
-                        staticClass: "btn btn-success",
-                        attrs: { type: "submit" }
-                      },
-                      [_vm._v("Update")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: !_vm.editmode,
-                            expression: "!editmode"
-                          }
-                        ],
-                        staticClass: "btn btn-primary",
-                        attrs: { type: "submit" }
-                      },
-                      [_vm._v("Post")]
-                    )
-                  ])
-                ]
-              )
-            ])
-          ]
-        )
-      ]
-    )
+              ])
+            ]
+          )
+        ]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -63199,7 +63216,8 @@ var render = function() {
                             "append-icon": "search",
                             label: "Search",
                             "single-line": "",
-                            "hide-details": ""
+                            "hide-details": "",
+                            id: "search"
                           },
                           model: {
                             value: _vm.search,
