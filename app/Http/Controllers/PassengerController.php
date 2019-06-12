@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Passenger;
-use Illuminate\Http\Request;
+use App\User;
 use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class PassengerController extends Controller
 {
@@ -24,7 +27,9 @@ class PassengerController extends Controller
     public function getCustomer(){
         return Customer::latest()->get();
     }
-
+    /*public function getAccountName(){
+        return DB::table('customers')->value('id');
+    }*/
     /**
      * Show the form for creating a new resource.
      *
@@ -41,6 +46,13 @@ class PassengerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function autocomplete(Request $request)
+    {
+        $query = $request['account_name'];
+        $users = User::where('email','like','%'.$query.'%')->get();
+        return response()->json($users);
+    }
+
     public function store(Request $request)
     {
         //

@@ -15,16 +15,16 @@
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-                      <div class="card-header">
+                      <!-- <div class="card-header">
                         <h3 class="card-title">CUSTOMER INFORMATION </h3>
                         <div class="card-tools">
                             
                          </div>
-                     </div>
+                     </div> -->
                      <template>
   <v-card>
     <v-card-title>
-      <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+      <h3 class="card-title">CUSTOMER INFORMATION </h3>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -35,20 +35,20 @@
         id="search"
       ></v-text-field>
     </v-card-title>
+     <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
     <v-data-table
       :headers="headers"
       :items="customers"
       :search="search"
     >
       <template v-slot:items="props">
-        
+        <td class="text-xs-left"><a href="#" class="btn btn-success" @click="viewCustomer(customer)">VIEW</a></td>
         <td class="text-xs-left">{{ props.item.account_name | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.address | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.nature | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.user.code | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.term | capitalize}}</td>
-        <td class="text-xs-left">{{ props.item.contact |capitalize}}</td>
-        <td class="text-xs-left"><a href="#" class="btn btn-success" @click="viewCustomer(customer)">VIEW</a></td>
+        <td class="text-xs-left">{{ props.item.contact |capitalize}}</td>   
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error">
@@ -76,10 +76,10 @@
                        <form @submit.prevent="addCustomer()">
                         <div class="modal-body">
                              <input type="text" placeholder="ACCOUNT NAME" class="form-control" name="account_name"
-                             :class="{'is-invalid': form.errors.has('account_name') }" v-model="form.account_name">
+                             :class="{'is-invalid': form.errors.has('account_name') }" v-model="form.account_name" >
                              <has-error :form="form" field="account_name"></has-error><br><hr>
 
-                             <div class="row">
+                           <!--   <div class="row">
                               <div class="col-md-6">
                               <input type="text" placeholder="NATURE OF SERVICE" class="form-control" name="service" 
                               :class="{'is-invalid': form.errors.has('nature') }" v-model="form.nature">
@@ -90,28 +90,38 @@
                                :class="{'is-invalid': form.errors.has('address') }" v-model="form.address">
                               <br><has-error :form="form" field="address"></has-error><br>
                             </div>
-                           </div>
-                             <input type="text" placeholder="CONTACT DETAILS" class="form-control" name="contact" 
-                             :class="{'is-invalid': form.errors.has('contact') }"v-model="form.contact"><br>
-                             <has-error :form="form" field="contact"></has-error><br>
+                           </div> -->
 
-                             <div class="row">
+                                  <input type="text" placeholder="ADDRESS" class="form-control" name="address" 
+                               :class="{'is-invalid': form.errors.has('address') }" v-model="form.address">
+                              <br><has-error :form="form" field="address"></has-error><br>
+                               <input type="text" placeholder="NATURE OF SERVICE" class="form-control" name="service" 
+                              :class="{'is-invalid': form.errors.has('nature') }" v-model="form.nature">
+                              <br><has-error :form="form" field="nature"></has-error><br>
+                                   <div class="row">
                               <div class="col-md-6">
-                                <input type="text" placeholder="FIRSTNAME" class="form-control" name="firstname"
+                                <input type="text" placeholder="FIRST NAME" class="form-control" name="firstname"
                                  :class="{'is-invalid': form.errors.has('firstname') }" v-model="form.firstname"><br>
                                  <has-error :form="form" field="firstname"></has-error><br>
                              </div>
                              <div class="col-md-6">
-                            <input type="text" placeholder="MIDDLENAME" class="form-control" name="middlename"
+                            <input type="text" placeholder="MIDDLE NAME" class="form-control" name="middlename"
                              :class="{'is-invalid': form.errors.has('middlename') }"v-model="form.middlename"><br>
                              <has-error :form="form" field="middlename"></has-error><br>
                              </div>
                            </div>
-
+                           <div class="row">
+                            <div class="col-md-6">
                             <input type="text" placeholder="LASTNAME" class="form-control" name="lastname"
                               :class="{'is-invalid': form.errors.has('lastname') }"v-model="form.lastname"><br>
                               <has-error :form="form" field="lastname"></has-error><br>
-
+                            </div>
+                            <div class="col-md-6">
+                             <input type="text" placeholder="CONTACT DETAILS" class="form-control" name="contact" 
+                             :class="{'is-invalid': form.errors.has('contact') }"v-model="form.contact"><br>
+                             <has-error :form="form" field="contact"></has-error><br>
+                           </div>
+                            </div>
                             <div class="row">
                               <div class="col-md-6">
                                   <input type="text" placeholder="COMPANY" class="form-control" name="company" 
@@ -159,14 +169,14 @@
                  spinner:false,
                  customers:[],
         headers: [
-     
+          {text:'',value:'',sortable:false},
           { text: 'ACCOUNT NAME', value: 'account_name' },
           { text: 'ADDRESS', value: 'address' },
           { text: 'NATURE', value: 'nature' },
           { text: 'TC', value: 'user.code' },
           { text: 'TERM', value: 'term' },
           {text: 'CONTACT DETAILS', value: 'contact'},
-          {text:'ACTIONS',value:'actios'}
+          
         ],
                 editmode: false,
                 form: new Form({

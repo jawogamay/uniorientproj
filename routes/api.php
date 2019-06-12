@@ -25,4 +25,6 @@ Route::apiResources(['passenger' => 'PassengerController']);
 Route::apiResources(['supplier' => 'SupplierController']);
 Route::apiResources(['rates' => 'AirlineRateController']);
 Route::get('getTC','BookletController@getTC');
+/*Route::get('search','PassengerController@autocomplete');
+Route::get('getAccountName','PassengerController@getAccountName');*/
 Route::get('getCustomer','PassengerController@getCustomer');

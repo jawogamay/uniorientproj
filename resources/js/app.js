@@ -17,6 +17,7 @@ import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 import swal from 'sweetalert2'
 import moment from 'moment'
+/*import AutoComplete from './components/AutoComplete'*/
 import { Form, HasError, AlertError } from 'vform';
 
 Vue.component(HasError.name, HasError)
@@ -74,6 +75,7 @@ const router = new VueRouter({
 })
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('auto-complete',require('./components/AutoComplete.vue').default);
 const app = new Vue({
     el: '#app',
     router

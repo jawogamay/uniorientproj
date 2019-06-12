@@ -46,14 +46,18 @@
     font-family: Inconsalata;
 }
 ::placeholder{
-    color:#000000;
+    color:#ededed;
+}
+.form-control{
+    color:#4d4f50;
+}
+.ui.search.selection.dropdown > input.search[data-v-3a0c7bea],.ui.search.selection.dropdown > input.search[data-v-3a0c7bea]{
+    font-family: Inconsalata;
+    font-size: 15px;
 }
 
-.form-control{
-    color:#000000;
-}
 .form-control,label{
-    font-size:18px;
+    font-size:15px;
 }
 .card .v-input__slot{
   margin-left: 60%;
@@ -72,6 +76,12 @@ label{
 body{
     font-family: Inconsalata;
 }
+.ui.search.dropdown > .text[data-v-3a0c7bea]{
+  font-family: Inconsalata;
+    font-weight: 400;
+    color:rgba(39, 38, 38, 0.87);
+}   
+
 table.v-table tbody td, table.v-table tbody th{
     height: 20px;
     

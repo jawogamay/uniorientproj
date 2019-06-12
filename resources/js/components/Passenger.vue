@@ -75,68 +75,123 @@
                         </div>
                        <form @submit.prevent="createPassenger()">
                         <div class="modal-body">
-                          <select class="form-control" name="account_name" v-model="form.account_name">
+                          <!-- <select class="form-control" name="account_name" v-model="form.account_name">
                             <option value="" disabled selected>ACCOUNT NAME</option>
                             <option v-for="customer in customers" :value="customer.id">{{customer.account_name | capitalize }}</option>
                           </select>
-                          <br><br>
+                          <br><br> -->
+                          <!-- <input type="text" name="account_name" v-model="form.account_name" v-on:keyup="autoComplete()" class="form-control">
+                          <div class="panel-footer" v-if="results.length">
+                            <ul class="list-group">
+                              <li class="list-group-item" v-for="result in results">{{result.name}}</li>
+                            </ul>
+                          </div>
+                          <br><br> -->
+            
+      <!-- <v-autocomplete
+        v-model="form.account_name"
+        :items="accounts"
+        :readonly="isEditing"
+        :label="`Account Name — ${isEditing ? 'Editable' : ''}`"
+        persistent-hint
+        prepend-icon="mdi-city"
+      >
+        <template v-slot:append-outer>
+          <v-slide-x-reverse-transition
+            mode="out-in"
+          >
+            <v-icon
+              :key="`icon-${isEditing}`"
+              :color="isEditing ? 'success' : 'info'"
+              @click="isEditing = !isEditing"
+              v-text="isEditing ? 'mdi-check-outline' : 'mdi-circle-edit-outline'"
+            ></v-icon>
+          </v-slide-x-reverse-transition>
+        </template>
+      </v-autocomplete> -->
+
+
                            <!--  <input type="text" placeholder="Name" class="form-control"><br>
                               <p style="font-size:12px; color:#c2c2c2;"> (PASSENGER NAME IS COMPOSED OF LAST NAME, FIRST NAME , AND MIDDLE NAME)</p>
                             <br> -->
+                            <model-list-select :list="customers"
+                            name="account_name"
+                     v-model="form.account_name"
+                     option-value="id"
+                     option-text="account_name"
+                     placeholder="ACCOUNT NAME">
+                  </model-list-select>
                             <div class="row">
                               <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="LASTNAME" name="lastname" 
-                                v-model="form.lastname"><br><br>
-                              </div>
+                                <br>
+          
+                                <model-list-select :list="options1"
+                         v-model="form.prefix"
+                         option-value="code"
+                         option-text="name"
+                         placeholder="SELECT PREFIX">
+                         </model-list-select>
+                              <br><br>
+                            </div>
                  <!--            <input type="text" class="form-control" placeholder="Middle Name" name="middename" 
                             v-model="form.middename"><br><br> -->
                             <div class="col-md-6">
+                                 <label></label>
                                 <input type="text" class="form-control" placeholder="FIRSTNAME" name="firstname" 
                                 v-model="form.firstname"><br><br>
                             </div>
                            </div>
-
-                           <div class="row">
+                           <div class="row" style="margin-top:-25px;">
                             <div class="col-md-6">
-                              <label>PREFIX:</label><select class="form-control" name="prefix" v-model="form.prefix">
-                                  <option value="MR" selected>MR</option>
-                                  <option value="MS">MS</option>
-                                  <option value="MRS">MRS</option>
-                              </select>
-                              <br><br>
+                             <input type="text" class="form-control" placeholder="MIDDLE NAME" name="middename" 
+                            v-model="form.middename"><br><br>
+                      
                             </div>
                             <div class="col-md-6">
-                            <label for="dob">DATE OF BIRTH:</label>
+                               
+                                <input type="text" class="form-control" placeholder="LAST NAME" name="lastname" 
+                                v-model="form.lastname"><br><br>
+                            </div>
+                          </div>
+                          <div class="row" style="margin-top:-25px;">
+                            <div class="col-md-6">
+                         
                             <!-- <input type="date" class="form-control" placeholder="Date of Birth" name="dob" v-model="form.dob"  :class="{'is-invalid': form.errors.has('dob') }" id="mdate"><br>
                             <has-error :form="form" field="dob"></has-error><br> -->
-                                      
+                            
                               <v-dialog
                                 ref="dialog"
                                 v-model="modal"
-                                :return-value.sync="date"
+                                :return-value.sync="form.dob"
                                 persistent
                                 lazy
                                 full-width
                                 width="290px"
                               >
                                 <template v-slot:activator="{ on }">
+                                  <br>
                                   <v-text-field
-                                    v-model="date"
+                                    v-model="form.dob"
                                     prepend-icon="event"
+                                    label="Date of Birth"
                                     readonly
                                     v-on="on"
                                   ></v-text-field>
                                 </template>
-                                <v-date-picker v-model="form.dob" scrollable width="100%">
+                                <v-date-picker v-model="date" scrollable width="100%">
                                   <v-spacer></v-spacer>
                                   <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
                                   <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
                                 </v-date-picker>
                               </v-dialog>
-                      
-                          </div>
-                          </div>
+                      </div>
+                         
+                          <div class="col-md-6" style="margin-top:13px;">
+                            <br>
                             <input type="text" class="form-control" placeholder="TEL" name="tel" v-model="form.tel"><br><br>
+                          </div>
+                          </div>
+
                             <label> NOTES: </label>   
                             <textarea class="form-control" style="height:150px;" name="notes" v-model="form.notes">
                                 
@@ -155,6 +210,7 @@
       </v-app>
 </template>
 <script type="text/javascript">
+ import { ModelListSelect } from 'vue-search-select'
     export default{
         data(){
             return{
@@ -163,8 +219,15 @@
       modal: false,
     
                  search: '',
+                 results:[],
                  passengers:[],
+               options1: [
+          { code: 'MR', name: 'MR', },
+          { code: 'MRS', name: 'MRS' },
+          { code: 'MS', name: 'MS' },
+        ],
                  customers:[],
+                 isEditing:false,
                   form: new Form({
                     id: '',
                     account_name:'',
@@ -193,21 +256,29 @@
         },
          mounted(){
           axios.get('api/getCustomer').then(({data}) => this.customers = data);
+          axios.get('api/getAccountName').then(({data})=> this.accounts = data);
           this.getPassenger();
           this.createdPassenger();
          },
 
         methods: {
+          codeAndNameAndDesc (item) {
+        return `${item.account_name | capitalize } `
+        },
             newModal(){
                 this.editmode = false;
                 this.form.reset();
                 $('#addNew').modal('show');
             },
-            datePicker(){
-              $('#mdate').bootstrapMaterialDatePicker({
-                weekStart: 0,
-                time: false
-              });
+            autoComplete(){
+              this.results = [];
+              if(this.form.account_name.length>2){
+                axios.get('api/search',{params:{query:this.form.account_name
+                }
+                }).then(response => {
+                  this.results = response.data;
+                });
+              }
             },
             createPassenger(){
                 this.form.post('api/passenger')
@@ -231,6 +302,9 @@
                 this.getPassenger();
               })
             }
+        },
+        components:{
+          ModelListSelect
         }
     };
 </script>
@@ -242,9 +316,18 @@
 .v-icon{
   font-size:18px;
 }
+
 table.v-table tbody td, table.v-table tbody th{
   height: 24px;
 }
+::placeholder{
+ color:rgba(191, 191, 191, 0.87);
+}
+.item,.text{
+    font-family: Inconsalata;
+    font-weight: 800;
+}
+
 /*.v-input__slot{
   margin-left: 71%;
   width: 10%;

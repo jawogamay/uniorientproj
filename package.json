@@ -30,6 +30,7 @@
         "vue-fullcalendar": "^1.0.9",
         "vue-moment": "^4.0.0",
         "vue-router": "^3.0.6",
+        "vue-search-select": "^2.8.3",
         "vuetify": "^1.5.13"
     }
 }
