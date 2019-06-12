@@ -15,16 +15,16 @@
       <div class="row">
              <div class="col-md-12">
                 <div class="card">
-                      <div class="card-header">
-                        <h3 class="card-title">AIRLINE RATE INFORMATION</h3>
+                     <!--  <div class="card-header">
+                        
                         <div class="card-tools">
                             
                          </div>
-                     </div>
+                     </div> -->
                      <template>
   <v-card>
     <v-card-title>
-    <button class="btn btn-warning" @click="newModal">ADD <v-icon color="#fff">add_box</v-icon></button>
+      <h3 class="card-title">AIRLINE RATE INFORMATION</h3>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -34,20 +34,21 @@
         hide-details
       ></v-text-field>
     </v-card-title>
+     <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
     <v-data-table
       :headers="headers"
       :items="rates"
       :search="search"
     >
       <template v-slot:items="props">
-  
+         <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
         <td class="text-xs-left">{{props.item.date | myDate | capitalize}}</td>
 
         <td class="text-xs-left" >PHP {{ props.item.rate |currency}}</span></td>
         
       <!--   <td class="text-xs-left">{{ props.item.verified }}</td>
         <td class="text-xs-left">{{ props.item.notes }}</td> -->
-        <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
+       
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error">
@@ -96,13 +97,14 @@
                  search: '',
                rates:[],
         headers: [
+         {text: '', value: '',sortable:false},
            {text: 'DATE', value:'date'},
           { text: 'AIRLINE RATE', value: 'airlane' },
           
      /*     { text: 'USD TO PHP', value: 'usdphp' },
           { text: 'VERIFIED BY', value: 'verified' },
           { text: 'NOTES', value: 'notes' },*/
-          {text: 'ACTIONS', value: 'action'}
+         
         ],
     
                 editmode: false,

@@ -15,16 +15,16 @@
       <div class="row">
              <div class="col-md-12">
                 <div class="card">
-                     <div class="card-header">
+                   <!--   <div class="card-header">
                         <h3 class="card-title">EMPLOYEE INFORMATION</h3>
                         <div class="card-tools">
                             
                          </div>
-                     </div>
+                     </div> -->
                      <template>
   <v-card>
     <v-card-title>
-     <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+      <h3 class="card-title">EMPLOYEE INFORMATION</h3>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
@@ -34,23 +34,24 @@
         hide-details
       ></v-text-field>
     </v-card-title>
+     <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
     <v-data-table
       :headers="headers"
       :items="employees"
       :search="search"
     >
       <template v-slot:items="props">
-       
+           <td class="text-xs-left">
+
+            <a href="#" class="btn btn-success">VIEW</a>
+            <a href="#" class="btn btn-primary">EDIT</a> 
+        </td>
         <td class="text-xs-left">{{ props.item.name | capitalize }}</td>
         <td class="text-xs-left">{{ props.item.code | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.dob | myDate | capitalize }}</td>
         <td class="text-xs-left">{{ props.item.hired | myDate | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.type | capitalize}}</td>
-        <td class="text-xs-left">
-
-            <a href="#" class="btn btn-success">VIEW</a>
-            <a href="#" class="btn btn-warning">EDIT</a> 
-        </td>
+    
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error">
@@ -134,13 +135,13 @@
                     code:'',
                  }),
         headers: [
-       
+           {text:'',value:'',sortable:false},
           { text: 'EMPLOYEE NAME', value: 'airlane' },
           { text: 'CODE', value: 'usdphp' },
           { text: 'DATE OF BIRTH', value: 'phpusd' },
           { text: 'HIRED DATE', value: 'verified' },
           {text: 'EMPLOYEE TYPE', value: 'details'},
-          {text:'ACTIONS',value:'actions'}
+      
         ],
   
        }

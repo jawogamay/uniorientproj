@@ -97,6 +97,9 @@ table.v-table thead th.sortable{
 #this-left{
     margin-left: 43%;
 }
+table.v-table thead tr{
+    height: 0px;
+}
 .v-icon{
     font-size:14px;
 }
@@ -236,7 +239,7 @@ table.v-table thead th.sortable{
                             <ul aria-expanded="false" class="collapse left-nav" style="text-align: center; margin: 0 auto;">
                               <img src="/assets/images/user.png"> 
                               <h4 style="color:#fff;">{{Auth::user()->name}}</h4> 
-                              <p>{{Auth::user()->type}}</p>
+                              <p>{{Auth::user()->name[0].substr(Auth::user()->name,strpos(Auth::user()->name, " "))}}{{-- {{substr(Auth::user()->name,strpos(Auth::user()->name, " "))}} --}}</p>
                               <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
