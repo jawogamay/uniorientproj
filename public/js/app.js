@@ -2824,6 +2824,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2842,6 +2844,9 @@ __webpack_require__.r(__webpack_exports__);
         notes: ''
       }),
       headers: [{
+        text: 'ACTIONS',
+        value: 'actions'
+      }, {
         text: 'PASSENGER NAME',
         value: 'lastname' + 'firstname'
       }, {
@@ -2853,9 +2858,6 @@ __webpack_require__.r(__webpack_exports__);
       }, {
         text: 'NOTES',
         value: 'notes'
-      }, {
-        text: 'ACTIONS',
-        value: 'actions'
       }],
       editmode: false
     };
@@ -64777,14 +64779,6 @@ var render = function() {
             "div",
             { staticClass: "card" },
             [
-              _c("div", { staticClass: "card-header" }, [
-                _c("h3", { staticClass: "card-title" }, [
-                  _vm._v("PASSENGER INFORMATION ")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-tools" })
-              ]),
-              _vm._v(" "),
               [
                 _c(
                   "v-card",
@@ -64792,20 +64786,7 @@ var render = function() {
                     _c(
                       "v-card-title",
                       [
-                        _c(
-                          "button",
-                          {
-                            staticClass: "btn btn-warning",
-                            on: { click: _vm.newModal }
-                          },
-                          [
-                            _vm._v("ADD"),
-                            _c("v-icon", { attrs: { color: "#fff" } }, [
-                              _vm._v("add_box")
-                            ])
-                          ],
-                          1
-                        ),
+                        _c("h3", [_vm._v("PASSENGER INFORMATION ")]),
                         _vm._v(" "),
                         _c("v-spacer"),
                         _vm._v(" "),
@@ -64828,6 +64809,22 @@ var render = function() {
                       1
                     ),
                     _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-warning",
+                        staticStyle: { "margin-left": "16px" },
+                        on: { click: _vm.newModal }
+                      },
+                      [
+                        _vm._v("ADD"),
+                        _c("v-icon", { attrs: { color: "#fff" } }, [
+                          _vm._v("add_box")
+                        ])
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
                     _c("v-data-table", {
                       attrs: {
                         headers: _vm.headers,
@@ -64839,6 +64836,17 @@ var render = function() {
                           key: "items",
                           fn: function(props) {
                             return [
+                              _c("td", { staticClass: "text-xs-left" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    staticClass: "btn btn-success",
+                                    attrs: { href: "#" }
+                                  },
+                                  [_vm._v("View")]
+                                )
+                              ]),
+                              _vm._v(" "),
                               _c("td", { staticClass: "text-xs-left" }, [
                                 _vm._v(
                                   _vm._s(props.item.prefix) +
@@ -64890,18 +64898,7 @@ var render = function() {
                                       )
                                     )
                                   ])
-                                : _vm._e(),
-                              _vm._v(" "),
-                              _c("td", { staticClass: "text-xs-left" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    staticClass: "btn btn-success",
-                                    attrs: { href: "#" }
-                                  },
-                                  [_vm._v("View")]
-                                )
-                              ])
+                                : _vm._e()
                             ]
                           }
                         },

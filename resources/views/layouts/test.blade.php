@@ -56,8 +56,8 @@
     font-size:18px;
 }
 .v-input__slot{
-  margin-left: 69%;
-  max-width: 28%;
+  margin-left: 60%;
+  max-width: 40%;
   
 }
 label{

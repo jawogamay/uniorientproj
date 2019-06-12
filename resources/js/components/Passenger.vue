@@ -15,17 +15,18 @@
       <div class="row">
              <div class="col-md-12">
                 <div class="card">
-                      <div class="card-header">
+                    <!--   <div class="card-header">
                         <h3 class="card-title">PASSENGER INFORMATION </h3>
                         <div class="card-tools">
                             
                          </div>
-                     </div>
+                     </div> -->
                      <template>
   <v-card>
     <v-card-title>
-      <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+      <h3>PASSENGER INFORMATION </h3>
       <v-spacer></v-spacer>
+
       <v-text-field
         v-model="search"
         append-icon="search"
@@ -34,19 +35,20 @@
         hide-details
       ></v-text-field>
     </v-card-title>
+    <button class="btn btn-warning" style="margin-left:16px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
     <v-data-table
       :headers="headers"
       :items="passengers"
       :search="search"
     >
       <template v-slot:items="props">
-       
+       <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
         <td class="text-xs-left">{{props.item.prefix}}. {{props.item.firstname | capitalize}} {{ props.item.lastname | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.date_birth | myDate | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.tel | capitalize}}</td>
         <td class="text-xs-left" v-if="props.item.notes.length<20">{{ props.item.notes | capitalize}}</td>
         <td class="text-xs-left" v-if="props.item.notes.length>20">{{ props.item.notes.substring(0,20)+"..." | capitalize}}</td>
-        <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
+        
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error">
@@ -147,12 +149,13 @@
 
                 }),
         headers: [
-        
+          
+          {text:'ACTIONS',value:'actions'},
           { text: 'PASSENGER NAME', value: 'lastname'+'firstname' },
           { text: 'DATE OF BIRTH', value: 'dob' },
           { text: 'CONTACT NUMBER', value: 'tel' },
           { text: 'NOTES', value: 'notes' },
-          {text:'ACTIONS',value:'actions'}
+          
         ],
        
                 editmode: false,
