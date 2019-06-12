@@ -35,7 +35,7 @@
         hide-details
       ></v-text-field>
     </v-card-title>
-    <button class="btn btn-warning" style="margin-left:16px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+    <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
     <v-data-table
       :headers="headers"
       :items="passengers"
@@ -107,8 +107,33 @@
                             </div>
                             <div class="col-md-6">
                             <label for="dob">DATE OF BIRTH:</label>
-                            <input type="date" class="form-control" placeholder="Date of Birth" name="dob" v-model="form.dob"  :class="{'is-invalid': form.errors.has('dob') }" id="mdate"><br>
-                            <has-error :form="form" field="dob"></has-error><br>
+                            <!-- <input type="date" class="form-control" placeholder="Date of Birth" name="dob" v-model="form.dob"  :class="{'is-invalid': form.errors.has('dob') }" id="mdate"><br>
+                            <has-error :form="form" field="dob"></has-error><br> -->
+                                      
+                              <v-dialog
+                                ref="dialog"
+                                v-model="modal"
+                                :return-value.sync="date"
+                                persistent
+                                lazy
+                                full-width
+                                width="290px"
+                              >
+                                <template v-slot:activator="{ on }">
+                                  <v-text-field
+                                    v-model="date"
+                                    prepend-icon="event"
+                                    readonly
+                                    v-on="on"
+                                  ></v-text-field>
+                                </template>
+                                <v-date-picker v-model="form.dob" scrollable width="100%">
+                                  <v-spacer></v-spacer>
+                                  <v-btn flat color="primary" @click="modal = false">Cancel</v-btn>
+                                  <v-btn flat color="primary" @click="$refs.dialog.save(date)">OK</v-btn>
+                                </v-date-picker>
+                              </v-dialog>
+                      
                           </div>
                           </div>
                             <input type="text" class="form-control" placeholder="TEL" name="tel" v-model="form.tel"><br><br>
@@ -134,6 +159,9 @@
         data(){
             return{
                 spinner:false,
+                 date: new Date().toISOString().substr(0, 10),
+      modal: false,
+    
                  search: '',
                  passengers:[],
                  customers:[],

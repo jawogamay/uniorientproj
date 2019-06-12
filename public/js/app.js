@@ -2826,10 +2826,37 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       spinner: false,
+      date: new Date().toISOString().substr(0, 10),
+      modal: false,
       search: '',
       passengers: [],
       customers: [],
@@ -64814,7 +64841,10 @@ var render = function() {
                       "button",
                       {
                         staticClass: "btn btn-warning",
-                        staticStyle: { "margin-left": "16px" },
+                        staticStyle: {
+                          "margin-left": "16px",
+                          "margin-top": "10px"
+                        },
                         on: { click: _vm.newModal }
                       },
                       [
@@ -65218,41 +65248,112 @@ var render = function() {
                               _vm._v("DATE OF BIRTH:")
                             ]),
                             _vm._v(" "),
-                            _c("input", {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.form.dob,
-                                  expression: "form.dob"
-                                }
-                              ],
-                              staticClass: "form-control",
-                              class: {
-                                "is-invalid": _vm.form.errors.has("dob")
-                              },
-                              attrs: {
-                                type: "date",
-                                placeholder: "Date of Birth",
-                                name: "dob",
-                                id: "mdate"
-                              },
-                              domProps: { value: _vm.form.dob },
-                              on: {
-                                input: function($event) {
-                                  if ($event.target.composing) {
-                                    return
+                            _c(
+                              "v-dialog",
+                              {
+                                ref: "dialog",
+                                attrs: {
+                                  "return-value": _vm.date,
+                                  persistent: "",
+                                  lazy: "",
+                                  "full-width": "",
+                                  width: "290px"
+                                },
+                                on: {
+                                  "update:returnValue": function($event) {
+                                    _vm.date = $event
+                                  },
+                                  "update:return-value": function($event) {
+                                    _vm.date = $event
                                   }
-                                  _vm.$set(_vm.form, "dob", $event.target.value)
+                                },
+                                scopedSlots: _vm._u([
+                                  {
+                                    key: "activator",
+                                    fn: function(ref) {
+                                      var on = ref.on
+                                      return [
+                                        _c(
+                                          "v-text-field",
+                                          _vm._g(
+                                            {
+                                              attrs: {
+                                                "prepend-icon": "event",
+                                                readonly: ""
+                                              },
+                                              model: {
+                                                value: _vm.date,
+                                                callback: function($$v) {
+                                                  _vm.date = $$v
+                                                },
+                                                expression: "date"
+                                              }
+                                            },
+                                            on
+                                          )
+                                        )
+                                      ]
+                                    }
+                                  }
+                                ]),
+                                model: {
+                                  value: _vm.modal,
+                                  callback: function($$v) {
+                                    _vm.modal = $$v
+                                  },
+                                  expression: "modal"
                                 }
-                              }
-                            }),
-                            _c("br"),
-                            _vm._v(" "),
-                            _c("has-error", {
-                              attrs: { form: _vm.form, field: "dob" }
-                            }),
-                            _c("br")
+                              },
+                              [
+                                _vm._v(" "),
+                                _c(
+                                  "v-date-picker",
+                                  {
+                                    attrs: { scrollable: "", width: "100%" },
+                                    model: {
+                                      value: _vm.form.dob,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.form, "dob", $$v)
+                                      },
+                                      expression: "form.dob"
+                                    }
+                                  },
+                                  [
+                                    _c("v-spacer"),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: { flat: "", color: "primary" },
+                                        on: {
+                                          click: function($event) {
+                                            _vm.modal = false
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("Cancel")]
+                                    ),
+                                    _vm._v(" "),
+                                    _c(
+                                      "v-btn",
+                                      {
+                                        attrs: { flat: "", color: "primary" },
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.$refs.dialog.save(
+                                              _vm.date
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [_vm._v("OK")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ],
+                              1
+                            )
                           ],
                           1
                         )

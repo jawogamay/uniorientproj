@@ -55,10 +55,13 @@
 .form-control,label{
     font-size:18px;
 }
-.v-input__slot{
+.card .v-input__slot{
   margin-left: 60%;
   max-width: 40%;
   
+}
+.v-text-field{
+    margin-top:-16px;
 }
 label{
     color:#676464;
