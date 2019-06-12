@@ -150,7 +150,7 @@
                 }),
         headers: [
           
-          {text:'ACTIONS',value:'actions'},
+          {text:'',value:'',sortable:false},
           { text: 'PASSENGER NAME', value: 'lastname'+'firstname' },
           { text: 'DATE OF BIRTH', value: 'dob' },
           { text: 'CONTACT NUMBER', value: 'tel' },

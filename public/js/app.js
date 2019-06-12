@@ -2844,8 +2844,9 @@ __webpack_require__.r(__webpack_exports__);
         notes: ''
       }),
       headers: [{
-        text: 'ACTIONS',
-        value: 'actions'
+        text: '',
+        value: '',
+        sortable: false
       }, {
         text: 'PASSENGER NAME',
         value: 'lastname' + 'firstname'
