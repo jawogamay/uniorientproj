@@ -112,7 +112,7 @@
                            </div>
                            <div class="row">
                             <div class="col-md-6">
-                            <input type="text" placeholder="LASTNAME" class="form-control" name="lastname"
+                            <input type="text" placeholder="LAST NAME" class="form-control" name="lastname"
                               :class="{'is-invalid': form.errors.has('lastname') }"v-model="form.lastname"><br>
                               <has-error :form="form" field="lastname"></has-error><br>
                             </div>

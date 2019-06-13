@@ -150,7 +150,7 @@
                             v-model="form.middename"><br><br> -->
                             <div class="col-md-6">
                                  <label></label>
-                                <input type="text" class="form-control" placeholder="FIRSTNAME" name="firstname" 
+                                <input type="text" class="form-control" placeholder="FIRST NAME" name="firstname" 
                                 v-model="form.firstname"><br><br>
                             </div>
                            </div>
