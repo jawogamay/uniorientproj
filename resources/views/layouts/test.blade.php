@@ -72,7 +72,6 @@ label{
    
 }
 
-
 body{
     font-family: Inconsalata;
 }
@@ -103,6 +102,9 @@ th{
 }
 .sidebar-nav ul li .left-nav {
     right: 0;
+}
+.v-text-field input{
+  height: 24px;
 }
 
      </style>

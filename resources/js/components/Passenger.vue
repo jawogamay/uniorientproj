@@ -43,7 +43,7 @@
       :search="search"
     >
     <template slot="headers" slot-scope="props">
-  <tr>
+  <tr style="height:30px;">
     <th>
       <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
     </th>
@@ -185,10 +185,10 @@
                                   <br>
                                   <v-text-field
                                     v-model="form.dob"
-                                    prepend-icon="event"
                                     label="Date of Birth"
                                     readonly
                                     v-on="on"
+                                    class="form-control"
                                   ></v-text-field>
                                 </template>
                                 <v-date-picker v-model="date" scrollable width="100%">
@@ -199,7 +199,7 @@
                               </v-dialog>
                       </div>
                          
-                          <div class="col-md-6" style="margin-top:13px;">
+                          <div class="col-md-6" style="margin-top:5px;">
                             <br>
                             <input type="text" class="form-control" placeholder="TEL" name="tel" v-model="form.tel"><br><br>
                           </div>
@@ -341,6 +341,7 @@ table.v-table tbody td, table.v-table tbody th{
     font-weight: 800;
 }
 
+
 /*.v-input__slot{
   margin-left: 71%;
   width: 10%;
@@ -361,6 +362,7 @@ table.v-table tbody td, table.v-table tbody th{
   color:#000;
   font-weight: 800;
 }
+
 .v-alert{
     color:#f00;
     border-color:#ffffff;
