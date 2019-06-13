@@ -55,7 +55,7 @@
   </tr>
 </template>
       <template v-slot:items="props">
-       <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
+       <td class="text-xs-left"><a href="#" class="btn btn-success">VIEW</a></td>
         <td class="text-xs-left">{{props.item.prefix}}. {{props.item.firstname | capitalize}} {{ props.item.lastname | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.date_birth | myDate | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.tel | capitalize}}</td>
