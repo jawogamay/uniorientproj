@@ -185,7 +185,7 @@
                                   <br>
                                   <v-text-field
                                     v-model="form.dob"
-                                    label="Date of Birth"
+                                    label="DATE OF BIRTH"
                                     readonly
                                     v-on="on"
                                     class="form-control"
@@ -322,10 +322,12 @@
     };
 </script>
 <style type="text/css" scoped>
+
   table.v-table tbody td{
     font-weight: 300;
     font-size: 15px;
 }
+
 .v-icon{
   font-size:18px;
 }
@@ -358,10 +360,13 @@ table.v-table tbody td, table.v-table tbody th{
   border-color:#ffffff !important;
 
 }
+
+
 .theme--light.v-table thead th{
   color:#000;
   font-weight: 800;
 }
+
 
 .v-alert{
     color:#f00;

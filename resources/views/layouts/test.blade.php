@@ -106,7 +106,9 @@ th{
 .v-text-field input{
   height: 24px;
 }
-
+.theme--light.v-label{
+  color: rgba(167, 161, 161, 0.54) !important;
+}
      </style>
 
 </head>

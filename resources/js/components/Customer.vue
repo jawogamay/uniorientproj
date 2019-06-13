@@ -35,12 +35,24 @@
         id="search"
       ></v-text-field>
     </v-card-title>
-     <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+
     <v-data-table
       :headers="headers"
       :items="customers"
       :search="search"
     >
+       <template slot="headers" slot-scope="props">
+  <tr style="height:30px;">
+    <th>
+      <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+    </th>
+    <th 
+    v-for="header in props.headers"
+    >
+        {{header.text}}
+    </th>
+  </tr>
+</template>
       <template v-slot:items="props">
         <td class="text-xs-left"><a href="#" class="btn btn-success" @click="viewCustomer(customer)">VIEW</a></td>
         <td class="text-xs-left">{{ props.item.account_name | capitalize}}</td>
@@ -169,7 +181,7 @@
                  spinner:false,
                  customers:[],
         headers: [
-          {text:'',value:'',sortable:false},
+         
           { text: 'ACCOUNT NAME', value: 'account_name' },
           { text: 'ADDRESS', value: 'address' },
           { text: 'NATURE', value: 'nature' },
@@ -276,5 +288,12 @@ table.v-table tbody td, table.v-table tbody th{
     border-color:#ffffff;
     padding: 5px;
 
+}
+.theme--light.v-table thead th{
+  color:#000;
+  font-weight: 800;
+}
+::placeholder{
+ color:rgba(191, 191, 191, 0.87);
 }
 </style>
