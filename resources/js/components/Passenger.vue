@@ -35,12 +35,23 @@
         hide-details
       ></v-text-field>
     </v-card-title>
-    <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+   <!--  <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button> -->
     <v-data-table
       :headers="headers"
+
       :items="passengers"
       :search="search"
     >
+    <template slot="headers" slot-scope="props">
+  <tr>
+    <th>
+      <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+    </th>
+    <th v-for="header in headers">
+        {{header.text}}
+    </th>
+  </tr>
+</template>
       <template v-slot:items="props">
        <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
         <td class="text-xs-left">{{props.item.prefix}}. {{props.item.firstname | capitalize}} {{ props.item.lastname | capitalize}}</td>
@@ -241,7 +252,7 @@
                 }),
         headers: [
           
-          {text:'',value:'',sortable:false},
+         /* {text:' <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>',value:'',sortable:false},*/
           { text: 'PASSENGER NAME', value: 'lastname'+'firstname' },
           { text: 'DATE OF BIRTH', value: 'dob' },
           { text: 'CONTACT NUMBER', value: 'tel' },
@@ -343,6 +354,10 @@ table.v-table tbody td, table.v-table tbody th{
 .v-alert.v-alert{
   border-color:#ffffff !important;
 
+}
+.theme--light.v-table thead th{
+  color:#000;
+  font-weight: 800;
 }
 .v-alert{
     color:#f00;

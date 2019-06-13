@@ -89,7 +89,7 @@ table.v-table tbody td, table.v-table tbody th{
 }
 
 
-table.v-table thead th.sortable{
+th{
     font-weight: 800;
     font-size: 14px;
     color:rgb(0,0,0);
@@ -97,9 +97,7 @@ table.v-table thead th.sortable{
 #this-left{
     margin-left: 43%;
 }
-table.v-table thead tr{
-    height: 0px;
-}
+
 .v-icon{
     font-size:14px;
 }
