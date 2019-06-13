@@ -47,7 +47,9 @@
     <th>
       <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
     </th>
-    <th v-for="header in headers">
+    <th 
+    v-for="header in props.headers"
+    >
         {{header.text}}
     </th>
   </tr>
@@ -253,8 +255,8 @@
         headers: [
           
          /* {text:' <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>',value:'',sortable:false},*/
-          { text: 'PASSENGER NAME', value: 'lastname'+'firstname' },
-          { text: 'DATE OF BIRTH', value: 'dob' },
+          { text: 'PASSENGER NAME', value: 'lastname' },
+          { text: 'DATE OF BIRTH', value: 'date_birth' },
           { text: 'CONTACT NUMBER', value: 'tel' },
           { text: 'NOTES', value: 'notes' },
           
