@@ -13,6 +13,7 @@ import ItemCode from './components/ItemCode'
 import PettyCash from './components/PettyCash'
 import Dashboard from './components/Home'
 import SalesAgreement from './components/SalesAgreement'
+import StartBooklet from './components/StartBooklet'
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 import swal from 'sweetalert2'
@@ -65,7 +66,8 @@ let routes = [
     {path:'/home',component:Dashboard},
     {path:'/itemcode',component:ItemCode},
     {path:'/petty',component:PettyCash},
-    {path:'/salesagreement',component:SalesAgreement}
+    {path:'/salesagreement',component:SalesAgreement},
+    {path:'/startbooklet',component:StartBooklet}
 
 ]
 

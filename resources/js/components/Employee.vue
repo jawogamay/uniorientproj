@@ -43,7 +43,7 @@
       <template v-slot:items="props">
            <td class="text-xs-left">
 
-            <a href="#" class="btn btn-success">VIEW</a>
+            <button class="btn btn-success" @click="viewEmployee(props.item)">VIEW</button>
             <a href="#" class="btn btn-primary">EDIT</a> 
         </td>
         <td class="text-xs-left">{{ props.item.name | capitalize }}</td>
@@ -114,6 +114,30 @@
                 </div>
             </div>
             </div>
+
+                <div class="modal fade" id="viewdetails" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <!--   <h5 class="modal-title" id="addNewLabel">View Transaction</h5> -->
+                          <img src="/assets/images/user.jpg" style="width:100px; height:100px;"><h4 style="margin-top:50px;">{{form.name}}<br> {{form.code}}</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>   
+                        </div>
+                        <div class="modal-body">
+                            <h5><b>EMAIL:</b> {{form.email}}</h5>
+                            <h5><b>TYPE:</b> {{form.type | capitalize}}</h5>
+                            <h5><b>DATE OF BIRTH:</b> {{form.dob | capitalize | myDate}}</h5>
+                            <h5><b>HIRED DATE:</b> {{form.hired | capitalize | myDate}}</h5>
+                        </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                     </div>
+              
+                </div>
+            </div>
+          </div>
         </div>
       </v-app>
 </template>
@@ -180,6 +204,16 @@
               Fire.$on('createdEmployee',()=>{
                 this.getEmployee()
               })
+            },
+            viewEmployee(item){
+              this.form.name = item.name
+              this.form.email = item.email
+              this.form.type = item.type
+              this.form.code = item.code
+              this.form.dob = item.dob
+              this.form.hired = item.hired
+               $('#viewdetails').modal('show')
+
             }
         }
     };
