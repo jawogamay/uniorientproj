@@ -38,9 +38,9 @@
    <!--  <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button> -->
     <v-data-table
       :headers="headers"
-
       :items="passengers"
       :search="search"
+      :rows-per-page="25" :rows-per-page-items="[25, 50, 100]" class="elevation-1"
     >
     <template slot="headers" slot-scope="props">
   <tr style="height:30px;">
@@ -49,6 +49,7 @@
     </th>
     <th 
     v-for="header in props.headers"
+
     >
         {{header.text}}
     </th>
@@ -255,10 +256,10 @@
         headers: [
           
          /* {text:' <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>',value:'',sortable:false},*/
-          { text: 'PASSENGER NAME', value: 'lastname' },
-          { text: 'DATE OF BIRTH', value: 'date_birth' },
-          { text: 'CONTACT NUMBER', value: 'tel' },
-          { text: 'NOTES', value: 'notes' },
+          { text: 'PASSENGER NAME', value: 'lastname',sortable: !1},
+          { text: 'DATE OF BIRTH', value: 'date_birth',sortable: !1  },
+          { text: 'CONTACT NUMBER', value: 'tel',sortable: !1 },
+          { text: 'NOTES', value: 'notes',sortable: !1  },
           
         ],
        
