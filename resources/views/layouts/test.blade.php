@@ -67,6 +67,14 @@
 .v-text-field{
     margin-top:-16px;
 }
+.btn-primary,.btn-success{
+background: #03317a;
+border-color: #03317a;
+}
+.btn-warning{
+  background: red;
+border-color: red;  
+}
 label{
     color:#676464;
    
@@ -88,7 +96,12 @@ table.v-table tbody td, table.v-table tbody th{
     
      font-family: Inconsalata;
 }
-
+tbody tr:nth-of-type(odd) {
+   background-color: rgba(0, 0, 0, .05);
+ }
+ .primary{
+    background: #03317a !important;
+ }
 
 th{
     font-weight: 800;

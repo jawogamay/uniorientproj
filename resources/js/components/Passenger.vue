@@ -49,19 +49,21 @@
     </th>
     <th 
     v-for="header in props.headers"
-
+    :pagination.sync="pagination"
     >
         {{header.text}}
     </th>
   </tr>
 </template>
       <template v-slot:items="props">
-       <td class="text-xs-left"><a href="#" class="btn btn-success">VIEW</a></td>
+       <td class="text-xs-left"><a href="#" class="btn btn-success">VIEW</a>
+       <a href="#" class="btn btn-primary">EDIT</a> </td>
         <td class="text-xs-left">{{props.item.prefix}}. {{props.item.firstname | capitalize}} {{ props.item.lastname | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.date_birth | myDate | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.tel | capitalize}}</td>
         <td class="text-xs-left" v-if="props.item.notes.length<20">{{ props.item.notes | capitalize}}</td>
         <td class="text-xs-left" v-if="props.item.notes.length>20">{{ props.item.notes.substring(0,20)+"..." | capitalize}}</td>
+
         
       </template>
       <template v-slot:no-results>
@@ -334,10 +336,11 @@
 }
 
 
+
 table.v-table tbody td, table.v-table tbody th{
   height: 24px;
 }
-::placeholder{
+.modal ::placeholder{
  color:rgba(191, 191, 191, 0.87);
 }
 .item,.text{

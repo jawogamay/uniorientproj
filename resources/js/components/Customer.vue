@@ -54,7 +54,8 @@
   </tr>
 </template>
       <template v-slot:items="props">
-        <td class="text-xs-left"><a href="#" class="btn btn-success" @click="viewCustomer(customer)">VIEW</a></td>
+        <td class="text-xs-left"><a href="#" class="btn btn-success" @click="viewCustomer(customer)">VIEW</a>
+        <a href="#" class="btn btn-primary">EDIT</a> </td>
         <td class="text-xs-left">{{ props.item.account_name | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.address | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.nature | capitalize}}</td>
