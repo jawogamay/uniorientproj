@@ -54,8 +54,8 @@
   </tr>
 </template>
       <template v-slot:items="props">
-        <td class="text-xs-left"><a href="#" class="btn btn-success" @click="viewCustomer(customer)">VIEW</a>
-        <a href="#" class="btn btn-primary">EDIT</a> </td>
+        <td class="text-xs-left">  
+         <button  class="fa fa-eye" @click="viewCustomer(props.item)"></button> </td
         <td class="text-xs-left">{{ props.item.account_name | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.address | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.nature | capitalize}}</td>
@@ -171,6 +171,30 @@
                 </div>
             </div>
             </div>
+          <div class="modal fade" id="viewdetails" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <!--   <h5 class="modal-title" id="addNewLabel">View Transaction</h5> -->
+                          <img src="/assets/images/user.jpg" style="width:100px; height:100px;"><h4 style="margin-top:50px;">{{form.name}}<br> {{form.code}}</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>   
+                        </div>
+                        <div class="modal-body">
+                            <h5><b>EMAIL:</b> {{form.email}}</h5>
+                            <h5><b>TYPE:</b> {{form.type | capitalize}}</h5>
+                            <h5><b>DATE OF BIRTH:</b> {{form.dob | capitalize | myDate}}</h5>
+                            <h5><b>HIRED DATE:</b> {{form.hired | capitalize | myDate}}</h5>
+                        </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button v-show="editmode" type="submit" class="btn btn-success">UPDATE</button>
+                     </div>
+              
+                </div>
+            </div>
+          </div>
   </div>
 </v-app>
 </template>
@@ -248,6 +272,8 @@
               this.form.secreg = customer.secreg
               this.form.assignsales = customer.assignsales
               this.form.term = customer.term
+                $('#viewdetails').modal('show')
+
             },
             getCustomer(){
               axios.get('api/customer').then(({data}) => this.customers = data);
@@ -257,7 +283,7 @@
               Fire.$on('createdCustomer',()=>{
                 this.getCustomer();
               });
-            }
+            },
         }
     };
 </script>

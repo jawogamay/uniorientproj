@@ -45,6 +45,23 @@
 .page-wrapper,.card-header,.card-title,.form-control,label { 
     font-family: Inconsalata;
 }
+/*.my-data-table {
+  display: flex;
+  flex-direction: column;
+}
+
+.my-data-table .v-datatable.v-table {
+  order: -1;
+}*/
+p,h1,h2,h3,h4,h5,h6,th{
+    font-family:Inconsalata !important;
+}
+th{
+    font-size:14px !important;
+}
+.fa-eye{
+    color:#03317a;
+}
 ::placeholder{
     color:#ededed;
 }
@@ -64,6 +81,12 @@
   max-width: 40%;
   
 }
+.fa-eye{
+    font-size: 15px;
+}
+.theme--light.v-table tbody tr:hover:not(.v-datatable__expand-row){
+    background: #bae2ff  !important;
+}
 .v-text-field{
     margin-top:-16px;
 }
@@ -72,8 +95,12 @@ background: #03317a;
 border-color: #03317a;
 }
 .btn-warning{
-  background: red;
-border-color: red;  
+  background: green;
+border-color: green;  
+}
+.btn-warning:hover{
+     background: green;
+border-color: green;  
 }
 label{
     color:#676464;

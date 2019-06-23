@@ -40,7 +40,9 @@
       :headers="headers"
       :items="passengers"
       :search="search"
-      :rows-per-page="25" :rows-per-page-items="[25, 50, 100]" class="elevation-1"
+      :rows-per-page="25" :rows-per-page-items="[25, 50, 100]"
+       :pagination.sync="pagination"
+      class="elevation-1 my-data-table"
     >
     <template slot="headers" slot-scope="props">
   <tr style="height:30px;">
@@ -49,15 +51,19 @@
     </th>
     <th 
     v-for="header in props.headers"
-    :pagination.sync="pagination"
+     :key="header.text"
+            :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '']"
+            @click="changeSort(header.value)"
     >
+
         {{header.text}}
+        <v-icon small>arrow_upward</v-icon>
     </th>
   </tr>
 </template>
       <template v-slot:items="props">
-       <td class="text-xs-left"><a href="#" class="btn btn-success">VIEW</a>
-       <a href="#" class="btn btn-primary">EDIT</a> </td>
+       <td class="text-xs-left"><button class="fa fa-eye" @click="viewPassenger(props.item)"></button>
+     </td>
         <td class="text-xs-left">{{props.item.prefix}}. {{props.item.firstname | capitalize}} {{ props.item.lastname | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.date_birth | myDate | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.tel | capitalize}}</td>
@@ -222,6 +228,34 @@
                 </div>
             </div>
             </div>
+               <div class="modal fade" id="viewdetails" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                     
+                        <div class="modal-body">
+                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>   
+                            <br>
+                            <h5><b>EMAIL:</b> {{form.email}}</h5>
+                            <h5><b>TYPE:</b> {{form.type | capitalize}}</h5>
+                            <h5><b>DATE OF BIRTH:</b> {{form.dob | capitalize | myDate}}</h5>
+                            <h5><b>HIRED DATE:</b> {{form.hired | capitalize | myDate}}</h5>
+                            <div v-if="editmode==true"> 
+                            <input type="text" :value="form.firstname" class="form-control">
+                            <br>
+                            <input type="text" :value="form.lastname" class="form-control">
+
+                            </div>
+                        </div>
+                     <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        <button v-show="editmode" type="submit" class="btn btn-success">UPDATE</button>
+                     </div>
+              
+                </div>
+            </div>
+          </div>
         </div>
       </v-app>
 </template>
@@ -233,6 +267,11 @@
                 spinner:false,
                  date: new Date().toISOString().substr(0, 10),
       modal: false,
+       pagination: {
+      sortBy: 'name'
+    },
+    editmode:false,
+
     
                  search: '',
                  results:[],
@@ -264,8 +303,6 @@
           { text: 'NOTES', value: 'notes',sortable: !1  },
           
         ],
-       
-                editmode: false,
         
             }
         
@@ -281,6 +318,14 @@
           codeAndNameAndDesc (item) {
         return `${item.account_name | capitalize } `
         },
+            changeSort (column) {
+      if (this.pagination.sortBy === column) {
+        this.pagination.descending = !this.pagination.descending
+      } else {
+        this.pagination.sortBy = column
+        this.pagination.descending = false
+      }
+    },
             newModal(){
                 this.editmode = false;
                 this.form.reset();
@@ -317,6 +362,17 @@
               Fire.$on('createdPassenger',()=>{
                 this.getPassenger();
               })
+            },
+            viewPassenger(item){
+              this.form.account_name = item.account_name
+              this.form.prefix = item.prefix
+              this.form.firstname = item.firstname
+              this.form.middename = item.middename
+              this.form.lastname = item.lastname
+              this.form.dob = item.dob
+              this.form.tel = item.tel
+              this.form.notes = item.notes
+               $('#viewdetails').modal('show')
             }
         },
         components:{

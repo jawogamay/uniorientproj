@@ -39,12 +39,11 @@
       :headers="headers"
       :items="employees"
       :search="search"
+     
     >
       <template v-slot:items="props">
            <td class="text-xs-left">
-
-            <button class="btn btn-success" @click="viewEmployee(props.item)">VIEW</button>
-            <a href="#" class="btn btn-primary">EDIT</a> 
+               <td class="text-xs-left"><a href="#" class="fa fa-eye" @click="viewEmployee(props.item)"></a>
         </td>
         <td class="text-xs-left">{{ props.item.name | capitalize }}</td>
         <td class="text-xs-left">{{ props.item.code | capitalize}}</td>
