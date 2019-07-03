@@ -236,21 +236,42 @@
                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>   
-                            <br>
-                            <h5><b>EMAIL:</b> {{form.email}}</h5>
-                            <h5><b>TYPE:</b> {{form.type | capitalize}}</h5>
-                            <h5><b>DATE OF BIRTH:</b> {{form.dob | capitalize | myDate}}</h5>
-                            <h5><b>HIRED DATE:</b> {{form.hired | capitalize | myDate}}</h5>
-                            <div v-if="editmode==true"> 
-                            <input type="text" :value="form.firstname" class="form-control">
-                            <br>
-                            <input type="text" :value="form.lastname" class="form-control">
-
+                            <br><br>
+                              <div class="form-inline">
+                              <h5 for="account_name">Account Name: &nbsp;</h5>
+                              <input class="form-control" style="width:60%;" type="text" id="account_name"  name="account_name"  v-model="form.account_name" :disabled="disabled == 0 ? true : false">
                             </div>
+                            <br>
+                            <div class="form-inline">
+                              <h5 for="firstname">Firstname: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <input class="form-control" style="width:60%;" type="text" id="firstname"  name="firstname"  v-model="form.firstname" :disabled="disabled == 0 ? true : false">
+                            </div>
+                            <br>
+                           <div class="form-inline">
+                              <h5 for="lastname">Lastname: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <input class="form-control" style="width:60%;" type="text" id="lastname"  name="lastname"  v-model="form.lastname" :disabled="disabled == 0 ? true : false">
+                            </div>
+                               <br>
+                           <div class="form-inline">
+                              <h5 for="tel">Contact #: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <input class="form-control" style="width:60%;" type="text" id="tel"  name="tel"  v-model="form.tel" :disabled="disabled == 0 ? true : false">
+                            </div>
+                                 <br>
+                           <div class="form-inline">
+                              <h5 for="dob">Date of Birth: &nbsp;&nbsp;</h5>
+                              <input class="form-control" style="width:60%;" type="date" id="dob"  name="dob"  v-model="form.dob" :disabled="disabled == 0 ? true : false">
+                            </div>
+                            <br>
+                            <h5>Notes: </h5>
+                            <textarea style="height:150px" class="form-control" v-model="form.notes"  :disabled="disabled == 0 ? true : false">
+                                
+                            </textarea>
+                           
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button v-show="editmode" type="submit" class="btn btn-success">UPDATE</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" v-show="disabled == 1">UPDATE</button>
+                        <button @click="disabled = (disabled + 1) % 2" type="submit" class="btn btn-success" v-show="disabled == 0">EDIT</button>
                      </div>
               
                 </div>
@@ -265,6 +286,7 @@
         data(){
             return{
                 spinner:false,
+                disabled:0,
                  date: new Date().toISOString().substr(0, 10),
       modal: false,
        pagination: {
@@ -364,12 +386,12 @@
               })
             },
             viewPassenger(item){
-              this.form.account_name = item.account_name
+              this.form.account_name = item.customer.account_name
               this.form.prefix = item.prefix
               this.form.firstname = item.firstname
               this.form.middename = item.middename
               this.form.lastname = item.lastname
-              this.form.dob = item.dob
+              this.form.dob = item.date_birth
               this.form.tel = item.tel
               this.form.notes = item.notes
                $('#viewdetails').modal('show')
