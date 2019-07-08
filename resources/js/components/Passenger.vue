@@ -160,6 +160,7 @@
                          option-text="name"
                          placeholder="SELECT PREFIX">
                          </model-list-select>
+
                               <br><br>
                             </div>
                  <!--            <input type="text" class="form-control" placeholder="Middle Name" name="middename" 
@@ -331,7 +332,7 @@
           { text: 'DATE OF BIRTH', value: 'date_birth',sortable: !1  },
           { text: 'CONTACT NUMBER', value: 'tel',sortable: !1 },
           { text: 'NOTES', value: 'notes',sortable: !1  },
-          { text: 'CREATED AT', value: 'notes',sortable: !1  },
+          { text: 'CREATED AT', value: 'created_at',sortable: !1  },
           
         ],
         
