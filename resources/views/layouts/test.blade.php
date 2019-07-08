@@ -45,14 +45,30 @@
 .page-wrapper,.card-header,.card-title,.form-control,label { 
     font-family: Inconsalata;
 }
-/*.my-data-table {
+.my-data-table {
   display: flex;
   flex-direction: column;
 }
-
+.v-card__title{
+        padding: 1px 10px !important;
+}
 .my-data-table .v-datatable.v-table {
   order: -1;
-}*/
+}
+.theme--light.v-datatable .v-datatable__actions{
+    margin-top:-10px !important;
+}
+.v-input{
+   margin-right: 40% !important;
+}
+.card .v-input__slot{
+    margin-left: 50% !important;
+    max-width: 56% !important;
+}
+.v-datatable__actions__range-controls{
+            margin-top: -36px;
+}
+
 p,h1,h2,h3,h4,h5,h6,th{
     font-family:Inconsalata !important;
 }
@@ -88,7 +104,8 @@ th{
     background: #bae2ff  !important;
 }
 .v-text-field{
-    margin-top:-16px;
+    margin-top:-21px !important;
+
 }
 .btn-primary,.btn-success{
 background: #03317a;

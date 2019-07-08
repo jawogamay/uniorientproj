@@ -22,7 +22,7 @@ class PassengerController extends Controller
     }
     public function index()
     {
-        return Passenger::with('user','customer')->get();
+        return Passenger::latest()->with('user','customer')->get();
     }
     public function getCustomer(){
         return Customer::latest()->get();

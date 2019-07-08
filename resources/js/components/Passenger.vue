@@ -30,17 +30,20 @@
       <v-text-field
         v-model="search"
         append-icon="search"
-        label="Search"
+        label="SEARCH"
         single-line
         hide-details
       ></v-text-field>
+    <!--   <div class="text-xs-center pt-2">
+      <v-pagination v-model="pagination.page" :length="pages"></v-pagination>
+    </div> -->
     </v-card-title>
    <!--  <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button> -->
     <v-data-table
       :headers="headers"
       :items="passengers"
       :search="search"
-      :rows-per-page="25" :rows-per-page-items="[25, 50, 100]"
+      :rows-per-page="50" :rows-per-page-items="[50]"
        :pagination.sync="pagination"
       class="elevation-1 my-data-table"
     >
@@ -67,8 +70,11 @@
         <td class="text-xs-left">{{props.item.prefix}}. {{props.item.firstname | capitalize}} {{ props.item.lastname | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.date_birth | myDate | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.tel | capitalize}}</td>
-        <td class="text-xs-left" v-if="props.item.notes.length<20">{{ props.item.notes | capitalize}}</td>
-        <td class="text-xs-left" v-if="props.item.notes.length>20">{{ props.item.notes.substring(0,20)+"..." | capitalize}}</td>
+       <!--  <td class="text-xs-left" v-if="props.item.notes.length<20 && props.item.notes === null">{{ props.item.notes | capitalize}}</td> -->
+         <td class="text-xs-left" v-if="props.item.notes === null"></td>
+         <td class="text-xs-left" v-else-if="props.item.notes.length<20">{{ props.item.notes | capitalize}}</td>
+        <td class="text-xs-left" v-else-if="props.item.notes.length>20">{{ props.item.notes.substring(0,20)+"..." | capitalize}}</td>
+
 
         
       </template>
@@ -191,7 +197,7 @@
                                 width="290px"
                               >
                                 <template v-slot:activator="{ on }">
-                                  <br>
+                                  <br><br>
                                   <v-text-field
                                     v-model="form.dob"
                                     label="DATE OF BIRTH"
@@ -238,31 +244,31 @@
                             </button>   
                             <br><br>
                               <div class="form-inline">
-                              <h5 for="account_name">Account Name: &nbsp;</h5>
+                              <h5 for="account_name">ACCOUNT NAME: &nbsp;&nbsp;</h5>
                               <input class="form-control" style="width:60%;" type="text" id="account_name"  name="account_name"  v-model="form.account_name" :disabled="disabled == 0 ? true : false">
                             </div>
                             <br>
                             <div class="form-inline">
-                              <h5 for="firstname">Firstname: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <h5 for="firstname">FIRST NAME: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
                               <input class="form-control" style="width:60%;" type="text" id="firstname"  name="firstname"  v-model="form.firstname" :disabled="disabled == 0 ? true : false">
                             </div>
                             <br>
                            <div class="form-inline">
-                              <h5 for="lastname">Lastname: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <h5 for="lastname">LAST NAME: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
                               <input class="form-control" style="width:60%;" type="text" id="lastname"  name="lastname"  v-model="form.lastname" :disabled="disabled == 0 ? true : false">
                             </div>
                                <br>
                            <div class="form-inline">
-                              <h5 for="tel">Contact #: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <h5 for="tel">CONTACT #: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
                               <input class="form-control" style="width:60%;" type="text" id="tel"  name="tel"  v-model="form.tel" :disabled="disabled == 0 ? true : false">
                             </div>
                                  <br>
                            <div class="form-inline">
-                              <h5 for="dob">Date of Birth: &nbsp;&nbsp;</h5>
+                              <h5 for="dob">DATE OF BIRTH: &nbsp;</h5>
                               <input class="form-control" style="width:60%;" type="date" id="dob"  name="dob"  v-model="form.dob" :disabled="disabled == 0 ? true : false">
                             </div>
                             <br>
-                            <h5>Notes: </h5>
+                            <h5>NOTES: </h5>
                             <textarea style="height:150px" class="form-control" v-model="form.notes"  :disabled="disabled == 0 ? true : false">
                                 
                             </textarea>
@@ -270,7 +276,7 @@
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal" v-show="disabled == 1">UPDATE</button>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal" v-show="disabled == 1" @click="updatePassenger()">UPDATE</button>
                         <button @click="disabled = (disabled + 1) % 2" type="submit" class="btn btn-success" v-show="disabled == 0">EDIT</button>
                      </div>
               
@@ -296,6 +302,7 @@
 
     
                  search: '',
+              /*   pagination: {},*/
                  results:[],
                  passengers:[],
                options1: [
@@ -348,6 +355,14 @@
         this.pagination.descending = false
       }
     },
+    updatePassenger(){
+      toast.fire({
+                      type: 'success',
+                      title: 'Passenger Updated Successfully'
+                    });
+                    setTimeout(()=> {this.spinner = false},1000)
+        this.disabled = 0;
+    },
             newModal(){
                 this.editmode = false;
                 this.form.reset();
@@ -363,6 +378,7 @@
                 });
               }
             },
+           
             createPassenger(){
                 this.form.post('api/passenger')
                 .then((response) => {
@@ -399,7 +415,17 @@
         },
         components:{
           ModelListSelect
-        }
+        },
+        /* computed: {
+      pages () {
+        if (this.pagination.rowsPerPage == null ||
+          this.pagination.totalItems == null
+        ) return 0
+
+        return Math.ceil(this.pagination.totalItems / this.pagination.rowsPerPage)
+      }
+    }*/
+
     };
 </script>
 <style type="text/css" scoped>
