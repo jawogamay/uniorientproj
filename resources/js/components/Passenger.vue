@@ -74,6 +74,7 @@
          <td class="text-xs-left" v-if="props.item.notes === null"></td>
          <td class="text-xs-left" v-else-if="props.item.notes.length<20">{{ props.item.notes | capitalize}}</td>
         <td class="text-xs-left" v-else-if="props.item.notes.length>20">{{ props.item.notes.substring(0,20)+"..." | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.created_at | myDate | capitalize}}</td>
 
 
         
@@ -330,6 +331,7 @@
           { text: 'DATE OF BIRTH', value: 'date_birth',sortable: !1  },
           { text: 'CONTACT NUMBER', value: 'tel',sortable: !1 },
           { text: 'NOTES', value: 'notes',sortable: !1  },
+          { text: 'CREATED AT', value: 'notes',sortable: !1  },
           
         ],
         
