@@ -169,7 +169,7 @@
                   this.spinner = true;
                   $('#addNew').modal('hide');
                   Fire.$emit('createdBooklet');
-                      toast({
+                      toast.fire({
                         type: 'success',
                         title: 'Booklet Created Successfully'
                     })
