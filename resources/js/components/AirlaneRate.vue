@@ -29,17 +29,35 @@
       <v-text-field
         v-model="search"
         append-icon="search"
-        label="Search"
+        label="SEARCH"
         single-line
         hide-details
       ></v-text-field>
     </v-card-title>
-     <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
     <v-data-table
       :headers="headers"
       :items="rates"
       :search="search"
+      :rows-per-page="25" :rows-per-page-items="[25]"
+      class="elevation-1 my-data-table"
     >
+       <template slot="headers" slot-scope="props" v>
+  <tr style="height:30px;">
+    <th>
+      <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+    </th>
+    <th 
+    v-for="header in props.headers"
+     :key="header.text"
+            :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '']"
+            @click="changeSort(header.value)"
+    >
+
+        {{header.text}}
+        <v-icon small>arrow_upward</v-icon>
+    </th>
+  </tr>
+</template>
       <template v-slot:items="props">
          <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
         <td class="text-xs-left">{{props.item.date | myDate | capitalize}}</td>
@@ -76,7 +94,7 @@
                        <form @submit.prevent="editmode ? updateUser() :createRate()">
                         <div class="modal-body" style="margin:0 auto; text-align:center;">
 
-                            <input type="text" class="form-control" placeholder="Enter Rate" v-model="form.rate" name="rate" style="width:30%;">
+                            <input type="text" class="form-control" placeholder="ENTER RATE" v-model="form.rate" name="rate" style="width:30%;">
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -96,10 +114,15 @@
             return{
                  search: '',
                rates:[],
+          
+
+               pagination:{
+                sortBy:'name'
+               },
         headers: [
-         {text: '', value: '',sortable:false},
-           {text: 'DATE', value:'date'},
-          { text: 'AIRLINE RATE', value: 'airlane' },
+         
+           {text: 'DATE', value:'date',sortable:!1},
+          { text: 'AIRLINE RATE', value: 'airlane',sortable:!1 },
           
      /*     { text: 'USD TO PHP', value: 'usdphp' },
           { text: 'VERIFIED BY', value: 'verified' },
@@ -111,6 +134,7 @@
                 form: new Form({
                     id: '',
                     rate:'',
+
                    
                 })
             }
@@ -119,6 +143,7 @@
         mounted(){
           this.getRate();
           this.createdRate();
+      
         },
         methods: {
             newModal(){
@@ -126,6 +151,7 @@
                 this.form.reset();
                 $('#addNew').modal('show');
             },
+           
             createRate(){
               this.form.post('api/rates')
               .then((response) => {

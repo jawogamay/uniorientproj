@@ -15,7 +15,7 @@ class AirlineRateController extends Controller
     public function index()
     {
         //
-        return AirlineRate::all();
+        return AirlineRate::latest()->get();
     }
 
     /**

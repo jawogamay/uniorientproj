@@ -29,22 +29,41 @@
       <v-text-field
         v-model="search"
         append-icon="search"
-        label="Search"
+        label="SEARCH"
         single-line
         hide-details
       ></v-text-field>
     </v-card-title>
-     <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+     
     <v-data-table
       :headers="headers"
       :items="employees"
       :search="search"
+       :rows-per-page="25" :rows-per-page-items="[25]"
+      class="elevation-1 my-data-table"
      
     >
+     <template slot="headers" slot-scope="props">
+  <tr style="height:30px;">
+    <th>
+      <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+    </th>
+    <th 
+    v-for="header in props.headers"
+     :key="header.text"
+            :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '']"
+            @click="changeSort(header.value)"
+    >
+
+        {{header.text}}
+        <v-icon small>arrow_upward</v-icon>
+    </th>
+  </tr>
+</template>
       <template v-slot:items="props">
-           <td class="text-xs-left">
-               <td class="text-xs-left"><a href="#" class="fa fa-eye" @click="viewEmployee(props.item)"></a>
-        </td>
+  
+               <td  class="text-xs-left"><a href="#" class="fa fa-eye" @click="viewEmployee(props.item)"></a>
+    </td>     
         <td class="text-xs-left">{{ props.item.name | capitalize }}</td>
         <td class="text-xs-left">{{ props.item.code | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.dob | myDate | capitalize }}</td>
@@ -147,6 +166,9 @@
                  search: '',
                 spinner:false,
                 employees:[],
+                  pagination: {
+      sortBy: 'name'
+    },
                  form: new Form({
                     id:'',
                     name:'',
@@ -158,12 +180,12 @@
                     code:'',
                  }),
         headers: [
-           {text:'',value:'',sortable:false},
-          { text: 'EMPLOYEE NAME', value: 'airlane' },
-          { text: 'CODE', value: 'usdphp' },
-          { text: 'DATE OF BIRTH', value: 'phpusd' },
-          { text: 'HIRED DATE', value: 'verified' },
-          {text: 'EMPLOYEE TYPE', value: 'details'},
+         
+          { text: 'EMPLOYEE NAME', value: 'airlane',sortable: !1},
+          { text: 'CODE', value: 'usdphp',sortable: !1 },
+          { text: 'DATE OF BIRTH', value: 'phpusd',sortable: !1 },
+          { text: 'HIRED DATE', value: 'verified',sortable: !1 },
+          {text: 'EMPLOYEE TYPE', value: 'details',sortable: !1},
       
         ],
   

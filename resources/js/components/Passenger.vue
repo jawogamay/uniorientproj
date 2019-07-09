@@ -43,7 +43,7 @@
       :headers="headers"
       :items="passengers"
       :search="search"
-      :rows-per-page="50" :rows-per-page-items="[50]"
+      :rows-per-page="25" :rows-per-page-items="[25]"
        :pagination.sync="pagination"
       class="elevation-1 my-data-table"
     >

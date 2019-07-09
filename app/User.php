@@ -47,4 +47,7 @@ class User extends Authenticatable
     public function passenger(){
         return $this->hasMany('App\Passenger');
     }
+    public function bookletstart() {
+        return $this->hasOne('App\BookletStart');
+    }
 }

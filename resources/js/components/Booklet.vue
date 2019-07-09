@@ -3,53 +3,72 @@
     <div class="container-fluid">
         <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                   <!--      <ol class="breadcrumb mt-2">
+                        <!-- <ol class="breadcrumb mt-2">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">SETUP FILES</a></li>
-                            <li class="breadcrumb-item active">SA BOOKLET SERIES</li>
+                            <li class="breadcrumb-item active">USER</li>
                         </ol> -->
                     </div>
                     <div class="col-md-7 col-4 align-self-center">
               
                     </div>
-                </div>
+                </div> 
       <div class="row">
              <div class="col-md-12">
                 <div class="card">
-                      <div class="card-header">
-                        <h3 class="card-title">BOOKLET SERIES INFORMATION </h3>
+                   <!--   <div class="card-header">
+                        <h3 class="card-title">EMPLOYEE INFORMATION</h3>
                         <div class="card-tools">
-                           
+                            
                          </div>
-                     </div>
+                     </div> -->
                      <template>
   <v-card>
     <v-card-title>
-       <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+      <h3 class="card-title">BOOKLET SERIES</h3>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
         append-icon="search"
-        label="Search"
+        label="SEARCH"
         single-line
         hide-details
       ></v-text-field>
     </v-card-title>
+     
     <v-data-table
       :headers="headers"
       :items="booklets"
       :search="search"
+       :rows-per-page="25" :rows-per-page-items="[25]"
+      class="elevation-1 my-data-table"
+     
     >
-      <template v-slot:items="props">
-         <td class="text-xs-left">{{ props.item.bookletNumber | capitalize}}</td>
-        <td class="text-xs-left">{{ props.item.user.name | capitalize}}</td>
-        <td class="text-xs-left">{{ props.item.created_at | myDate | capitalize}}</td>
-        <td class="text-xs-left">{{ props.item.notes | capitalize}}</td>
-        <td class="text-xs-left">{{ props.item.details | capitalize}}</td>
-        <td class="text-xs-left">
+     <template slot="headers" slot-scope="props">
+  <tr style="height:30px;">
+    <th>
+      <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+    </th>
+    <th 
+    v-for="header in props.headers"
+     :key="header.text"
+            :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '']"
+            @click="changeSort(header.value)"
+    >
 
-            <a href="#" class="btn btn-success">VIEW</a>
-            <a href="#" class="btn btn-warning">EDIT</a> 
-        </td>
+        {{header.text}}
+        <v-icon small>arrow_upward</v-icon>
+    </th>
+  </tr>
+</template>
+      <template v-slot:items="props">
+  
+               <td  class="text-xs-left"><a href="#" class="fa fa-eye" @click="viewEmployee(props.item)"></a>
+    </td>     
+        <td class="text-xs-left">{{ props.item.bookletNumber | capitalize }}</td>
+        <td class="text-xs-left">{{ props.item.user.name | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.created_at | myDate | capitalize }}</td>
+       
+    
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error">
@@ -62,13 +81,11 @@
                 </div>
              </div>
          </div>
-
-
-           <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+  <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered  modal-md" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Customer</h5>
+                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">GENERATE BOOKLET SERIES</h5>
                             <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update User's Info</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -83,31 +100,19 @@
                                   {{travelconsultant.name}}
                                 </option>
                             </select>
-                            <br><br>
-                             <label><b> Booklet Number: </b></label>
-                                 <div class="row" style="margin:0 auto; text-align:center;">
-                                 <div class="col-md-6">
-                                    <input type="number" placeholder="Enter first number" class="form-control mr-5 ml-3" name="initial" v-model="form.initial" :class="{ 'is-invalid': form.errors.has('initial') }" style="width:100%;">
-                                     <has-error :form="form" field="initial"></has-error>
-                                 </div>
-                                  <div class="col-md-6">
-                                    <input type="number" placeholder="Enter second number" class="form-control" name="end" v-model="form.end" :class="{ 'is-invalid': form.errors.has('end') }" style="width:100%;">
-                                    <has-error :form="form" field="end"></has-error>
-                                  </div>
-                                 </div>
-                                 <br> 
+                           
                            
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                         <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
-                        <button v-show="!editmode" type="submit" class="btn btn-primary">Submit <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
+                        <button v-show="!editmode" type="submit" class="btn btn-primary">GENERATE <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
                      </div>
                      </form>
                 </div>
             </div>
             </div>
-        </div>
+      </div>
       </v-app>
 </template>
 <script type="text/javascript">
@@ -116,8 +121,11 @@
             return{
                  search: '',
                  spinner:false,
-                   editmode: false,
-                   booklets:[],
+                  editmode: false,
+                  booklets:[],
+                  pagination: {
+                    sortBy: 'name'
+                },
                 form: new Form({
                     id: '',
                     iniital:'',
@@ -127,12 +135,12 @@
                  travelconsultants:[],
         headers: [
        
-          { text: 'SA BOOKLET SERIES', value: 'airlane' },
-          { text: 'TRAVEL CONSULTANT', value: 'usdphp' },
-          { text: 'DATE CREATED', value: 'phpusd' },
-          { text: 'STATUS', value: 'verified' },
-          { text: 'NOTES', value: 'notes' },
-          {text:'ACTIONS',value:'actions'}
+          { text: 'SA BOOKLET SERIES', value: 'airlane',sortable:!1 },
+          { text: 'TRAVEL CONSULTANT', value: 'usdphp',sortable:!1 },
+          { text: 'DATE CREATED', value: 'phpusd',sortable:!1 },
+         /* { text: 'STATUS', value: 'verified' ,sortable:!1},
+          { text: 'NOTES', value: 'notes',sortable:!1 },
+          {text:'ACTIONS',value:'actions',sortable:!1}*/
         ],
      
               
@@ -161,7 +169,7 @@
                   $('#addNew').modal('hide');
                       toast({
                         type: 'success',
-                        title: 'Book;et Created Successfully'
+                        title: 'Booklet Created Successfully'
                     })
                     setTimeout(()=> {this.spinner = false},1000)
                 })
@@ -178,8 +186,8 @@
     font-size: 15px;
 }
 .v-icon{
-  font-size:18px;
-}
+    font-size: 18px;
+  }
 table.v-table tbody td, table.v-table tbody th{
   height: 26px;
 }

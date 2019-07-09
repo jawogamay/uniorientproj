@@ -29,7 +29,7 @@
       <v-text-field
         v-model="search"
         append-icon="search"
-        label="Search"
+        label="SEARCH"
         single-line
         hide-details
         id="search"
@@ -40,6 +40,8 @@
       :headers="headers"
       :items="customers"
       :search="search"
+      :rows-per-page="25" :rows-per-page-items="[25]"
+      class="elevation-1 my-data-table"
     >
        <template slot="headers" slot-scope="props">
   <tr style="height:30px;">

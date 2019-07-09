@@ -9,7 +9,7 @@ class Booklet extends Model
 {
 
     protected $fillable = [
-        'user_id','bookletNumber','first','second'
+        'user_id','bookletNumber','initial','end'
     ];
 
     public function user(){
