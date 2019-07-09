@@ -42,7 +42,6 @@ class BookletStartController extends Controller
         //
         $user = Auth::user()->id;
         $this->validate($request,[
-            'name_assign' => 'required',
             'start' => 'required|numeric',
         ]);
         return BookletStart::create([
