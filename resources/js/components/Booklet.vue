@@ -150,6 +150,7 @@
         mounted(){
           this.getTC();
           this.getBooklet();
+          this.createdBooklet();
         },
         methods: {
             newModal(){
@@ -167,6 +168,7 @@
                 .then((response)=>{
                   this.spinner = true;
                   $('#addNew').modal('hide');
+                  Fire.$emit('createdBooklet');
                       toast({
                         type: 'success',
                         title: 'Booklet Created Successfully'
@@ -176,6 +178,12 @@
             },
             getBooklet(){
               axios.get('api/booklet').then(({data})=> this.booklets = data)
+            },
+            createdBooklet(){
+              this.getBooklet();
+              Fire.$on('createdBooklet',()=>{
+                this.getBooklet();
+              });
             }
         }
     };
