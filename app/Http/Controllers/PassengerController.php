@@ -109,9 +109,31 @@ class PassengerController extends Controller
      * @param  \App\Passenger  $passenger
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Passenger $passenger)
+    public function update(Request $request, $id)
     {
         //
+        $passenger = Passenger::find($id);
+           $this->validate($request,[
+            'account_name' => 'required',
+            'lastname' => 'required',
+            /*'middlename' => 'required',*/
+            'firstname' => 'required',
+            'dob' => 'required',
+            'tel' => 'required',
+
+        ]);
+
+      $passenger->update([
+            'user_id' => Auth::user()->id,
+            'lastname' => $request['lastname'],
+            'firstname' => $request['firstname'],
+            'date_birth' => $request['dob'],
+            'prefix' => $request['prefix'],
+            'tel' => $request['tel'],
+            'notes' => $request['notes'],
+         
+        ]);
+
     }
 
     /**

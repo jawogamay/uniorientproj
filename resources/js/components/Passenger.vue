@@ -240,7 +240,7 @@
                <div class="modal fade" id="viewdetails" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                     
+                      <form @submit.prevent="updatePassenger()">
                         <div class="modal-body">
                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -248,8 +248,9 @@
                             <br><br>
                               <div class="form-inline">
                               <h5 for="account_name">ACCOUNT NAME: &nbsp;&nbsp;</h5>
-                              <input class="form-control" style="width:60%;" type="text" id="account_name"  name="account_name"  v-model="form.account_name" :disabled="disabled == 0 ? true : false">
+                              <input class="form-control" style="width:60%;" type="text" id="account_name"  name="account_name"  v-model="form.account_name" disabled>
                             </div>
+
                             <br>
                             <div class="form-inline">
                               <h5 for="firstname">FIRST NAME: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
@@ -279,10 +280,10 @@
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal" v-show="disabled == 1" @click="updatePassenger()">UPDATE</button>
-                        <button @click="disabled = (disabled + 1) % 2" type="submit" class="btn btn-success" v-show="disabled == 0">EDIT</button>
+                        <button type="submit" class="btn btn-warning" data-dismiss="modal" v-show="disabled == 1" @click="updatePassenger()">UPDATE  <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
+                        <button @click="disabled = (disabled + 1) % 2" type="button" class="btn btn-success" v-show="disabled == 0">EDIT</button>
                      </div>
-              
+                </form>
                 </div>
             </div>
           </div>
@@ -360,12 +361,23 @@
       }
     },
     updatePassenger(){
-      toast.fire({
-                      type: 'success',
-                      title: 'Passenger Updated Successfully'
-                    });
-                    setTimeout(()=> {this.spinner = false},1000)
-        this.disabled = 0;
+      this.form.put('api/passenger/'+this.form.id)
+              .then(()=>{
+                 this.spinner = true;
+                  $('#viewdetails').modal('hide')
+                     toast.fire(
+                        'Updated!',
+                        'Transaction has been updated.',
+                        'success'
+                        )
+                       Fire.$emit('createdPassenger')
+                        setTimeout(()=> {this.spinner = false},1000)
+                    this.disabled = 0
+
+              }).catch((err)=>{
+                console.log(err);
+              })
+           
     },
             newModal(){
                 this.editmode = false;
@@ -406,6 +418,7 @@
               })
             },
             viewPassenger(item){
+              this.form.id = item.id
               this.form.account_name = item.customer.account_name
               this.form.prefix = item.prefix
               this.form.firstname = item.firstname
