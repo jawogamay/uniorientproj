@@ -15,6 +15,7 @@ class CreateDeleteStatusesTable extends Migration
     {
         Schema::create('delete_statuses', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->boolean('archieve');
             $table->timestamps();
         });
     }

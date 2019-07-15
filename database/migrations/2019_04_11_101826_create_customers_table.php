@@ -21,6 +21,7 @@ class CreateCustomersTable extends Migration
             $table->string('company');
             $table->string('fax')->nullable();
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('deletestatus_id');
             $table->string('term');
             $table->int('limit');
             $table->longText('notes')->nullable();

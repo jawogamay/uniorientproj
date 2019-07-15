@@ -14,7 +14,7 @@
                 </div>
       <div class="row">
              <div class="col-md-12">
-                <div class="card">
+                <div class="card mt-4">
                     <!--   <div class="card-header">
                         <h3 class="card-title">PASSENGER INFORMATION </h3>
                         <div class="card-tools">
@@ -24,7 +24,7 @@
                      <template>
   <v-card>
     <v-card-title>
-      <h3>PASSENGER INFORMATION </h3>
+      <h3><b>PASSENGER INFORMATION</b> </h3>
       <v-spacer></v-spacer>
 
       <v-text-field
@@ -48,9 +48,9 @@
       class="elevation-1 my-data-table"
     >
     <template slot="headers" slot-scope="props">
-  <tr style="height:30px;">
+  <tr style="height:30px; background:#000;">
     <th>
-      <button class="btn btn-warning" @click="newModal">ADD <v-icon color="#fff">add_box</v-icon></button>
+      <button class="btn btn-warning" @click="newModal">ADD &nbsp;<v-icon color="#fff">add_box</v-icon></button>
     </th>
     <th 
     v-for="header in props.headers"
@@ -145,14 +145,16 @@
                             <br> -->
                             <model-list-select :list="customers"
                             name="account_name"
+                            class="mb-2"
                      v-model="form.account_name"
                      option-value="id"
                      option-text="account_name"
                      placeholder="ACCOUNT NAME">
                   </model-list-select>
-                            <div class="row">
+
+                            <div class="row mb-2">
                               <div class="col-md-6">
-                                <br>
+                                
           
                                 <model-list-select :list="options1"
                          v-model="form.prefix"
@@ -161,17 +163,16 @@
                          placeholder="SELECT PREFIX">
                          </model-list-select>
 
-                              <br><br>
                             </div>
                  <!--            <input type="text" class="form-control" placeholder="Middle Name" name="middename" 
                             v-model="form.middename"><br><br> -->
                             <div class="col-md-6">
-                                 <label></label>
+                                 
                                 <input type="text" class="form-control" placeholder="FIRST NAME" name="firstname" 
-                                v-model="form.firstname"><br><br>
+                                v-model="form.firstname"><br>
                             </div>
                            </div>
-                           <div class="row" style="margin-top:-25px;">
+                           <div class="row">
                             <div class="col-md-6">
                              <input type="text" class="form-control" placeholder="MIDDLE NAME" name="middename" 
                             v-model="form.middename"><br><br>
@@ -180,11 +181,11 @@
                             <div class="col-md-6">
                                
                                 <input type="text" class="form-control" placeholder="LAST NAME" name="lastname" 
-                                v-model="form.lastname"><br><br>
+                                v-model="form.lastname">
                             </div>
                           </div>
-                          <div class="row" style="margin-top:-25px;">
-                            <div class="col-md-6">
+                          <div class="row">
+                            <div class="col-md-6 mt-2">
                          
                             <!-- <input type="date" class="form-control" placeholder="Date of Birth" name="dob" v-model="form.dob"  :class="{'is-invalid': form.errors.has('dob') }" id="mdate"><br>
                             <has-error :form="form" field="dob"></has-error><br> -->
@@ -199,7 +200,7 @@
                                 width="290px"
                               >
                                 <template v-slot:activator="{ on }">
-                                  <br><br>
+                              
                                   <v-text-field
                                     v-model="form.dob"
                                     label="DATE OF BIRTH"
@@ -216,14 +217,14 @@
                               </v-dialog>
                       </div>
                          
-                          <div class="col-md-6" style="margin-top:5px;">
-                            <br>
-                            <input type="text" class="form-control" placeholder="TEL" name="tel" v-model="form.tel"><br><br>
+                          <div class="col-md-6" style="margin-top:-12px;">
+                            <input type="text" class="form-control" placeholder="TEL" name="tel" v-model="form.tel">
                           </div>
                           </div>
 
-                            <label> NOTES: </label>   
-                            <textarea class="form-control" style="height:150px;" name="notes" v-model="form.notes">
+                            <label class="mt-2"> NOTES: </label>   
+                            <textarea  style="height:150px; width:100%;border: 1px solid #ced4da;border-radius: .25rem;
+                              transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;" name="notes" v-model="form.notes">
                                 
                             </textarea>
                         </div>
@@ -334,8 +335,7 @@
           { text: 'PASSENGER NAME', value: 'lastname',sortable: !1},
           { text: 'DATE OF BIRTH', value: 'date_birth',sortable: !1  },
           { text: 'CONTACT NUMBER', value: 'tel',sortable: !1 },
-          { text: 'NOTES', value: 'notes',sortable: !1  },
-          { text: 'CREATED AT', value: 'created_at',sortable: !1  },
+          { text: 'NOTES', value: 'notes',sortable: !1  },  
           
         ],
         
@@ -457,7 +457,10 @@
   font-size:18px;
 }
 
-
+.ui.selection.dropdown[data-v-3a0c7bea]{
+  min-height: 20px;
+  height: 30px;
+}
 
 table.v-table tbody td, table.v-table tbody th{
   height: 24px;
@@ -490,7 +493,7 @@ table.v-table tbody td, table.v-table tbody th{
 
 
 .theme--light.v-table thead th{
-  color:#000;
+  color:#fff;
   font-weight: 800;
 }
 
@@ -500,6 +503,11 @@ table.v-table tbody td, table.v-table tbody th{
     border-color:#ffffff;
     padding: 5px;
 
+}
+
+.form-control{
+  min-height: 20px !important;
+  height: 29px !important;
 }
 
 </style>

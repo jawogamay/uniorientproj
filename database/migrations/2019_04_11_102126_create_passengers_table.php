@@ -21,6 +21,7 @@ class CreatePassengersTable extends Migration
             $table->string('middlename')->nullable();
             $table->string('firstname');
             $table->string('prefix')->nullable();
+            $table->unsignedInteger('deletestatus_id');
             $table->date('date_birth');
             $table->string('tel');
             $table->string('notes')->nullable();

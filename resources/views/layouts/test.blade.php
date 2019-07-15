@@ -32,9 +32,9 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]-->s
      <style type="text/css">
-
+            
          .collapse.in{
             background: #156772;
          }
@@ -170,6 +170,16 @@ th{
 }
 .theme--light.v-label{
   color: rgba(167, 161, 161, 0.54) !important;
+}
+.v-text-field .v-label{
+  top:-7px !important;
+}
+/*.ui.fluid.dropdown[data-v-3a0c7bea]{
+  height: 31px !important;
+}*/
+.ui.search.dropdown > .text[data-v-3a0c7bea]{
+  left: 0px;
+  top:-3px !important;
 }
      </style>
 
