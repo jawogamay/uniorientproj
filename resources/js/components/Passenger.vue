@@ -223,8 +223,7 @@
                           </div>
 
                             <label class="mt-2"> NOTES: </label>   
-                            <textarea  style="height:150px; width:100%;border: 1px solid #ced4da;border-radius: .25rem;
-                              transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;" name="notes" v-model="form.notes">
+                            <textarea name="notes" v-model="form.notes">
                                 
                             </textarea>
                         </div>
@@ -273,7 +272,7 @@
                             </div>
                             <br>
                             <h5>NOTES: </h5>
-                            <textarea style="height:150px" class="form-control" v-model="form.notes"  :disabled="disabled == 0 ? true : false">
+                            <textarea v-model="form.notes"  :disabled="disabled == 0 ? true : false">
                                 
                             </textarea>
                            
@@ -464,6 +463,10 @@
 
 table.v-table tbody td, table.v-table tbody th{
   height: 24px;
+}
+textarea{
+  height:150px; width:100%;border: 1px solid #ced4da;border-radius: .25rem;
+                              transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .modal ::placeholder{
  color:rgba(191, 191, 191, 0.87);

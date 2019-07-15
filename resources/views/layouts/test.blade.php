@@ -171,7 +171,7 @@ th{
 .theme--light.v-label{
   color: rgba(167, 161, 161, 0.54) !important;
 }
-.v-text-field .v-label{
+.modal-body .v-text-field .v-label{
   top:-7px !important;
 }
 /*.ui.fluid.dropdown[data-v-3a0c7bea]{
