@@ -46,7 +46,7 @@
        <template slot="headers" slot-scope="props">
   <tr style="height:30px;">
     <th>
-      <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+      <button class="btn btn-warning" @click="newModal">ADD <v-icon color="#fff">add_box</v-icon></button>
     </th>
     <th 
     v-for="header in props.headers"
@@ -57,7 +57,7 @@
 </template>
       <template v-slot:items="props">
         <td class="text-xs-left">  
-         <button  class="fa fa-eye" @click="viewCustomer(props.item)"></button> </td
+         <button  class="btn btn-success --primary" @click="viewCustomer(props.item)">VIEW <i class="fa fa-eye"></i></button> </td
         <td class="text-xs-left">{{ props.item.account_name | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.address | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.nature | capitalize}}</td>

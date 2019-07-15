@@ -55,11 +55,14 @@
 .my-data-table .v-datatable.v-table {
   order: -1;
 }
+.fa-eye{
+    color:#ffffff !important;
+}
 .theme--light.v-datatable .v-datatable__actions{
     margin-top:-10px !important;
 }
 .v-input{
-   margin-right: 40% !important;
+   margin-right: 20% !important;
 }
 .card .v-input__slot{
     margin-left: 50% !important;
@@ -290,6 +293,12 @@ th{
                                          <li><a href="/petty">BOX PETTY CASH</a></li>
                                          <li><a href="/petty">SOA#</a></li>
                                          <li><a href="/startbooklet">BOOKLET</a></li>
+                                         <li><a href="/startbooklet">OR</a></li>
+                                         <li><a href="/startbooklet">AR</a></li>
+                                         <li><a href="/startbooklet">PR</a></li>
+                                         <li><a href="/startbooklet">PO</a></li>
+                                         <li><a href="/startbooklet">CHV</a></li>
+                                         <li><a href="/startbooklet">CV</a></li>
                                     </ul>
                                 </li>
                             </ul>

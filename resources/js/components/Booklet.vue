@@ -62,7 +62,7 @@
 </template>
       <template v-slot:items="props">
   
-               <td  class="text-xs-left"><a href="#" class="fa fa-eye" @click="viewEmployee(props.item)"></a>
+               <td  class="text-xs-left"><button class="btn btn-success --primary" @click="viewEmployee(props.item)">VIEW <i class="fa fa-eye"></i></button>
     </td>     
         <td class="text-xs-left">{{ props.item.bookletNumber | capitalize }}</td>
         <td class="text-xs-left">{{ props.item.user.name | capitalize}}</td>

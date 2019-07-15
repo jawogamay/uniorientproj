@@ -50,7 +50,7 @@
     <template slot="headers" slot-scope="props">
   <tr style="height:30px;">
     <th>
-      <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+      <button class="btn btn-warning" @click="newModal">ADD <v-icon color="#fff">add_box</v-icon></button>
     </th>
     <th 
     v-for="header in props.headers"
@@ -65,7 +65,7 @@
   </tr>
 </template>
       <template v-slot:items="props">
-       <td class="text-xs-left"><button class="fa fa-eye" @click="viewPassenger(props.item)"></button>
+       <td class="text-xs-left"><button class="btn btn-success --primary" @click="viewPassenger(props.item)">VIEW <i class="fa fa-eye"></i></button>
      </td>
         <td class="text-xs-left" v-if="props.item.prefix != null">{{props.item.prefix}}. {{props.item.firstname | capitalize}} {{ props.item.lastname | capitalize}}</td>
         <td class="text-xs-left" v-else-if="props.item.prefix === null">{{props.item.firstname | capitalize}} {{ props.item.lastname | capitalize}}</td>
@@ -311,8 +311,10 @@
                  passengers:[],
                options1: [
           { code: 'MR', name: 'MR', },
-          { code: 'MRS', name: 'MRS' },
           { code: 'MS', name: 'MS' },
+          { code: 'MSTR', name: 'MSTR' },
+          {code:'MISS',name:'MISS'},
+          {code:'INF',name:'INF'},
         ],
                  customers:[],
                  isEditing:false,
