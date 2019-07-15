@@ -181,6 +181,9 @@ th{
   left: 0px;
   top:-3px !important;
 }
+[disabled]{
+    background: #e9ecef;
+}
      </style>
 
 </head>
