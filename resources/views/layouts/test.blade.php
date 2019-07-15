@@ -287,18 +287,18 @@ th{
                                 <li><a href="/booklet" class="dropdown-item">SA BOOKLET SERIES</a></li>
                                 <li><a href="/employee" class="dropdown-item">USER</a></li>
                                 <li><a href="/supplier" class="dropdown-item">SUPPLIER</a></li>
-                                <li><a href="#" class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                <li><a href="#" class="has-arrow" href="#" aria-expanded="false">
                                     <span class="hide-menu">START SERIES</span></a>
-                                    <ul aria-expanded="false" class="collapse">
-                                         <li><a href="/petty">BOX PETTY CASH</a></li>
-                                         <li><a href="/petty">SOA#</a></li>
-                                         <li><a href="/startbooklet">BOOKLET</a></li>
-                                         <li><a href="/startbooklet">OR</a></li>
-                                         <li><a href="/startbooklet">AR</a></li>
-                                         <li><a href="/startbooklet">PR</a></li>
-                                         <li><a href="/startbooklet">PO</a></li>
-                                         <li><a href="/startbooklet">CHV</a></li>
-                                         <li><a href="/startbooklet">CV</a></li>
+                                    <ul aria-expanded="false" class="collapse left-nanv">
+                                         <li><a href="/petty" class="dropdown-item">BOX PETTY CASH</a></li>
+                                         <li><a href="/petty" class="dropdown-item">SOA#</a></li>
+                                         <li><a href="/startbooklet" class="dropdown-item">BOOKLET</a></li>
+                                         <li><a href="/startbooklet" class="dropdown-item">OR</a></li>
+                                         <li><a href="/startbooklet" class="dropdown-item">AR</a></li>
+                                         <li><a href="/startbooklet" class="dropdown-item">PR</a></li>
+                                         <li><a href="/startbooklet" class="dropdown-item">PO</a></li>
+                                         <li><a href="/startbooklet" class="dropdown-item">CHV</a></li>
+                                         <li><a href="/startbooklet" class="dropdown-item">CV</a></li>
                                     </ul>
                                 </li>
                             </ul>

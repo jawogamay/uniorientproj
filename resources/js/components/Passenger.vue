@@ -67,9 +67,8 @@
       <template v-slot:items="props">
        <td class="text-xs-left"><button class="btn btn-success --primary" @click="viewPassenger(props.item)">VIEW <i class="fa fa-eye"></i></button>
      </td>
-        <td class="text-xs-left" v-if="props.item.prefix != null">{{props.item.prefix}}. {{props.item.firstname | capitalize}} {{ props.item.lastname | capitalize}}</td>
-        <td class="text-xs-left" v-else-if="props.item.prefix === null">{{props.item.firstname | capitalize}} {{ props.item.lastname | capitalize}}</td>
-        <td class="text-xs-left">{{ props.item.date_birth | myDate | capitalize}}</td>
+        <td class="text-xs-left" v-if="props.item.prefix != null">{{props.item.lastname | capitalize}}, {{props.item.firstname | capitalize}} {{ props.item.middlename | capitalize}} {{props.item.prefix | capitalize}}.</td>
+        <td class="text-xs-left" v-else-if="props.item.prefix === null">{{props.item.lastname | capitalize}}, {{props.item.firstname | capitalize}} {{ props.item.middlename | capitalize}} </td>
         <td class="text-xs-left">{{ props.item.tel | capitalize}}</td>
        <!--  <td class="text-xs-left" v-if="props.item.notes.length<20 && props.item.notes === null">{{ props.item.notes | capitalize}}</td> -->
          <td class="text-xs-left" v-if="props.item.notes === null"></td>

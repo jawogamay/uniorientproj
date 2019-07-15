@@ -90,7 +90,7 @@
                         </div>
                        <form @submit.prevent="addCustomer()">
                         <div class="modal-body">
-                             <input type="text" placeholder="ACCOUNT NAME" class="form-control" name="account_name"
+                             <input type="text" placeholder="NAME OF COMPANY" class="form-control" name="account_name"
                              :class="{'is-invalid': form.errors.has('account_name') }" v-model="form.account_name" >
                              <has-error :form="form" field="account_name"></has-error><br><hr>
 
@@ -107,62 +107,48 @@
                             </div>
                            </div> -->
 
-                                  <input type="text" placeholder="ADDRESS" class="form-control" name="address" 
+                                  <input type="text" placeholder="ADDRESS OF COMPANY" class="form-control" name="address" 
                                :class="{'is-invalid': form.errors.has('address') }" v-model="form.address">
                               <br><has-error :form="form" field="address"></has-error><br>
-                               <input type="text" placeholder="NATURE OF SERVICE" class="form-control" name="service" 
+                               <!-- <input type="text" placeholder="TYPE OF ACCOUNT" class="form-control" name="service" 
                               :class="{'is-invalid': form.errors.has('nature') }" v-model="form.nature">
-                              <br><has-error :form="form" field="nature"></has-error><br>
+                              <br><has-error :form="form" field="nature"></has-error><br> -->
+                                   <model-list-select :list="options1"
+                                     v-model="form.nature"
+                                     option-value="code"
+                                     option-text="name"
+                                     placeholder="TYPE OF ACCOUNT">
+                                     </model-list-select>
+                                     <br>
                                    <div class="row">
                               <div class="col-md-6">
-                                <input type="text" placeholder="FIRST NAME" class="form-control" name="firstname"
-                                 :class="{'is-invalid': form.errors.has('firstname') }" v-model="form.firstname"><br>
-                                 <has-error :form="form" field="firstname"></has-error><br>
+                                <input type="number" placeholder="TELEPHONE NUMBER" class="form-control" name="contact"
+                                 :class="{'is-invalid': form.errors.has('contact') }" v-model="form.contact"><br>
+                                 <has-error :form="form" field="contact"></has-error><br>
                              </div>
                              <div class="col-md-6">
-                            <input type="text" placeholder="MIDDLE NAME" class="form-control" name="middlename"
-                             :class="{'is-invalid': form.errors.has('middlename') }"v-model="form.middlename"><br>
-                             <has-error :form="form" field="middlename"></has-error><br>
+                            <input type="text" placeholder="FAX/MOBILE NUMBER" class="form-control" name="fax"
+                             :class="{'is-invalid': form.errors.has('fax') }"v-model="form.fax"><br>
+                             <has-error :form="form" field="fax"></has-error><br>
                              </div>
                            </div>
-                           <div class="row">
-                            <div class="col-md-6">
-                            <input type="text" placeholder="LAST NAME" class="form-control" name="lastname"
-                              :class="{'is-invalid': form.errors.has('lastname') }"v-model="form.lastname"><br>
-                              <has-error :form="form" field="lastname"></has-error><br>
-                            </div>
-                            <div class="col-md-6">
-                             <input type="text" placeholder="CONTACT DETAILS" class="form-control" name="contact" 
-                             :class="{'is-invalid': form.errors.has('contact') }"v-model="form.contact"><br>
-                             <has-error :form="form" field="contact"></has-error><br>
-                           </div>
-                            </div>
+                           <input type="email" placeholder="EMAIL ADDRESS" class="form-control" name="email" v-model="form.email">
+                           <br><br>
                             <div class="row">
                               <div class="col-md-6">
-                                  <input type="text" placeholder="COMPANY" class="form-control" name="company" 
-                                   :class="{'is-invalid': form.errors.has('company') }"v-model="form.company"><br>
-                                   <has-error :form="form" field="company"></has-error><br>
+                                  <input type="text" placeholder="CREDIT TERMS" class="form-control" name="term" 
+                             :class="{'is-invalid': form.errors.has('term') }"v-model="form.term">
                                 </div>
                                 <div class="col-md-6">
-                                  <input type="text" placeholder="TIN" class="form-control" name="tin" 
-                                   :class="{'is-invalid': form.errors.has('tin') }"v-model="form.tin"><br>
-                                   <has-error :form="form" field="tin"></has-error><br>
+                                  <input type="number" placeholder="CREDIT LIMIT" class="form-control" name="limit" 
+                             :class="{'is-invalid': form.errors.has('limit') }"v-model="form.limit">
                                 </div>
                            </div>
-
-                           <div class="row">
-                            <div class="col-md-6">
-                            <input type="text" placeholder="SSS NO." class="form-control" name="sss" 
-                             :class="{'is-invalid': form.errors.has('sss') }"v-model="form.sss"><br><br>
-                           </div>
-                           <div class="col-md-6">
-                            <input type="text" placeholder="SEC REG. NO." class="form-control" name="secreg" 
-                             :class="{'is-invalid': form.errors.has('secreg') }"v-model="form.secreg"><br><br>
-                           </div>
-                           </div>
-
-                            <input type="text" placeholder="CREDIT TERMS" class="form-control" name="term" 
-                             :class="{'is-invalid': form.errors.has('term') }"v-model="form.term"><br><br>
+                           <br>
+                            <h5>NOTES: </h5>
+                            <textarea style="height:150px" class="form-control" v-model="form.notes"  :disabled="disabled == 0 ? true : false">
+                                
+                            </textarea>                          
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
@@ -201,12 +187,19 @@
 </v-app>
 </template>
 <script type="text/javascript">
+ import { ModelListSelect } from 'vue-search-select'  
     export default{
         data(){
             return{
                  search: '',
                  spinner:false,
                  customers:[],
+                        options1: [
+          { code: 'PERSONAL', name: 'PERSONAL', },
+          { code: 'CORPORATE', name: 'CORPORATE' },
+          { code: 'RESELLER', name: 'RESELLER' },
+      
+        ],
         headers: [
          
           { text: 'ACCOUNT NAME', value: 'account_name' },
@@ -224,15 +217,11 @@
                     address:'',
                     contact:'',
                     nature:'',
-                    firstname:'',
-                    middlename:'',
-                    lastname:'',
-                    company:'',
-                    tin:'',
-                    sss:'',
-                    secreg:'',
-                    assignsales:'',
-                    term:''
+                    term:'',
+                    limit:'',
+                    email:'',
+                    fax:'',
+                    notes:''
                 })
             }
         
@@ -286,7 +275,10 @@
                 this.getCustomer();
               });
             },
-        }
+        },
+          components:{
+          ModelListSelect
+        },
     };
 </script>
 <style type="text/css" scoped>
