@@ -14,7 +14,7 @@
                 </div>
       <div class="row">
              <div class="col-md-12">
-                <div class="card mt-4">
+                <div class="card mt-1">
                     <!--   <div class="card-header">
                         <h3 class="card-title">PASSENGER INFORMATION </h3>
                         <div class="card-tools">
@@ -69,6 +69,7 @@
      </td>
         <td class="text-xs-left" v-if="props.item.prefix != null">{{props.item.lastname | capitalize}}, {{props.item.firstname | capitalize}} {{ props.item.middlename | capitalize}} {{props.item.prefix | capitalize}}.</td>
         <td class="text-xs-left" v-else-if="props.item.prefix === null">{{props.item.lastname | capitalize}}, {{props.item.firstname | capitalize}} {{ props.item.middlename | capitalize}} </td>
+        <td class="text-xs-left">{{props.item.dob |myDate |capitalize}}</td>
         <td class="text-xs-left">{{ props.item.tel | capitalize}}</td>
        <!--  <td class="text-xs-left" v-if="props.item.notes.length<20 && props.item.notes === null">{{ props.item.notes | capitalize}}</td> -->
          <td class="text-xs-left" v-if="props.item.notes === null"></td>
@@ -269,7 +270,7 @@
                            <div class="form-inline">
                               <h5 for="dob">DATE OF BIRTH: &nbsp;</h5>
                               <input class="form-control" style="width:60%;" type="date" id="dob"  name="dob"  v-model="form.dob" :disabled="disabled == 0 ? true : false">
-                            </div>
+                            </div>  
                             <br>
                             <h5>NOTES: </h5>
                             <textarea v-model="form.notes"  :disabled="disabled == 0 ? true : false">
@@ -335,6 +336,7 @@
           { text: 'DATE OF BIRTH', value: 'date_birth',sortable: !1  },
           { text: 'CONTACT NUMBER', value: 'tel',sortable: !1 },
           { text: 'NOTES', value: 'notes',sortable: !1  },  
+          {text:'CREATED AT',value:'created_at',sortable:!1},
           
         ],
         

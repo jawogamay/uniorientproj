@@ -181,8 +181,11 @@ th{
   left: 0px;
   top:-3px !important;
 }
-[disabled]{
+textarea [disabled]{
     background: #e9ecef;
+}
+.theme--light.v-datatable thead th.column.sortable.active, .theme--light.v-datatable thead th.column.sortable.active .v-icon, .theme--light.v-datatable thead th.column.sortable:hover{
+    color:#005ef5;
 }
      </style>
 
