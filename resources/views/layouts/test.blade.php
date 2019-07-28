@@ -113,6 +113,9 @@ th{
     margin-top:-21px !important;
 
 }
+input, textarea{
+    text-transform: uppercase;
+}
 .btn-primary,.btn-success{
 background: #03317a;
 border-color: #03317a;

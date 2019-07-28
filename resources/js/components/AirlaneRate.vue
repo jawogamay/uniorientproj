@@ -42,7 +42,7 @@
       class="elevation-1 my-data-table"
     >
        <template slot="headers" slot-scope="props" v>
-  <tr style="height:30px;">
+  <tr style="height:30px;background:#000;">
     <th>
       <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
     </th>
