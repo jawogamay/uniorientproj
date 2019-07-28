@@ -97,7 +97,7 @@
                        <form @submit.prevent="addCustomer()">
                         <div class="modal-body">
                              <input type="text" placeholder="NAME OF COMPANY" class="form-control" name="account_name"
-                             :class="{'is-invalid': form.errors.has('account_name') }" v-model="form.account_name" >
+                             :class="{'is-invalid': form.errors.has('account_name') }" v-model="form.account_name.toUpperCase()" @input="form.account_name = $event.target.value.toUpperCase()">
                              <has-error :form="form" field="account_name"></has-error><br><hr>
 
                            <!--   <div class="row">
@@ -242,6 +242,9 @@
         methods: {
            codeAndNameAndDesc (item) {
         return `${item.account_name | capitalize } `
+        },
+        uppercaseInput(value){
+         return console.log(this.value = this.value.toUpperCase())
         },
             changeSort (column) {
       if (this.pagination.sortBy === column) {
