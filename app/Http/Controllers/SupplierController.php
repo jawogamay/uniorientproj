@@ -20,6 +20,7 @@ class SupplierController extends Controller
     public function index()
     {
         //
+        return Supplier::latest()->with('user')->get();
     }
 
     /**
@@ -42,15 +43,23 @@ class SupplierController extends Controller
     {
         //
         $this->validate($request,[
-            'account' => 'required',
-            'category' => 'required',
-            'purchasetype' => 'required'
+            'company' => 'required',
+            'address' => 'required',
+            'tel' => 'required|numeric',
+            'fax' => 'numeric',
+            'mobile' => 'numeric',
+            'email' => 'required|email',
+            'notes' => 'required|max:150',
         ]);
         return Supplier::create([
             'user_id' => Auth::user()->id,
-            'account' => $request['account'],
-            'category' => $request['category'],
-            'purchasetype' => $request['purchasetype']
+            'company' => $request['company'],
+            'address' => $request['address'],
+            'tel' => $request['tel'],
+            'fax' => $request['fax'],
+            'email' => $request['email'],
+            'mobile' => $request['mobile'],
+            'notes' => $request['notes']
         ]);
     }
 

@@ -19,10 +19,11 @@ class CreateSuppliersTable extends Migration
             $table->string('company');
             $table->string('address');
             $table->string('tel');
-            $table->unsignedInteger('deletestatus_id');
-            $table->string('fax');
+            $table->boolean('deletestatus')->default(FALSE);
+            $table->string('fax')->nullable();
             $table->string('email');
-            $table->string('mobile');
+            $table->string('mobile')->nullable();
+            $table->string('notes');
             $table->timestamps();
         });
     }

@@ -47,29 +47,23 @@ class CustomerController extends Controller
             'account_name' => 'required',
             'address' => 'required',
             'nature' => 'required',
-            'company' => 'required',
-            'firstname' => 'required',
-            'middlename' => 'required',
-            'lastname' => 'required',
+            'contact' => 'required|numeric',
+            'fax' => 'required',
             'term' => 'required',
-            'sss' => 'required',
-            'secreg' => 'required',
-            'tin' => 'required'
+            'limit' => 'required|numeric',
+            'email' => 'required|email',
+
         ]);
 
         return Customer::create([
             'account_name' => $request['account_name'],
             'address' => $request['address'],
             'nature' => $request['nature'],
-            'company' => $request['company'],
-            'firstname' => $request['firstname'],
-            'middlename' => $request['middlename'],
-            'lastname' => $request['lastname'],
             'user_id' => Auth::user()->id,
             'term' => $request['term'],
-            'sss' => $request ['sss'],
-            'secreg' => $request ['secreg'],
-            'tin' => $request ['tin'],
+            'email' => $request['email'],
+            'fax' => $request['fax'],
+            'limit' => $request['limit'],
             'contact' => $request['contact']
         ]);
     }

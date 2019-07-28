@@ -44,9 +44,9 @@
      
     >
      <template slot="headers" slot-scope="props">
-  <tr style="height:30px;">
+  <tr style="height:30px;background:#000;">
     <th>
-      <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+      <button class="btn btn-warning" @click="newModal">ADD &nbsp;<v-icon color="#fff">add_box</v-icon></button>
     </th>
     <th 
     v-for="header in props.headers"
@@ -61,9 +61,8 @@
   </tr>
 </template>
       <template v-slot:items="props">
-  
-               <td  class="text-xs-left"><a href="#" class="fa fa-eye" @click="viewEmployee(props.item)"></a>
-    </td>     
+    <td class="text-xs-left"><button class="btn btn-success --primary" @click="viewPassenger(props.item)">VIEW <i class="fa fa-eye"></i></button>
+     </td>
         <td class="text-xs-left">{{ props.item.startbooklet | capitalize }}</td>
         <td class="text-xs-left">{{ props.item.user.name | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.created_at | myDate | capitalize }}</td>

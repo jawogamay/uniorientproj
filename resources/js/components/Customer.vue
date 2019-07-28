@@ -41,23 +41,29 @@
       :items="customers"
       :search="search"
       :rows-per-page="25" :rows-per-page-items="[25]"
+       :pagination.sync="pagination"
       class="elevation-1 my-data-table"
     >
-       <template slot="headers" slot-scope="props">
-  <tr style="height:30px;">
+  <template slot="headers" slot-scope="props">
+  <tr style="height:30px; background:#000;">
     <th>
-      <button class="btn btn-warning" @click="newModal">ADD <v-icon color="#fff">add_box</v-icon></button>
+      <button class="btn btn-warning" @click="newModal">ADD &nbsp;<v-icon color="#fff">add_box</v-icon></button>
     </th>
-    <th 
+     <th 
     v-for="header in props.headers"
+     :key="header.text"
+            :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '']"
+            @click="changeSort(header.value)"
     >
+
         {{header.text}}
+        <v-icon small>arrow_upward</v-icon>
     </th>
   </tr>
 </template>
       <template v-slot:items="props">
         <td class="text-xs-left">  
-         <button  class="btn btn-success --primary" @click="viewCustomer(props.item)">VIEW <i class="fa fa-eye"></i></button> </td
+         <button  class="btn btn-success --primary" @click="viewCustomer(props.item)">VIEW <i class="fa fa-eye"></i></button> </td>
         <td class="text-xs-left">{{ props.item.account_name | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.address | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.nature | capitalize}}</td>
@@ -194,6 +200,9 @@
                  search: '',
                  spinner:false,
                  customers:[],
+                pagination: {
+                  sortBy: 'name'
+                 },
                         options1: [
           { code: 'PERSONAL', name: 'PERSONAL', },
           { code: 'CORPORATE', name: 'CORPORATE' },
@@ -202,12 +211,12 @@
         ],
         headers: [
          
-          { text: 'ACCOUNT NAME', value: 'account_name' },
-          { text: 'ADDRESS', value: 'address' },
-          { text: 'NATURE', value: 'nature' },
-          { text: 'TC', value: 'user.code' },
-          { text: 'TERM', value: 'term' },
-          {text: 'CONTACT DETAILS', value: 'contact'},
+          { text: 'ACCOUNT NAME', value: 'account_name',sortable: !1 },
+          { text: 'ADDRESS', value: 'address',sortable: !1 },
+          { text: 'NATURE', value: 'nature',sortable: !1 },
+          { text: 'TC', value: 'user.code',sortable: !1 },
+          { text: 'TERM', value: 'term',sortable: !1 },
+          {text: 'CONTACT DETAILS', value: 'contact',sortable: !1},
           
         ],
                 editmode: false,
@@ -231,6 +240,17 @@
             this.createdCustomer();
         },
         methods: {
+           codeAndNameAndDesc (item) {
+        return `${item.account_name | capitalize } `
+        },
+            changeSort (column) {
+      if (this.pagination.sortBy === column) {
+        this.pagination.descending = !this.pagination.descending
+      } else {
+        this.pagination.sortBy = column
+        this.pagination.descending = false
+      }
+     },
             newModal(){
                 this.editmode = false;
                 this.form.reset();
@@ -309,10 +329,6 @@ table.v-table tbody td, table.v-table tbody th{
     border-color:#ffffff;
     padding: 5px;
 
-}
-.theme--light.v-table thead th{
-  color:#000;
-  font-weight: 800;
 }
 ::placeholder{
  color:rgba(191, 191, 191, 0.87);

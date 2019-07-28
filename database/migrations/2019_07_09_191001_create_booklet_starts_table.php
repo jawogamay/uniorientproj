@@ -17,7 +17,7 @@ class CreateBookletStartsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedInteger('user_id');
             $table->integer('startbooklet');
-            $table->unsignedInteger('deletestatus_id');
+            $table->boolean('deletestatus')->default(FALSE);
             $table->timestamps();
         });
     }

@@ -72,7 +72,7 @@
             margin-top: -36px;
 }
 
-p,h1,h2,h3,h4,h5,h6,th{
+p,h1,h2,h3,h4,h5,h6,th,textarea{
     font-family:Inconsalata !important;
 }
 th{
@@ -94,6 +94,9 @@ th{
 
 .form-control,label{
     font-size:15px;
+}
+.modal ::placeholder{
+ color:rgba(191, 191, 191, 0.87);
 }
 .card .v-input__slot{
   margin-left: 60%;
@@ -149,12 +152,6 @@ tbody tr:nth-of-type(odd) {
  .primary{
     background: #03317a !important;
  }
-
-th{
-    font-weight: 800;
-    font-size: 14px;
-    color:rgb(0,0,0);
-}
 #this-left{
     margin-left: 43%;
 }
@@ -186,6 +183,13 @@ th{
 }
 .theme--light.v-datatable thead th.column.sortable.active, .theme--light.v-datatable thead th.column.sortable.active .v-icon, .theme--light.v-datatable thead th.column.sortable:hover{
     color:#005ef5;
+}
+.v-datatable__actions .v-btn:last-of-type{
+      margin-left: -23px;
+}
+.theme--light.v-table thead th{
+  color:#fff;
+  font-weight: 800;
 }
      </style>
 
@@ -306,15 +310,15 @@ th{
                                 <li><a href="#" class="has-arrow" href="#" aria-expanded="false">
                                     <span class="hide-menu">START SERIES</span></a>
                                     <ul aria-expanded="false" class="collapse left-nanv">
-                                         <li><a href="/petty" class="dropdown-item">BOX PETTY CASH</a></li>
-                                         <li><a href="/petty" class="dropdown-item">SOA#</a></li>
-                                         <li><a href="/startbooklet" class="dropdown-item">BOOKLET</a></li>
-                                         <li><a href="/startbooklet" class="dropdown-item">OR</a></li>
-                                         <li><a href="/startbooklet" class="dropdown-item">AR</a></li>
-                                         <li><a href="/startbooklet" class="dropdown-item">PR</a></li>
-                                         <li><a href="/startbooklet" class="dropdown-item">PO</a></li>
-                                         <li><a href="/startbooklet" class="dropdown-item">CHV</a></li>
-                                         <li><a href="/startbooklet" class="dropdown-item">CV</a></li>
+                                         <li><a href="/petty">BOX PETTY CASH</a></li>
+                                         <li><a href="/soa">SOA#</a></li>
+                                         <li><a href="/startbooklet">BOOKLET</a></li>
+                                         <li><a href="/or">OR</a></li>
+                                         <li><a href="/ar">AR</a></li>
+                                         <li><a href="/pr">PR</a></li>
+                                         <li><a href="/po">PO</a></li>
+                                         <li><a href="/chv">CHV</a></li>
+                                         <li><a href="/cv">CV</a></li>
                                     </ul>
                                 </li>
                             </ul>

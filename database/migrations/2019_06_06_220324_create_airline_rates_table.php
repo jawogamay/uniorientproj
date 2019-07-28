@@ -17,6 +17,7 @@ class CreateAirlineRatesTable extends Migration
             $table->bigIncrements('id');
             $table->date('date');
             $table->double('rate');
+            $table->boolean('deletestatus')->default(FALSE);
             $table->timestamps();
         });
     }

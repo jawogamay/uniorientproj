@@ -44,9 +44,9 @@
      
     >
      <template slot="headers" slot-scope="props">
-  <tr style="height:30px;">
+  <tr style="height:30px;background:#000;">
     <th>
-      <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+      <button class="btn btn-warning" @click="newModal">ADD &nbsp;<v-icon color="#fff">add_box</v-icon></button>
     </th>
     <th 
     v-for="header in props.headers"

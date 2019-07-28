@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->date('dob');
             $table->date('hired');
             $table->string('password');
+            $table->boolean('deletestatus')->default(FALSE);
             $table->rememberToken();
             $table->timestamps();
         });

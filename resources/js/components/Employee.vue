@@ -39,14 +39,15 @@
       :headers="headers"
       :items="employees"
       :search="search"
-       :rows-per-page="25" :rows-per-page-items="[25]"
+      :rows-per-page="25" :rows-per-page-items="[25]"
+       :pagination.sync="pagination"
       class="elevation-1 my-data-table"
      
     >
      <template slot="headers" slot-scope="props">
-  <tr style="height:30px;">
+  <tr style="height:30px;background:#000;">
     <th>
-      <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+      <button class="btn btn-warning" @click="newModal">ADD &nbsp;<v-icon color="#fff">add_box</v-icon></button>
     </th>
     <th 
     v-for="header in props.headers"
@@ -88,8 +89,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">ADD EMPLOYEE</h5>
-                            <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update User's Info</h5>
+                            <h5 class="modal-title" id="addNewLabel">ADD EMPLOYEE</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>   
@@ -125,8 +125,7 @@
                       </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
-                        <button v-show="editmode" type="submit" class="btn btn-success">UPDATE</button>
-                        <button v-show="!editmode" type="submit" class="btn btn-primary">SUBMIT <i v-if="spinner"class="fa fa-spinner fa-spin"></i></button>
+                        <button type="submit" class="btn btn-primary">SUBMIT <i v-if="spinner"class="fa fa-spinner fa-spin"></i></button>
                      </div>
                      </form>
                 </div>
@@ -166,9 +165,9 @@
                  search: '',
                 spinner:false,
                 employees:[],
-                  pagination: {
-      sortBy: 'name'
-    },
+                pagination: {
+                  sortBy: 'name'
+                },
                  form: new Form({
                     id:'',
                     name:'',
@@ -181,11 +180,11 @@
                  }),
         headers: [
          
-          { text: 'EMPLOYEE NAME', value: 'airlane',sortable: !1},
-          { text: 'CODE', value: 'usdphp',sortable: !1 },
-          { text: 'DATE OF BIRTH', value: 'phpusd',sortable: !1 },
-          { text: 'HIRED DATE', value: 'verified',sortable: !1 },
-          {text: 'EMPLOYEE TYPE', value: 'details',sortable: !1},
+          { text: 'EMPLOYEE NAME', value: 'name',sortable: !1},
+          { text: 'CODE', value: 'code',sortable: !1 },
+          { text: 'DATE OF BIRTH', value: 'dob',sortable: !1 },
+          { text: 'HIRED DATE', value: 'hired',sortable: !1 },
+          {text: 'EMPLOYEE TYPE', value: 'type',sortable: !1},
       
         ],
   
@@ -197,8 +196,19 @@
           this.createdEmployee();
         },
         methods: {
+            codeAndNameAndDesc (item) {
+        return `${item.account_name | capitalize } `
+        },
+            changeSort (column) {
+      if (this.pagination.sortBy === column) {
+        this.pagination.descending = !this.pagination.descending
+      } else {
+        this.pagination.sortBy = column
+        this.pagination.descending = false
+      }
+    },
             newModal(){
-                this.editmode = false;
+               
                 this.form.reset();
                 $('#addNew').modal('show');
             },

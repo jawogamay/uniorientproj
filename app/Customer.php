@@ -8,7 +8,7 @@ class Customer extends Model
 {
     //
     protected $fillable = [
-        'account_name','address','nature','company','firstname','middlename','lastname','term','sss','secreg','tin','contact','passenger_id','user_id'
+        'account_name','address','nature','fax','user_id','deletestatus','term','limit','notes','contact','email'
     ];
     public function passenger(){
         $this->hasMany('App\Passenger');

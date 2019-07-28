@@ -19,7 +19,6 @@ class CreateBookletsTable extends Migration
             $table->integer('initial');
             $table->integer('end');
             $table->string('bookletNumber')->unique();
-            $table->unsignedInteger('deletestatus_id');
             $table->timestamps();
         });
     }

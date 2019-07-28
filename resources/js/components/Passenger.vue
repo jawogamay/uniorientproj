@@ -105,58 +105,17 @@
                         </div>
                        <form @submit.prevent="createPassenger()">
                         <div class="modal-body">
-                          <!-- <select class="form-control" name="account_name" v-model="form.account_name">
-                            <option value="" disabled selected>ACCOUNT NAME</option>
-                            <option v-for="customer in customers" :value="customer.id">{{customer.account_name | capitalize }}</option>
-                          </select>
-                          <br><br> -->
-                          <!-- <input type="text" name="account_name" v-model="form.account_name" v-on:keyup="autoComplete()" class="form-control">
-                          <div class="panel-footer" v-if="results.length">
-                            <ul class="list-group">
-                              <li class="list-group-item" v-for="result in results">{{result.name}}</li>
-                            </ul>
-                          </div>
-                          <br><br> -->
-            
-      <!-- <v-autocomplete
-        v-model="form.account_name"
-        :items="accounts"
-        :readonly="isEditing"
-        :label="`Account Name — ${isEditing ? 'Editable' : ''}`"
-        persistent-hint
-        prepend-icon="mdi-city"
-      >
-        <template v-slot:append-outer>
-          <v-slide-x-reverse-transition
-            mode="out-in"
-          >
-            <v-icon
-              :key="`icon-${isEditing}`"
-              :color="isEditing ? 'success' : 'info'"
-              @click="isEditing = !isEditing"
-              v-text="isEditing ? 'mdi-check-outline' : 'mdi-circle-edit-outline'"
-            ></v-icon>
-          </v-slide-x-reverse-transition>
-        </template>
-      </v-autocomplete> -->
-
-
-                           <!--  <input type="text" placeholder="Name" class="form-control"><br>
-                              <p style="font-size:12px; color:#c2c2c2;"> (PASSENGER NAME IS COMPOSED OF LAST NAME, FIRST NAME , AND MIDDLE NAME)</p>
-                            <br> -->
-                            <model-list-select :list="customers"
-                            name="account_name"
-                            class="mb-2"
-                     v-model="form.account_name"
-                     option-value="id"
-                     option-text="account_name"
-                     placeholder="ACCOUNT NAME">
-                  </model-list-select>
-
+                           <model-list-select :list="customers"
+                           name="account_name"
+                           class="mb-2"
+                           v-model="form.account_name"
+                           option-value="id"
+                           option-text="account_name"
+                          placeholder="ACCOUNT NAME">
+                          </model-list-select>
                             <div class="row mb-2">
                               <div class="col-md-6">
                                 
-          
                                 <model-list-select :list="options1"
                          v-model="form.prefix"
                          option-value="code"
@@ -175,7 +134,7 @@
                            </div>
                            <div class="row">
                             <div class="col-md-6">
-                             <input type="text" class="form-control" placeholder="MIDDLE NAME" name="middename" 
+                             <input type="text" class="form-control" placeholder=" MIDDLE NAME" name="middename" 
                             v-model="form.middename"><br><br>
                       
                             </div>
@@ -329,19 +288,15 @@
                     notes:'',
 
                 }),
-        headers: [
-          
-         /* {text:' <button class="btn btn-warning" style="margin-left:16px;margin-top:10px;" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>',value:'',sortable:false},*/
-          { text: 'PASSENGER NAME', value: 'lastname',sortable: !1},
-          { text: 'DATE OF BIRTH', value: 'date_birth',sortable: !1  },
-          { text: 'CONTACT NUMBER', value: 'tel',sortable: !1 },
-          { text: 'NOTES', value: 'notes',sortable: !1  },  
-          {text:'CREATED AT',value:'created_at',sortable:!1},
-          
-        ],
+           headers: [
+              { text: 'PASSENGER NAME', value: 'lastname',sortable: !1},
+              { text: 'DATE OF BIRTH', value: 'date_birth',sortable: !1  },
+              { text: 'CONTACT NUMBER', value: 'tel',sortable: !1 },
+              { text: 'NOTES', value: 'notes',sortable: !1  },  
+              {text:'CREATED AT',value:'created_at',sortable:!1},       
+            ],
         
-            }
-        
+           }   
         },
          mounted(){
           axios.get('api/getCustomer').then(({data}) => this.customers = data);
@@ -470,9 +425,7 @@ textarea{
   height:150px; width:100%;border: 1px solid #ced4da;border-radius: .25rem;
                               transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-.modal ::placeholder{
- color:rgba(191, 191, 191, 0.87);
-}
+
 .item,.text{
     font-family: Inconsalata;
     font-weight: 800;
@@ -495,13 +448,6 @@ textarea{
   border-color:#ffffff !important;
 
 }
-
-
-.theme--light.v-table thead th{
-  color:#fff;
-  font-weight: 800;
-}
-
 
 .v-alert{
     color:#f00;

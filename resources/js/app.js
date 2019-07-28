@@ -12,6 +12,13 @@ import Supplier from './components/Supplier'
 import ItemCode from './components/ItemCode'
 import PettyCash from './components/PettyCash'
 import Dashboard from './components/Home'
+import OR from './components/OfficialReciept'
+import AR from './components/AR'
+import PR from './components/PR'
+import PO from './components/PO'
+import CHV from './components/CHV'
+import CV from './components/CV'
+import SOA from './components/SOA'
 import SalesAgreement from './components/SalesAgreement'
 import StartBooklet from './components/StartBooklet'
 import VueRouter from 'vue-router'
@@ -67,7 +74,15 @@ let routes = [
     {path:'/itemcode',component:ItemCode},
     {path:'/petty',component:PettyCash},
     {path:'/salesagreement',component:SalesAgreement},
-    {path:'/startbooklet',component:StartBooklet}
+    {path:'/startbooklet',component:StartBooklet},
+    {path:'/or',component:OR},
+    {path:'/ar',component:AR},
+    {path:'/pr',component:PR},
+    {path:'/po',component:PO},
+    {path:'/chv',component:CHV},
+    {path:'/cv',component:CV},
+    {path:'/soa',component:SOA}
+
 
 ]
 

@@ -8,6 +8,9 @@ class Supplier extends Model
 {
     //
     protected $fillable = [
-        'account','category','purchasetype'
-    ]
+        'user_id','company','address','tel','fax','email','mobile','notes'
+    ];
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }
