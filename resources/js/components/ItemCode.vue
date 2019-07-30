@@ -62,8 +62,7 @@
   </tr>
 </template>
       <template v-slot:items="props">
-  
-        <td  class="text-xs-left"><button class="btn btn-success --primary" @click="viewEmployee(props.item)">VIEW <i class="fa fa-eye"></i></button>
+        <td class="text-xs-left"><button class="btn btn-success --primary" @click="viewItemCode(props.item)">VIEW <i class="fa fa-eye"></i></button>
         </td>     
         <td class="text-xs-left">{{ props.item.ticket | capitalize }}</td>
         <td class="text-xs-left">{{ props.item.tax | capitalize }}</td>
@@ -87,10 +86,6 @@
                 </div>
              </div>
          </div>
-
-
-           
-
                <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-md" role="document">
                     <div class="modal-content">
@@ -101,17 +96,17 @@
                             </button>   
                         </div>
                        <form @submit.prevent="createItemCode()">
-                        <div class="modal-body">
+                        <div class="modal-body" id="addmode">
                           <input class="form-control" type="text" style="width:100%;" name="ticket" v-model="form.ticket" placeholder="ENTER TICKET">
-                            <br>
+                            
                              <input class="form-control" type="text" style="width:100%;" name="tax" v-model="form.tax" placeholder="ENTER TAX">
-                             <br>
+                             
                               <input class="form-control" type="text" style="width:100%;" name="hotel" v-model="form.hotel" placeholder="ENTER HOTEL">
-                              <br>
+                              
                                <input class="form-control" type="text" style="width:100%;" name="package" v-model="form.package" placeholder="ENTER PACKAGE">
-                               <br>
+                               
                               <input class="form-control" type="text" style="width:100%;" name="service_fee" v-model="form.service_fee" placeholder="ENTER SERVICE FEE">
-                              <br>
+                              
                               <input class="form-control" type="text" style="width:100%;" name="document" v-model="form.document" placeholder="ENTER DOCUMENTATION">
                         </div>
                      <div class="modal-footer">
@@ -123,6 +118,58 @@
                 </div>
             </div>
         </div>
+          <div class="modal fade" id="viewdetails" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                          <!--   <h5 class="modal-title" id="addNewLabel">View Transaction</h5> -->
+                         
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>   
+                        </div>
+                        <form @submit.prevent = "updateItemCode()">
+                          <div class="modal-body">
+                              <div class="form-inline">
+                                  <h5 for="ticket">TICKETS: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="text" name="ticket" v-model="form.ticket" class="form-control" :disabled="disabled == 0 ? true : false"
+                                  :class="{'is-invalid': form.errors.has('ticket') }">
+                              </div>
+
+                              <div class="form-inline">
+                                  <h5 for="tax">TAXES: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="text" name="tax" v-model="form.tax" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('tax') }">
+                              </div>
+
+                              <div class="form-inline">
+                                  <h5 for="hotel">HOTEL: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="text" name="hotel" v-model="form.hotel" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('hotel') }">
+                              </div>
+
+                              <div class="form-inline">
+                                  <h5 for="package">PACKAGE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="text" name="package" v-model="form.package" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('package') }">
+                              </div>
+
+                              <div class="form-inline">
+                                  <h5 for="service_fee">SERVICE FEE: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="text" name="service_fee" v-model="form.service_fee" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('service_fee') }">
+                              </div>
+                                <div class="form-inline">
+                                  <h5 for="document">DOCUMENTATIONS: &nbsp;</h5>
+                                  <input type="text" name="document" v-model="form.document" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('document') }">
+                              </div>
+                          </div>
+                         <div class="modal-footer">
+                        <button class="btn btn-success --danger" style="background:#000;" type="button">DELETE</button>
+                        <button type="submit" class="btn btn-warning" v-show="disabled == 1">UPDATE  <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
+                        <button @click="disabled = (disabled + 1) % 2" type="button" class="btn btn-success" v-show="disabled == 0">EDIT</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button> 
+                         </div>
+                      </form>
+                </div>
+            </div>
+          </div>
       </div>
       </v-app>
 </template>
@@ -133,6 +180,7 @@
                  search: '',
                 spinner:false,
                 itemcodes:[],
+                disabled:0,
                   pagination: {
       sortBy: 'name'
     },
@@ -196,16 +244,32 @@
                 this.getItem()
               })
             },
-         /*   viewEmployee(item){
-              this.form.name = item.name
-              this.form.email = item.email
-              this.form.type = item.type
-              this.form.code = item.code
-              this.form.dob = item.dob
-              this.form.hired = item.hired
+            viewItemCode(item){
+              this.form.id = item.id
+              this.form.ticket = item.ticket
+              this.form.hotel = item.hotel
+              this.form.tax = item.tax
+              this.form.package = item.package
+              this.form.service_fee = item.service_fee
+              this.form.document = item.documentation
                $('#viewdetails').modal('show')
 
-            }*/
+            },
+            updateItemCode(){
+              this.form.put('api/itemcode/'+this.form.id)
+              .then(()=>{
+                 this.spinner = true;
+                  $('#viewdetails').modal('hide')
+                     toast.fire(
+                        'Updated!',
+                        'Item Code has been updated.',
+                        'success'
+                        )
+                       Fire.$emit('createdItem')
+                        setTimeout(()=> {this.spinner = false},1000)
+                    this.disabled = 0
+              })
+            }
         }
     };
 </script>
@@ -238,8 +302,8 @@ table.v-table tbody td, table.v-table tbody th{
     padding: 5px;
 
 }
-.modal-body .form-control{
-  margin-top: 10px;
+#addmode input{
+  margin-top: 8px;
 }
 input[type=number]{
   width:100%;

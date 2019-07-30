@@ -89,9 +89,27 @@ class ItemCodeController extends Controller
      * @param  \App\ItemCode  $itemCode
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ItemCode $itemCode)
+    public function update(Request $request, $id)
     {
         //
+            $itemcode = ItemCode::findOrFail($id);
+           $this->validate($request,[
+            'ticket' => 'required',
+            'tax' => 'required',
+            'hotel' => 'required',
+            'package' => 'required',
+            'service_fee' => 'required',
+            'document' => 'required'
+        ]);
+        $itemcode->update([
+            'user_id' => Auth::user()->id,
+            'ticket' => $request['ticket'],
+            'tax' => $request['tax'],
+            'hotel' => $request['hotel'],
+            'package' => $request['package'],
+            'service_fee' => $request['service_fee'],
+            'documentation' => $request['document']
+        ]);
     }
 
     /**
