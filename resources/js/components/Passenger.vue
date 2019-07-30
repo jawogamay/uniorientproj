@@ -111,7 +111,8 @@
                            v-model="form.account_name"
                            option-value="id"
                            option-text="account_name"
-                          placeholder="ACCOUNT NAME">
+                          placeholder="ACCOUNT NAME"
+                          :class="{'is-invalid': form.errors.has('account_name') }">
                           </model-list-select>
                             <div class="row mb-2">
                               <div class="col-md-6">
@@ -120,7 +121,8 @@
                          v-model="form.prefix"
                          option-value="code"
                          option-text="name"
-                         placeholder="SELECT PREFIX">
+                         placeholder="SELECT PREFIX"
+                         :class="{'is-invalid': form.errors.has('prefix') }">
                          </model-list-select>
 
                             </div>
@@ -129,19 +131,19 @@
                             <div class="col-md-6">
                                  
                                 <input type="text" class="form-control" placeholder="FIRST NAME" name="firstname" 
-                                v-model="form.firstname"><br>
+                                v-model="form.firstname" :class="{'is-invalid': form.errors.has('firstname') }"><br>
                             </div>
                            </div>
                            <div class="row">
                             <div class="col-md-6">
                              <input type="text" class="form-control" placeholder=" MIDDLE NAME" name="middename" 
-                            v-model="form.middename"><br><br>
+                            v-model="form.middename" :class="{'is-invalid': form.errors.has('middlename') }"><br><br>
                       
                             </div>
                             <div class="col-md-6">
                                
                                 <input type="text" class="form-control" placeholder="LAST NAME" name="lastname" 
-                                v-model="form.lastname">
+                                v-model="form.lastname" :class="{'is-invalid': form.errors.has('lastname') }">
                             </div>
                           </div>
                           <div class="row">
@@ -167,6 +169,7 @@
                                     readonly
                                     v-on="on"
                                     class="form-control"
+                                    :class="{'is-invalid': form.errors.has('dob') }"
                                   ></v-text-field>
                                 </template>
                                 <v-date-picker v-model="date" scrollable width="100%">
@@ -209,28 +212,26 @@
                               <h5 for="account_name">ACCOUNT NAME: &nbsp;&nbsp;</h5>
                               <input class="form-control" style="width:60%;" type="text" id="account_name"  name="account_name"  v-model="form.account_name" disabled>
                             </div>
-
-                            <br>
                             <div class="form-inline">
                               <h5 for="firstname">FIRST NAME: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
-                              <input class="form-control" style="width:60%;" type="text" id="firstname"  name="firstname"  v-model="form.firstname" :disabled="disabled == 0 ? true : false">
+                              <input class="form-control" style="width:60%;" type="text" id="firstname"  name="firstname"  v-model="form.firstname" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('firstname') }">
                             </div>
-                            <br>
+              
                            <div class="form-inline">
                               <h5 for="lastname">LAST NAME: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
-                              <input class="form-control" style="width:60%;" type="text" id="lastname"  name="lastname"  v-model="form.lastname" :disabled="disabled == 0 ? true : false">
+                              <input class="form-control" style="width:60%;" type="text" id="lastname"  name="lastname"  v-model="form.lastname" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('lastname') }">
                             </div>
-                               <br>
+                      
                            <div class="form-inline">
                               <h5 for="tel">CONTACT #: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
                               <input class="form-control" style="width:60%;" type="text" id="tel"  name="tel"  v-model="form.tel" :disabled="disabled == 0 ? true : false">
                             </div>
-                                 <br>
+        
                            <div class="form-inline">
                               <h5 for="dob">DATE OF BIRTH: &nbsp;</h5>
-                              <input class="form-control" style="width:60%;" type="date" id="dob"  name="dob"  v-model="form.dob" :disabled="disabled == 0 ? true : false">
+                              <input class="form-control" style="width:60%;" type="date" id="dob"  name="dob"  v-model="form.dob" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('dob') }">
                             </div>  
-                            <br>
+            
                             <h5>NOTES: </h5>
                             <textarea v-model="form.notes"  :disabled="disabled == 0 ? true : false">
                                 
@@ -238,9 +239,10 @@
                            
                         </div>
                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-warning" data-dismiss="modal" v-show="disabled == 1" @click="updatePassenger()">UPDATE  <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
+                        <button class="btn btn-success --danger" style="background:#000;" type="button">DELETE</button>
+                        <button type="submit" class="btn btn-warning" v-show="disabled == 1">UPDATE  <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
                         <button @click="disabled = (disabled + 1) % 2" type="button" class="btn btn-success" v-show="disabled == 0">EDIT</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button> 
                      </div>
                 </form>
                 </div>

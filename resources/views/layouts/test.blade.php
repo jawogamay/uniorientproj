@@ -72,8 +72,13 @@
             margin-top: -36px;
 }
 
-p,h1,h2,h3,h4,h5,h6,th,textarea{
+html,p,h1,h2,h3,h4,h5,h6,th,textarea,input,.text,.item{
     font-family:Inconsalata !important;
+    text-transform: uppercase;
+}
+textarea{
+  height:150px; width:100%;border: 1px solid #ced4da;border-radius: .25rem;
+                              transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 th{
     font-size:14px !important;
@@ -120,6 +125,12 @@ input, textarea{
 background: #03317a;
 border-color: #03317a;
 }
+.form-inline{
+  margin-top:8px;
+}
+.form-inline .form-control{
+  width: 60%;
+ }
 .btn-warning{
   background: green;
 border-color: green;  

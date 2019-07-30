@@ -101,6 +101,26 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $employee = User::findOrFail($id);
+         $this->validate($request,[
+            'name' => 'required|string',
+            'email' => 'required|string|email|unique:users',
+            'password' => 'required|string|min:6',
+            'dob' => 'required|date',
+            'hired' => 'required|date',
+            'type' => 'required',
+            'code' => 'required'
+        ]);
+         $employee->update([
+            'code' => $request['code'],
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'dob' => $request['dob'],
+            'hired' => $request['hired'],
+            'type' => $request['type'],
+            'password' => Hash::make($request['password'])
+         ]);
+
     }
 
     /**

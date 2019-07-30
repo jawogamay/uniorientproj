@@ -64,7 +64,8 @@ class CustomerController extends Controller
             'email' => $request['email'],
             'fax' => $request['fax'],
             'limit' => $request['limit'],
-            'contact' => $request['contact']
+            'contact' => $request['contact'],
+            'notes' => $request['notes']
         ]);
     }
 
@@ -97,9 +98,33 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request,$id)
     {
         //
+        $customer = Customer::findOrFail($id);
+        $this->validate($request,[
+            'account_name' => 'required',
+            'address' => 'required',
+            'nature' => 'required',
+            'contact' => 'required|numeric',
+            'fax' => 'required',
+            'term' => 'required',
+            'limit' => 'required|numeric',
+            'email' => 'required|email',
+
+        ]);
+        $customer->update([
+            'account_name' => $request['account_name'],
+            'address' => $request['address'],
+            'nature' => $request['nature'],
+            'user_id' => Auth::user()->id,
+            'term' => $request['term'],
+            'email' => $request['email'],
+            'fax' => $request['fax'],
+            'limit' => $request['limit'],
+            'contact' => $request['contact'],
+            'notes' => $request['notes']
+        ]);
     }
 
     /**

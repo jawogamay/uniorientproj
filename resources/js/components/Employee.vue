@@ -137,21 +137,67 @@
                     <div class="modal-content">
                         <div class="modal-header">
                           <!--   <h5 class="modal-title" id="addNewLabel">View Transaction</h5> -->
-                          <img src="/assets/images/user.jpg" style="width:100px; height:100px;"><h4 style="margin-top:50px;">{{form.name}}<br> {{form.code}}</h4>
+                         
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>   
                         </div>
-                        <div class="modal-body">
-                            <h5><b>EMAIL:</b> {{form.email}}</h5>
-                            <h5><b>TYPE:</b> {{form.type | capitalize}}</h5>
-                            <h5><b>DATE OF BIRTH:</b> {{form.dob | capitalize | myDate}}</h5>
-                            <h5><b>HIRED DATE:</b> {{form.hired | capitalize | myDate}}</h5>
-                        </div>
-                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                     </div>
-              
+                        <form @submit.prevent = "updateEmployee()">
+                          <div class="modal-body">
+                              <div class="form-inline">
+                                  <h5 for="name">Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="text" name="name" v-model="form.name" class="form-control" :disabled="disabled == 0 ? true : false"
+                                  :class="{'is-invalid': form.errors.has('name') }">
+                                  <has-error :form="form" field="name"></has-error>
+                              </div>
+
+                              <div class="form-inline">
+                                  <h5 for="email">Email: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="text" name="email" v-model="form.email" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('email') }">
+                                  <has-error :form="form" field="email"></has-error>
+                              </div>
+
+                              <div class="form-inline">
+                                  <h5 for="type">Type of Employee: &nbsp;</h5>
+                                  <select name="type" v-model="form.type" class="form-control" :disabled="disabled ==0 ?true : false" :class="{'is-invalid': form.errors.has('type') }">
+                                    <option value="admin">ADMIN</option>
+                                    <option value="supervisor">ACCOUNTING SUPERVISOR</option>
+                                    <option value="accounting">ACCOUNTING</option>
+                                    <option value="consultant">TRAVEL CONSULTANT</option>
+                                  </select>
+                                  <has-error :form="form" field="type"></has-error>
+                              </div>
+
+                              <div class="form-inline">
+                                  <h5 for="dob">Date of Birth: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="text" name="dob" v-model="form.dob" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('dob') }">
+                                  <has-error :form="form" field="dob"></has-error>
+                              </div>
+
+                              <div class="form-inline">
+                                  <h5 for="code">Code: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="text" name="code" v-model="form.code" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('code') }">
+                                  <has-error :form="form" field="code"></has-error>
+                              </div>
+
+                              <div class="form-inline">
+                                  <h5 for="hired">Hired Date: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="text" name="hired" v-model="form.hired" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('hired') }">
+                                  <has-error :form="form" field="hired"></has-error>
+                              </div>
+                                <div class="form-inline">
+                                  <h5 for="password">Password: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="password" name="password" v-model="form.password" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('password') }">
+                                  <has-error :form="form" field="password"></has-error>
+                              </div>
+                          </div>
+                         <div class="modal-footer">
+                        <button class="btn btn-success --danger" style="background:#000;" type="button">DELETE</button>
+                        <button type="submit" class="btn btn-warning" v-show="disabled == 1">UPDATE  <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
+                        <button @click="disabled = (disabled + 1) % 2" type="button" class="btn btn-success" v-show="disabled == 0">EDIT</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button> 
+                         </div>
+                      </form>
                 </div>
             </div>
           </div>
@@ -165,6 +211,7 @@
                  search: '',
                 spinner:false,
                 employees:[],
+                disabled:0,
                 pagination: {
                   sortBy: 'name'
                 },
@@ -236,13 +283,31 @@
                 this.getEmployee()
               })
             },
+            updateEmployee(){
+              this.form.put('api/user/'+this.form.id)
+              .then(()=>{
+                  this.spinner = true;
+                  $('#viewdetails').modal('hide')
+                     toast.fire(
+                        'Updated!',
+                        'Employee has been updated.',
+                        'success'
+                        )
+                       Fire.$emit('createdEmployee')
+                        setTimeout(()=> {this.spinner = false},1000)
+                    this.disabled = 0
+
+              })
+            },
             viewEmployee(item){
+              this.form.id = item.id
               this.form.name = item.name
               this.form.email = item.email
               this.form.type = item.type
               this.form.code = item.code
               this.form.dob = item.dob
               this.form.hired = item.hired
+              this.form.password = item.password
                $('#viewdetails').modal('show')
 
             }
@@ -277,5 +342,8 @@ table.v-table tbody td, table.v-table tbody th{
     border-color:#ffffff;
     padding: 5px;
 
+}
+.invalid-feedback{
+  margin-left: 11rem;
 }
 </style>

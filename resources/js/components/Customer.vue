@@ -95,11 +95,9 @@
                             </button>   
                         </div>
                        <form @submit.prevent="addCustomer()">
-                        <div class="modal-body">
+                        <div class="modal-body modal-add">
                              <input type="text" placeholder="NAME OF COMPANY" class="form-control" name="account_name"
                              :class="{'is-invalid': form.errors.has('account_name') }" v-model="form.account_name.toUpperCase()" @input="form.account_name = $event.target.value.toUpperCase()">
-                             <has-error :form="form" field="account_name"></has-error><br><hr>
-
                            <!--   <div class="row">
                               <div class="col-md-6">
                               <input type="text" placeholder="NATURE OF SERVICE" class="form-control" name="service" 
@@ -115,7 +113,7 @@
 
                                   <input type="text" placeholder="ADDRESS OF COMPANY" class="form-control" name="address" 
                                :class="{'is-invalid': form.errors.has('address') }" v-model="form.address">
-                              <br><has-error :form="form" field="address"></has-error><br>
+                          
                                <!-- <input type="text" placeholder="TYPE OF ACCOUNT" class="form-control" name="service" 
                               :class="{'is-invalid': form.errors.has('nature') }" v-model="form.nature">
                               <br><has-error :form="form" field="nature"></has-error><br> -->
@@ -123,43 +121,42 @@
                                      v-model="form.nature"
                                      option-value="code"
                                      option-text="name"
-                                     placeholder="TYPE OF ACCOUNT">
+                                     placeholder="TYPE OF ACCOUNT"
+                                     style="margin-top:8px;"
+                                     :class="{'is-invalid': form.errors.has('nature') }">
                                      </model-list-select>
-                                     <br>
+                                   
                                    <div class="row">
                               <div class="col-md-6">
                                 <input type="number" placeholder="TELEPHONE NUMBER" class="form-control" name="contact"
-                                 :class="{'is-invalid': form.errors.has('contact') }" v-model="form.contact"><br>
-                                 <has-error :form="form" field="contact"></has-error><br>
+                                 :class="{'is-invalid': form.errors.has('contact') }" v-model="form.contact">
                              </div>
                              <div class="col-md-6">
                             <input type="text" placeholder="FAX/MOBILE NUMBER" class="form-control" name="fax"
-                             :class="{'is-invalid': form.errors.has('fax') }"v-model="form.fax"><br>
-                             <has-error :form="form" field="fax"></has-error><br>
+                             :class="{'is-invalid': form.errors.has('fax') }"v-model="form.fax">
                              </div>
                            </div>
-                           <input type="email" placeholder="EMAIL ADDRESS" class="form-control" name="email" v-model="form.email">
-                           <br><br>
+                           <input type="email" placeholder="EMAIL ADDRESS" class="form-control" name="email" v-model="form.email" :class="{'is-invalid': form.errors.has('email') }">
+                           <br>
                             <div class="row">
                               <div class="col-md-6">
-                                  <input type="text" placeholder="CREDIT TERMS" class="form-control" name="term" 
+                                  <input type="text" placeholder="CREDIT TERMS" class="form-control" name="term"
                              :class="{'is-invalid': form.errors.has('term') }"v-model="form.term">
                                 </div>
                                 <div class="col-md-6">
-                                  <input type="number" placeholder="CREDIT LIMIT" class="form-control" name="limit" 
+                                  <input type="number" placeholder="CREDIT LIMIT" class="form-control" name="limit" style="width:100%;" 
                              :class="{'is-invalid': form.errors.has('limit') }"v-model="form.limit">
                                 </div>
                            </div>
                            <br>
                             <h5>NOTES: </h5>
-                            <textarea style="height:150px" class="form-control" v-model="form.notes"  :disabled="disabled == 0 ? true : false">
+                            <textarea style="height:150px"  v-model="form.notes">
                                 
                             </textarea>                          
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
-                        <button v-show="editmode" type="submit" class="btn btn-success">UPDATE</button>
-                        <button v-show="!editmode" type="submit" class="btn btn-primary">SUBMIT <i v-if="spinner"class="fa fa-spinner fa-spin"></i></button>
+                        <button type="submit" class="btn btn-primary">SUBMIT <i v-if="spinner"class="fa fa-spinner fa-spin"></i></button>
                      </div>
                      </form>
                 </div>
@@ -168,23 +165,68 @@
           <div class="modal fade" id="viewdetails" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <div class="modal-header">
-                          <!--   <h5 class="modal-title" id="addNewLabel">View Transaction</h5> -->
-                          <img src="/assets/images/user.jpg" style="width:100px; height:100px;"><h4 style="margin-top:50px;">{{form.name}}<br> {{form.code}}</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>   
-                        </div>
+                      <form @submit.prevent="updateCustomer()">
                         <div class="modal-body">
-                            <h5><b>EMAIL:</b> {{form.email}}</h5>
-                            <h5><b>TYPE:</b> {{form.type | capitalize}}</h5>
-                            <h5><b>DATE OF BIRTH:</b> {{form.dob | capitalize | myDate}}</h5>
-                            <h5><b>HIRED DATE:</b> {{form.hired | capitalize | myDate}}</h5>
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>  
+                            <br>
+                            <div class="form-inline">
+                              <h5 for="account_name">COMPANY NAME: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <input type="text" name="account_name"  class="form-control" :disabled="disabled == 0 ? true : false"
+                              :class="{'is-invalid': form.errors.has('account_name')}" v-model="form.account_name">
+                               
+                            </div>
+                            <div class="form-inline">
+                              <h5 for="address">COMPANY ADDRESS: &nbsp;&nbsp;</h5>
+                              <input type="text" name="address" v-model="form.address" class="form-control" :disabled="disabled == 0 ? true : false"
+                              :class="{'is-invalid': form.errors.has('address') }">
+                            </div>
+                          <div class="form-inline">
+                            <h5 for="nature">TYPE OF COMPANY: &nbsp;&nbsp;</h5>
+                             <select v-model="form.nature" name="nature" class="form-control" :disabled="disabled == 0 ? true : false" 
+                             :class="{'is-invalid': form.errors.has('address') }">
+                                <option value="PERSONAL">PERSONAL</option>
+                                 <option value="CORPORATE">CORPORATE</option>
+                                 <option value="RESELLER">RESELLER</option>
+                             </select>
+                           </div>
+                            <div class="form-inline">
+                              <h5 for="contact">TELEPHONE NUMBER: &nbsp;</h5>
+                            <input type="text" name="contact" v-model="form.contact" class="form-control" :disabled="disabled == 0 ? true : false">
+                          </div>
+                           <div class="form-inline">
+                              <h5 for="fax">FAX/MOBILE NUMBER:&nbsp;</h5>
+                            <input type="text" name="fax" v-model="form.fax" class="form-control" :disabled="disabled == 0 ? true : false">
+                          </div>
+                           <div class="form-inline">
+                            <h5 for="email">EMAIL-ADDRESS: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                            <input type="email" name="email" v-model="form.email" class="form-control" :disabled="disabled == 0 ? true : false" 
+                            :class="{'is-invalid': form.errors.has('address') }">
+                          </div>
+                          <div class="form-inline">
+                            <h5 for="term">CREDIT TERM: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                            <input type="text" name="term" v-model="form.term" class="form-control" :disabled="disabled == 0 ? true : false"
+                            :class="{'is-invalid': form.errors.has('address') }">
+                          </div>
+                          <div class="form-inline">
+                            <h5 for="limit">CREDIT LIMIT: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                            <input type="number" name="limit" v-model="form.limit" class="form-control" :disabled="disabled == 0 ? true : false"
+                            :class="{'is-invalid': form.errors.has('limit') }">
+                          </div>
+                          <h5>NOTES: </h5>
+                          <textarea v-model="form.notes"  :disabled="disabled == 0 ? true : false">
+                                    
+                          </textarea>
                         </div>
                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button v-show="editmode" type="submit" class="btn btn-success">UPDATE</button>
+                         <button class="btn btn-success --danger" type="button" style="background:#000;">DELETE</button>
+                        <button type="submit" class="btn btn-warning"  v-show="disabled == 1" >UPDATE  <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
+                        <button @click="disabled = (disabled + 1) % 2" type="button" class="btn btn-success" v-show="disabled == 0">EDIT</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button> 
+                        
                      </div>
+                   </form>
               
                 </div>
             </div>
@@ -200,6 +242,7 @@
                  search: '',
                  spinner:false,
                  customers:[],
+                 disabled:0,
                 pagination: {
                   sortBy: 'name'
                  },
@@ -273,24 +316,39 @@
               setTimeout(()=> {this.spinner = false},1000)
             },
             viewCustomer(customer){
+              this.form.id = customer.id
               this.form.account_name = customer.account_name
               this.form.address = customer.address
               this.form.contact = customer.contact
+              this.form.email = customer.email
               this.form.nature = customer.nature
-              this.form.firstname = customer.firstname
-              this.form.middlename = customer.middlename
-              this.form.lastname = customer.lastname
-              this.form.company = customer.company
-              this.form.tin = customer.tin
-              this.form.sss = customer.sss
-              this.form.secreg = customer.secreg
-              this.form.assignsales = customer.assignsales
+              this.form.limit = customer.limit
               this.form.term = customer.term
+              this.form.fax = customer.fax
+              this.form.notes = customer.notes
                 $('#viewdetails').modal('show')
 
             },
             getCustomer(){
               axios.get('api/customer').then(({data}) => this.customers = data);
+            },
+            updateCustomer(){
+              this.form.put('api/customer/'+this.form.id)
+                .then(()=>{
+                  this.spinner = false
+                  $('#viewdetails').modal('hide')
+                   toast.fire(
+                        'Updated!',
+                        'Customer has been updated.',
+                        'success'
+                        )
+                       Fire.$emit('createdCustomer')
+                        setTimeout(()=> {this.spinner = false},1000)
+                    this.disabled = 0
+                })
+                .catch(()=>{
+                  $('#viewdetails').modal('show')
+                })
             },
             createdCustomer(){
               this.getCustomer();
@@ -333,7 +391,23 @@ table.v-table tbody td, table.v-table tbody th{
     padding: 5px;
 
 }
+
+.modal-add input,.modal-add textarea,.modal-add select{
+  margin-top:8px;
+}
 ::placeholder{
  color:rgba(191, 191, 191, 0.87);
+}
+.form-control{
+  min-height: 20px !important;
+  height: 29px !important;
+}
+.ui.selection.dropdown[data-v-3a0c7bea]{
+  min-height: 20px;
+  height: 30px;
+  font-size: 15px !important;
+}
+.invalid-feedback{
+  margin-left: 11rem;
 }
 </style>
