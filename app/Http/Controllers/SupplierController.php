@@ -93,9 +93,29 @@ class SupplierController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(Request $request,$id)
     {
         //
+        $supplier = Supplier::findOrFail($id);
+           $this->validate($request,[
+            'company' => 'required',
+            'address' => 'required',
+            'tel' => 'required|numeric',
+            'fax' => 'numeric',
+            'mobile' => 'numeric',
+            'email' => 'required|email',
+            'notes' => 'required|max:150',
+        ]);
+           $supplier->update([
+            'user_id' => Auth::user()->id,
+            'company' => $request['company'],
+            'address' => $request['address'],
+            'tel' => $request['tel'],
+            'fax' => $request['fax'],
+            'email' => $request['email'],
+            'mobile' => $request['mobile'],
+            'notes' => $request['notes']
+           ]);
     }
 
     /**

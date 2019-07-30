@@ -97,7 +97,7 @@
                             </button>   
                         </div>
                        <form @submit.prevent="createSupplier()" >
-                        <div class="modal-body">
+                        <div class="modal-body modal-add">
                           <input type="text" class="form-control" name="company" placeholder="ENTER COMPANY NAME" v-model="form.company">
                           <br>
                           <input type="text" class="form-control" name="address" placeholder="ENTER COMPANY ADDRESS" v-model="form.address">
@@ -132,21 +132,54 @@
                     <div class="modal-content">
                         <div class="modal-header">
                           <!--   <h5 class="modal-title" id="addNewLabel">View Transaction</h5> -->
-                          <img src="/assets/images/user.jpg" style="width:100px; height:100px;"><h4 style="margin-top:50px;">{{form.name}}<br> {{form.code}}</h4>
+                        
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>   
                         </div>
+                        <form @submit.prevent = "updateSupplier()">
                         <div class="modal-body">
-                            <h5><b>EMAIL:</b> {{form.email}}</h5>
-                            <h5><b>TYPE:</b> {{form.type | capitalize}}</h5>
-                            <h5><b>DATE OF BIRTH:</b> {{form.dob | capitalize | myDate}}</h5>
-                            <h5><b>HIRED DATE:</b> {{form.hired | capitalize | myDate}}</h5>
+                            <div class="form-inline">
+                                  <h5 for="company">COMPANY NAME: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="text" name="company" v-model="form.company" class="form-control" :disabled="disabled == 0 ? true : false"
+                                  :class="{'is-invalid': form.errors.has('company') }">
+                              </div>
+
+                              <div class="form-inline">
+                                  <h5 for="address">COMPANY ADDRESS: &nbsp;&nbsp;</h5>
+                                  <input type="text" name="address" v-model="form.address" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('address') }">
+                              </div>
+
+                              <div class="form-inline">
+                                  <h5 for="tel">TELEPHONE NUMBER: &nbsp;</h5>
+                                  <input type="text" name="tel" v-model="form.tel" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('tel') }">
+                              </div>
+
+                              <div class="form-inline">
+                                  <h5 for="mobile">MOBILE NUMBER: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="text" name="mobile" v-model="form.mobile" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('mobile') }">
+                              </div>
+
+                              <div class="form-inline">
+                                  <h5 for="fax">FAX NUMBER: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="text" name="fax" v-model="form.fax" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('fax') }">
+                              </div>
+                                <div class="form-inline">
+                                  <h5 for="email">EMAIL: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="email" name="email" v-model="form.email" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('email') }">
+                              </div>
+                              <h5>NOTES: </h5>
+                          <textarea v-model="form.notes"  :disabled="disabled == 0 ? true : false">
+                                    
+                          </textarea>
                         </div>
                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          <button class="btn btn-success --danger" style="background:#000;" type="button">DELETE</button>
+                        <button type="submit" class="btn btn-warning" v-show="disabled == 1">UPDATE  <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
+                        <button @click="disabled = (disabled + 1) % 2" type="button" class="btn btn-success" v-show="disabled == 0">EDIT</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button> 
                      </div>
-              
+                </form>
                 </div>
             </div>
           </div>
@@ -160,6 +193,7 @@
                  search: '',
                 spinner:false,
                 suppliers:[],
+                disabled:0,
                 pagination: {
                   sortBy: 'name'
                 },
@@ -232,14 +266,31 @@
               })
             },
             viewEmployee(item){
-              this.form.name = item.name
+              this.form.id = item.id
+              this.form.company = item.company
+              this.form.address = item.address
+              this.form.tel = item.tel
+              this.form.fax = item.fax
+              this.form.mobile = item.mobile
               this.form.email = item.email
-              this.form.type = item.type
-              this.form.code = item.code
-              this.form.dob = item.dob
-              this.form.hired = item.hired
+              this.form.notes = item.notes
                $('#viewdetails').modal('show')
 
+            },
+            updateSupplier(){
+              this.form.put('api/supplier/'+this.form.id)
+              .then(()=>{
+                 this.spinner = true;
+                  $('#viewdetails').modal('hide')
+                     toast.fire(
+                        'Updated!',
+                        'Supplier has been updated.',
+                        'success'
+                        )
+                       Fire.$emit('createdSuppier')
+                        setTimeout(()=> {this.spinner = false},1000)
+                    this.disabled = 0
+              })
             }
         }
     };
@@ -301,7 +352,7 @@ textarea{
   min-height: 20px !important;
   height: 29px !important;
 }
-.modal-body .form-control{
+.modal-add .form-control{
   margin-top: 10px;
 }
 input[type=number]{
