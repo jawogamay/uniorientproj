@@ -326,7 +326,7 @@
                   $('#viewdetails').modal('hide')
                      toast.fire(
                         'Updated!',
-                        'Transaction has been updated.',
+                        'Passenger has been updated.',
                         'success'
                         )
                        Fire.$emit('createdPassenger')
