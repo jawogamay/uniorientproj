@@ -119,7 +119,6 @@
     export default{
         data(){
             return{
-              count:0,
                  search: '',
                  spinner:false,
                   editmode: false,

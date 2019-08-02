@@ -128,7 +128,7 @@
                                    
                                    <div class="row">
                               <div class="col-md-6">
-                                <input type="number" placeholder="TELEPHONE NUMBER" class="form-control" name="contact"
+                                <input type="text" placeholder="TELEPHONE NUMBER" class="form-control" name="contact"
                                  :class="{'is-invalid': form.errors.has('contact') }" v-model="form.contact">
                              </div>
                              <div class="col-md-6">
@@ -144,7 +144,7 @@
                              :class="{'is-invalid': form.errors.has('term') }"v-model="form.term">
                                 </div>
                                 <div class="col-md-6">
-                                  <input type="number" placeholder="CREDIT LIMIT" class="form-control" name="limit" style="width:100%;" 
+                                  <input type="text" placeholder="CREDIT LIMIT" class="form-control" name="limit" style="width:100%;" 
                              :class="{'is-invalid': form.errors.has('limit') }"v-model="form.limit">
                                 </div>
                            </div>
@@ -211,7 +211,7 @@
                           </div>
                           <div class="form-inline">
                             <h5 for="limit">CREDIT LIMIT: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
-                            <input type="number" name="limit" v-model="form.limit" class="form-control" :disabled="disabled == 0 ? true : false"
+                            <input type="text" name="limit" v-model="form.limit" class="form-control" :disabled="disabled == 0 ? true : false"
                             :class="{'is-invalid': form.errors.has('limit') }">
                           </div>
                           <h5>NOTES: </h5>
