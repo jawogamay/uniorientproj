@@ -19,6 +19,7 @@ import PO from './components/PO'
 import CHV from './components/CHV'
 import CV from './components/CV'
 import SOA from './components/SOA'
+import StartFiles from './components/StartingFiles'
 import SalesAgreement from './components/SalesAgreement'
 import StartBooklet from './components/StartBooklet'
 import VueRouter from 'vue-router'
@@ -74,14 +75,15 @@ let routes = [
     {path:'/itemcode',component:ItemCode},
     {path:'/petty',component:PettyCash},
     {path:'/salesagreement',component:SalesAgreement},
-    {path:'/startbooklet',component:StartBooklet},
+    /*{path:'/startbooklet',component:StartBooklet},
     {path:'/or',component:OR},
     {path:'/ar',component:AR},
     {path:'/pr',component:PR},
     {path:'/po',component:PO},
     {path:'/chv',component:CHV},
     {path:'/cv',component:CV},
-    {path:'/soa',component:SOA}
+    {path:'/soa',component:SOA}*/
+    {path:'/startfiles',component:StartBooklet}
 
 
 ]

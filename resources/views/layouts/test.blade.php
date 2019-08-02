@@ -100,6 +100,9 @@ th{
 .form-control,label{
     font-size:15px;
 }
+.btn-success.disabled:hover, .btn-success:hover{
+  background: #03317a;
+}
 .modal ::placeholder{
  color:rgba(191, 191, 191, 0.87);
 }
@@ -321,7 +324,8 @@ tbody tr:nth-of-type(odd) {
                                 <li><a href="/booklet" class="dropdown-item">SA BOOKLET SERIES</a></li>
                                 <li><a href="/employee" class="dropdown-item">USER</a></li>
                                 <li><a href="/supplier" class="dropdown-item">SUPPLIER</a></li>
-                                <li><a href="#" class="has-arrow" href="#" aria-expanded="false">
+                                <li><a href="/startfiles" class="dropdown-item">START SERIES</a></li>
+                            {{--     <li><a href="#" class="has-arrow" href="#" aria-expanded="false">
                                     <span class="hide-menu">START SERIES</span></a>
                                     <ul aria-expanded="false" class="collapse left-nanv">
                                          <li><a href="/petty">BOX PETTY CASH</a></li>
@@ -334,7 +338,7 @@ tbody tr:nth-of-type(odd) {
                                          <li><a href="/chv">CHV</a></li>
                                          <li><a href="/cv">CV</a></li>
                                     </ul>
-                                </li>
+                                </li> --}}
                             </ul>
                           
                         </li>

@@ -8,6 +8,10 @@ class AirlineRate extends Model
 {
     //
     protected $fillable = [
-        'rate','date'
+        'rate','date','user_id','day'
     ];
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
+    
 }

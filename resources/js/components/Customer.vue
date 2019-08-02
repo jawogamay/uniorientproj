@@ -148,8 +148,8 @@
                              :class="{'is-invalid': form.errors.has('limit') }"v-model="form.limit">
                                 </div>
                            </div>
-                           <br>
-                            <h5>NOTES: </h5>
+                      
+                            <h5 style="margin-top:8px;">NOTES: </h5>
                             <textarea style="height:150px"  v-model="form.notes">
                                 
                             </textarea>                          

@@ -97,7 +97,7 @@
                             <label>Travel Consultant:</label><select class="form-control" name="name_assign" v-model="form.name_assign">
                                 <option value="" disabled selected> -Assign Travel Consultant - </option>
                                 <option v-for="travelconsultant in travelconsultants" :value="travelconsultant.id">
-                                  {{travelconsultant.name}}
+                                  {{travelconsultant.name | capitalize}}
                                 </option>
                             </select>
                            
@@ -119,6 +119,7 @@
     export default{
         data(){
             return{
+              count:0,
                  search: '',
                  spinner:false,
                   editmode: false,

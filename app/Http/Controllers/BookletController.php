@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Booklet;
 use App\BookletStart;
 use App\SaleAgreement;
+use App\StartFile;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -77,7 +78,7 @@ class BookletController extends Controller
      $count = Booklet::count();
      $user =(int) $request['name_assign'];
     if($count==0){
-        $pluck = BookletStart::latest()->pluck('startbooklet');
+        $pluck = StartFile::latest()->pluck('startbooklet');
         $f1 = (int)$pluck[0];
         $f2 = (int)$f1+50;
         $bookNum = $f1."-".$f2;

@@ -16,7 +16,9 @@ class CreateAirlineRatesTable extends Migration
         Schema::create('airline_rates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('date');
+            $table->date('day')->nullable();
             $table->double('rate');
+            $table->unsignedInteger('user_id');
             $table->boolean('deletestatus')->default(FALSE);
             $table->timestamps();
         });

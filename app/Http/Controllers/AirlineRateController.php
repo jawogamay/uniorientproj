@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\AirlineRate;
+use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+/*use Illuminate\Support\Carbon;*/
 class AirlineRateController extends Controller
 {
     /**
@@ -12,10 +14,14 @@ class AirlineRateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+     public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     public function index()
     {
         //
-        return AirlineRate::latest()->get();
+        return AirlineRate::latest()->with('user')->get();
     }
 
     /**
@@ -26,6 +32,9 @@ class AirlineRateController extends Controller
     public function create()
     {
         //
+    }
+    public function count(){
+        AirlineRate::where('date','==',Carbon::now())->get();
     }
 
     /**
@@ -39,7 +48,9 @@ class AirlineRateController extends Controller
         //
         return AirlineRate::create([
             'rate' => $request['rate'],
-            'date' => NOW()
+            'date' => NOW(),
+            'day' => NOW(),
+            'user_id' => Auth::user()->id
         ]);
     }
 
@@ -72,9 +83,18 @@ class AirlineRateController extends Controller
      * @param  \App\AirlineRate  $airlineRate
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, AirlineRate $airlineRate)
+    public function update(Request $request, $id)
     {
         //
+        $airline = AirlineRate::findOrFail($id);
+        $airline->update([
+             
+            'rate' => $request['rate'],
+            'date' => $request['date'],
+            'day' => $request['day'],
+            'user_id' => Auth::user()->id
+       
+        ]);
     }
 
     /**

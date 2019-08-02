@@ -26,10 +26,13 @@ Route::apiResources(['supplier' => 'SupplierController']);
 Route::apiResources(['bookletstart' => 'BookletStartController']);
 Route::apiResources(['rates' => 'AirlineRateController']);
 Route::apiResources(['itemcode' => 'ItemCodeController']);
-Route::apiResources(['soa' => 'SOAController']);
+Route::apiResources(['start' => 'StartFileController']);
+Route::get('countStart','StartFileController@count');
+Route::get('countRate','AirlineRateController@countRate');
+/*Route::apiResources(['soa' => 'SOAController']);
 Route::apiResources(['cv' => 'CVController']);
 Route::apiResources(['chv' => 'CHVController']);
-Route::apiResources(['ar' => 'ARController']);
+Route::apiResources(['ar' => 'ARController']);*/
 Route::get('getTC','BookletController@getTC');
 /*Route::get('search','PassengerController@autocomplete');
 Route::get('getAccountName','PassengerController@getAccountName');*/

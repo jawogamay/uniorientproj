@@ -44,7 +44,7 @@
        <template slot="headers" slot-scope="props" v>
   <tr style="height:30px;background:#000;">
     <th>
-      <button class="btn btn-warning" @click="newModal">ADD<v-icon color="#fff">add_box</v-icon></button>
+      <button class="btn btn-warning" @click="newModal">ADD &nbsp;<v-icon color="#fff">add_box</v-icon></button>
     </th>
     <th 
     v-for="header in props.headers"
@@ -59,11 +59,13 @@
   </tr>
 </template>
       <template v-slot:items="props">
-         <td class="text-xs-left"><a href="#" class="btn btn-success">View</a></td>
+        <td class="text-xs-left"><button class="btn btn-success --primary" @click="viewAirlaneRate(props.item)">VIEW <i class="fa fa-eye"></i></button>
+     </td>
         <td class="text-xs-left">{{props.item.date | myDate | capitalize}}</td>
-
+        <td class="text-xs-left">{{props.item.day | myDate | capitalize}}</td>
         <td class="text-xs-left" >PHP {{ props.item.rate |currency}}</span></td>
-        
+        <td class="text-xs-left">{{ props.item.user.name }}</td>
+        <td class="text-xs-left">{{ props.item.user.name }}</td>
       <!--   <td class="text-xs-left">{{ props.item.verified }}</td>
         <td class="text-xs-left">{{ props.item.notes }}</td> -->
        
@@ -85,16 +87,14 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">ADD AIRLINE RATE</h5>
-                            <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update User's Info</h5>
+                            <h5 class="modal-title"  id="addNewLabel">ADD AIRLINE RATE</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>   
                         </div>
-                       <form @submit.prevent="editmode ? updateUser() :createRate()">
-                        <div class="modal-body" style="margin:0 auto; text-align:center;">
-
-                            <input type="text" class="form-control" placeholder="ENTER RATE" v-model="form.rate" name="rate" style="width:30%;">
+                       <form @submit.prevent="createRate()">
+                        <div class="modal-body">
+                            <input type="text" class="form-control" placeholder="ENTER RATE" v-model="form.rate" name="rate">
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
@@ -105,6 +105,51 @@
                 </div>
             </div>
             </div>
+             <div class="modal fade" id="viewdetails" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      
+                        <form @submit.prevent = "updateAirline()">
+                          <div class="modal-body">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                            <br><br>
+                              <div class="form-inline">
+                                  <h5 for="rate">AIRLINE RATE:&nbsp;</h5>
+                                  <input type="text" name="rate" v-model="form.rate" class="form-control" :disabled="disabled == 0 ? true : false"
+                                  :class="{'is-invalid': form.errors.has('rate') }">
+                              </div>
+                                <div class="form-inline">
+                                  <h5 for="date">DATE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="date" name="date" v-model="form.date" class="form-control" :disabled="disabled == 0 ? true : false"
+                                  :class="{'is-invalid': form.errors.has('date') }">
+                              </div>
+                                <div class="form-inline">
+                                  <h5 for="day">DAY: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                                  <input type="date" name="day" v-model="form.day" class="form-control" :disabled="disabled == 0 ? true : false"
+                                  :class="{'is-invalid': form.errors.has('day') }">
+                              </div>
+                             <!--    <div class="form-inline">
+                                  <h5 for="input">INPUTTED BY: &nbsp;</h5>
+                                  <input type="text" name="input" v-model="form.input" class="form-control" :disabled="disabled == 0 ? true : false"
+                                  :class="{'is-invalid': form.errors.has('input') }">
+                              </div>
+                                <div class="form-inline">
+                                  <h5 for="verify">VERIFIED BY: &nbsp;</h5>
+                                  <input type="text" name="verify" v-model="form.verify" class="form-control" :disabled="disabled == 0 ? true : false"
+                                  :class="{'is-invalid': form.errors.has('verify') }">
+                              </div>
+ -->                          </div>
+                         <div class="modal-footer">
+                        <button class="btn btn-success --danger" style="background:#000;" type="button">DELETE</button>
+                        <button type="submit" class="btn btn-warning" v-show="disabled == 1">UPDATE  <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
+                        <button @click="disabled = (disabled + 1) % 2" type="button" class="btn btn-success" v-show="disabled == 0">EDIT</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button> 
+                         </div>
+                      </form>
+                </div>
+            </div>
+          </div>
         </div>
       </v-app>
 </template>
@@ -114,15 +159,18 @@
             return{
                  search: '',
                rates:[],
-          
-
+                count:0,
                pagination:{
                 sortBy:'name'
                },
+               disabled:0,
         headers: [
          
            {text: 'DATE', value:'date',sortable:!1},
+          {text: 'DAY', value:'date',sortable:!1},
           { text: 'AIRLINE RATE', value: 'airlane',sortable:!1 },
+           {text: 'VERIFIED BY', value:'date',sortable:!1},
+            {text: 'INPUTTED BY', value:'date',sortable:!1},
           
      /*     { text: 'USD TO PHP', value: 'usdphp' },
           { text: 'VERIFIED BY', value: 'verified' },
@@ -134,8 +182,10 @@
                 form: new Form({
                     id: '',
                     rate:'',
-
-                   
+                    date:'',
+                    day:'',
+                    input:'',
+                    verify:'',
                 })
             }
         
@@ -143,6 +193,7 @@
         mounted(){
           this.getRate();
           this.createdRate();
+          this.countRate();
       
         },
         methods: {
@@ -165,14 +216,42 @@
                  setTimeout(()=> {this.spinner = false},1000)
               })
             },
+            countRate(){
+              axios.get('api/countRate').then(({data})=> this.count = data)
+            },
             getRate(){
               axios.get('api/rates').then(({data})=> this.rates = data)
+            },
+            updateAirline(){
+              this.form.put('api/rates/'+this.form.id)
+              .then(()=>{
+                 this.spinner = true;
+                  $('#viewdetails').modal('hide')
+                     toast.fire(
+                        'Updated!',
+                        'Airline Rate has been updated.',
+                        'success'
+                        )
+                       Fire.$emit('createdRate')
+                        setTimeout(()=> {this.spinner = false},1000)
+                    this.disabled = 0
+              })
             },
             createdRate(){
               this.getRate()
               Fire.$on('createdRate',()=>{
                 this.getRate()
               })
+
+            },
+            viewAirlaneRate(item){
+              this.form.id = item.id
+              this.form.rate = item.rate
+              this.form.date = item.date
+              this.form.day = item.day
+              this.form.input = item.user.name
+              this.form.verify = item.user.name
+               $('#viewdetails').modal('show')
             }
         }
     };
