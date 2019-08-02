@@ -98,21 +98,21 @@
                         </div>
                        <form @submit.prevent="createSupplier()" >
                         <div class="modal-body modal-add">
-                          <input type="text" class="form-control" name="company" placeholder="ENTER COMPANY NAME" v-model="form.company">
+                          <input type="text" class="form-control" name="company" placeholder="COMPANY NAME" v-model="form.company">
                           <br>
-                          <input type="text" class="form-control" name="address" placeholder="ENTER COMPANY ADDRESS" v-model="form.address">
+                          <input type="text" class="form-control" name="address" placeholder="COMPANY ADDRESS" v-model="form.address">
                           <div class="row">
                             <div class="col-md-6">
-                                <input type="number" class="form-control" placeholder="ENTER TELEPHONE NUMBER" name="tel" v-model="form.tel">
+                                <input type="text" class="form-control" placeholder="TELEPHONE NUMBER" name="tel" v-model="form.tel">
                             </div>
 
                             <div class="col-md-6">
-                                <input type="number" class="form-control" placeholder="ENTER FAX NUMBER" name="fax" v-model="form.fax">
+                                <input type="text" class="form-control" placeholder="FAX NUMBER" name="fax" v-model="form.fax">
                             </div>
                           </div>
-                          <input type="number" class="form-control" placeholder="ENTER MOBILE NUMBER" name="mobile" v-model="form.mobile">
+                          <input type="text" class="form-control" placeholder="MOBILE NUMBER" name="mobile" v-model="form.mobile">
                           <br>
-                          <input type="email" class="form-control" placeholder="ENTER EMAIL ADDRESS" name="email" v-model="form.email">
+                          <input type="email" class="form-control" placeholder="EMAIL ADDRESS" name="email" v-model="form.email">
                           <br>
                           <label class="mt-2"> NOTES: </label>   
                            <textarea name="notes" v-model="form.notes">  

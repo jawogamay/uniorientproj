@@ -192,7 +192,7 @@ tbody tr:nth-of-type(odd) {
   height: 31px !important;
 }*/
 .ui.search.dropdown > .text[data-v-3a0c7bea]{
-  left: 0px;
+  left: -4px;
   top:-3px !important;
 }
 .modal-body [disabled]{
