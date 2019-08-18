@@ -196,7 +196,7 @@
                             </button>  
                             <br>
                             <div class="form-inline">
-                              <h5 for="soa">SOA: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <h5 for="soa">SOA: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp;</h5>
                               <input type="text" name="soa"  class="form-control" :disabled="disabled == 0 ? true : false"
                               :class="{'is-invalid': form.errors.has('soa')}" v-model="form.soa">
                             </div>
@@ -207,7 +207,7 @@
                                
                             </div>
                             <div class="form-inline">
-                              <h5 for="payment">PAYMENT: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <h5 for="payment">PAYMENT: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</h5>
                               <input type="text" name="payment"  class="form-control" :disabled="disabled == 0 ? true : false"
                               :class="{'is-invalid': form.errors.has('payment')}" v-model="form.payment">
                             </div>
