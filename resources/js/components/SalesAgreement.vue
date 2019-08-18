@@ -196,52 +196,22 @@
                             </button>  
                             <br>
                             <div class="form-inline">
-                              <h5 for="account_name">COMPANY NAME: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <h5 for="soa">SOA: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <input type="text" name="soa"  class="form-control" :disabled="disabled == 0 ? true : false"
+                              :class="{'is-invalid': form.errors.has('soa')}" v-model="form.soa">
+                            </div>
+                            <div class="form-inline">
+                              <h5 for="account_name">CUSTOMER ACCOUNT: &nbsp;</h5>
                               <input type="text" name="account_name"  class="form-control" :disabled="disabled == 0 ? true : false"
                               :class="{'is-invalid': form.errors.has('account_name')}" v-model="form.account_name">
                                
                             </div>
                             <div class="form-inline">
-                              <h5 for="address">COMPANY ADDRESS: &nbsp;&nbsp;</h5>
-                              <input type="text" name="address" v-model="form.address" class="form-control" :disabled="disabled == 0 ? true : false"
-                              :class="{'is-invalid': form.errors.has('address') }">
+                              <h5 for="payment">PAYMENT: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <input type="text" name="payment"  class="form-control" :disabled="disabled == 0 ? true : false"
+                              :class="{'is-invalid': form.errors.has('payment')}" v-model="form.payment">
                             </div>
-                          <div class="form-inline">
-                            <h5 for="nature">TYPE OF COMPANY: &nbsp;&nbsp;</h5>
-                             <select v-model="form.nature" name="nature" class="form-control" :disabled="disabled == 0 ? true : false" 
-                             :class="{'is-invalid': form.errors.has('address') }">
-                                <option value="PERSONAL">PERSONAL</option>
-                                 <option value="CORPORATE">CORPORATE</option>
-                                 <option value="RESELLER">RESELLER</option>
-                             </select>
-                           </div>
-                            <div class="form-inline">
-                              <h5 for="contact">TELEPHONE NUMBER: &nbsp;</h5>
-                            <input type="text" name="contact" v-model="form.contact" class="form-control" :disabled="disabled == 0 ? true : false">
-                          </div>
-                           <div class="form-inline">
-                              <h5 for="fax">FAX/MOBILE NUMBER:&nbsp;</h5>
-                            <input type="text" name="fax" v-model="form.fax" class="form-control" :disabled="disabled == 0 ? true : false">
-                          </div>
-                           <div class="form-inline">
-                            <h5 for="email">EMAIL-ADDRESS: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
-                            <input type="email" name="email" v-model="form.email" class="form-control" :disabled="disabled == 0 ? true : false" 
-                            :class="{'is-invalid': form.errors.has('address') }">
-                          </div>
-                          <div class="form-inline">
-                            <h5 for="term">CREDIT TERM: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
-                            <input type="text" name="term" v-model="form.term" class="form-control" :disabled="disabled == 0 ? true : false"
-                            :class="{'is-invalid': form.errors.has('address') }">
-                          </div>
-                          <div class="form-inline">
-                            <h5 for="limit">CREDIT LIMIT: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
-                            <input type="text" name="limit" v-model="form.limit" class="form-control" :disabled="disabled == 0 ? true : false"
-                            :class="{'is-invalid': form.errors.has('limit') }">
-                          </div>
-                          <h5>NOTES: </h5>
-                          <textarea v-model="form.notes"  :disabled="disabled == 0 ? true : false">
-                                    
-                          </textarea>
+    
                         </div>
                      <div class="modal-footer">
                          <button class="btn btn-success --danger" type="button" style="background:#000;">DELETE</button>
@@ -295,6 +265,7 @@
                 form: new Form({
                     id: '',
                     status:'',
+                    soa:'',
                     notes:'',
                     account_name:'',
                     passenger_name:'',
@@ -368,15 +339,10 @@
             },
             viewCustomer(customer){
               this.form.id = customer.id
-              this.form.account_name = customer.account_name
-              this.form.address = customer.address
-              this.form.contact = customer.contact
-              this.form.email = customer.email
-              this.form.nature = customer.nature
-              this.form.limit = customer.limit
-              this.form.term = customer.term
-              this.form.fax = customer.fax
-              this.form.notes = customer.notes
+              this.form.account_name = customer.customer.account_name
+              this.form.passenger_name = customer.passenger_name
+              this.form.soa = customer.soa
+              this.form.payment = customer.payment
                 $('#viewdetails').modal('show')
 
             },
