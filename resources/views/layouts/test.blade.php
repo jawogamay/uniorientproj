@@ -45,6 +45,40 @@
 .page-wrapper,.card-header,.card-title,.form-control,label { 
     font-family: Inconsalata;
 }
+.multiselect *{
+  text-transform: uppercase;
+  font-family: Inconsalata;
+  font-size:15px;
+}
+.multiselect__single{
+  margin-top:3px;
+  margin-bottom: 3px;
+}
+.multiselect__placeholder{
+      color: #d2d2d2;
+    display: inline-block;
+    margin-bottom: 3px;
+    padding-top: 2px;
+}
+.multiselect--above .multiselect__content-wrapper{
+ 
+border: 1px solid #000000;
+
+}
+.multiselect__tags{
+  min-height: 10px;
+  padding: 0px 40px 0 10px;
+  border: 1px solid #ced4da;
+}
+.multiselect{
+  color:;
+}
+.multiselect__select {
+  height: 30px;
+}
+.ui.selection.dropdown .menu > .item[data-v-3a0c7bea]{
+  text-transform: uppercase;
+}
 .my-data-table {
   display: flex;
   flex-direction: column;
@@ -54,6 +88,10 @@
 }
 .my-data-table .v-datatable.v-table {
   order: -1;
+}
+.multiselect--disabled,.multiselect--disabled .multiselect__select{
+  background: #ffffff00;
+
 }
 .fa-eye{
     color:#ffffff !important;
@@ -94,6 +132,8 @@ th{
 }
 .ui.search.selection.dropdown > input.search[data-v-3a0c7bea],.ui.search.selection.dropdown > input.search[data-v-3a0c7bea]{
     font-family: Inconsalata;
+    left: -4px;
+    top: -3px;
     font-size: 15px;
 }
 
@@ -287,7 +327,7 @@ tbody tr:nth-of-type(odd) {
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false"><span class="hide-menu">AIRLINE TICKETS |</span></a>
                             <ul aria-expanded="false" class="collapse">
-                                  <li><a href="ui-cards.html" class="dropdown-item">IATA - AMADEUS</a></li>
+                                  <li><a href="/amadeus" class="dropdown-item">IATA - AMADEUS</a></li>
                                 <li><a href="ui-user-card.html" class="dropdown-item">IATA - SABRE</a></li>
                                 <li><a href="ui-buttons.html" class="dropdown-item">PAL - DOM</a></li>
                                 <li><a href="ui-modals.html" class="dropdown-item">SKYLINER</a></li>

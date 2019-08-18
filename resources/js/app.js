@@ -12,20 +12,24 @@ import Supplier from './components/Supplier'
 import ItemCode from './components/ItemCode'
 import PettyCash from './components/PettyCash'
 import Dashboard from './components/Home'
-import OR from './components/OfficialReciept'
+/*import OR from './components/OfficialReciept'
 import AR from './components/AR'
 import PR from './components/PR'
 import PO from './components/PO'
 import CHV from './components/CHV'
 import CV from './components/CV'
-import SOA from './components/SOA'
+import SOA from './components/SOA'*/
 import StartFiles from './components/StartingFiles'
 import SalesAgreement from './components/SalesAgreement'
 import StartBooklet from './components/StartBooklet'
+import IataAmadeus from './components/IataAmadeus'
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 import swal from 'sweetalert2'
 import moment from 'moment'
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
+Vue.component('v-select', vSelect)
 /*import AutoComplete from './components/AutoComplete'*/
 import { Form, HasError, AlertError } from 'vform';
 
@@ -83,7 +87,9 @@ let routes = [
     {path:'/chv',component:CHV},
     {path:'/cv',component:CV},
     {path:'/soa',component:SOA}*/
-    {path:'/startfiles',component:StartBooklet}
+    {path:'/startfiles',component:StartBooklet},
+    {path:'/amadeus',component:IataAmadeus},
+    
 
 
 ]

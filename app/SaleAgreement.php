@@ -11,7 +11,7 @@ class SaleAgreement extends Model
     use Notifiable;
 
     protected $fillable = [
-        'saNumber','user_id'
+        'saNumber','user_id','is_used'
     ];
 
 }

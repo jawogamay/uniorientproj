@@ -8,7 +8,7 @@ class Passenger extends Model
 {
     //
     protected $fillable = [
-        'user_id','customer_id','lastname','firstname','date_birth','prefix','tel','notes','status'
+        'user_id','customer_id','lastname','firstname','date_birth','prefix','tel','notes','status','fullname'
     ];
 
     public function customer(){

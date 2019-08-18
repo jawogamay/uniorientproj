@@ -103,7 +103,7 @@
                             <span aria-hidden="true">&times;</span>
                             </button>   
                         </div>
-                       <form @submit.prevent="createPassenger()">
+                       <form @submit.prevent="createPassenger()" id="passengerform">
                         <div class="modal-body">
                            <model-list-select :list="customers"
                            name="account_name"
@@ -343,16 +343,7 @@
                 this.form.reset();
                 $('#addNew').modal('show');
             },
-            autoComplete(){
-              this.results = [];
-              if(this.form.account_name.length>2){
-                axios.get('api/search',{params:{query:this.form.account_name
-                }
-                }).then(response => {
-                  this.results = response.data;
-                });
-              }
-            },
+          
            
             createPassenger(){
                 this.form.post('api/passenger')
@@ -364,7 +355,9 @@
                       type: 'success',
                       title: 'Passenger Created Successfully'
                     });
+
                     setTimeout(()=> {this.spinner = false},1000)
+                     $('#passengerform').reset();
                 })
             },
             getPassenger(){

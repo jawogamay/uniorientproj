@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
+use App\Passenger;
 use App\SaleAgreement;
 use Illuminate\Http\Request;
 
@@ -15,8 +17,17 @@ class SaleAgreementController extends Controller
     public function index()
     {
         //
+       return SaleAgreement::where('is_used',0)->first('saNumber');
     }
-
+    public function getPassenger(Request $request){
+         $data = Passenger::select('fullname')->where('customer_id',$request->customer_id)->get();
+        return response()->json($data);
+    }
+    public function getCustomer(){
+        $data = Customer::select('account_name','id')->get();
+   
+        return response()->json($data);
+    }
     /**
      * Show the form for creating a new resource.
      *

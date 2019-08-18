@@ -17,6 +17,7 @@ class CreateSaleAgreementsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('saNumber')->unique();
             $table->unsignedInteger('user_id');
+            $table->boolean('is_used')->default(FALSE);
             $table->boolean('deletestatus')->default(FALSE);
             $table->timestamps();
         });

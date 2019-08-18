@@ -74,7 +74,8 @@ class PassengerController extends Controller
             'prefix' => $request['prefix'],
             'tel' => $request['tel'],
             'notes' => $request['notes'],
-            'status' => 'Test'
+            'status' => 'Test',
+            'fullname' => $request['lastname'].', '.$request['firstname'].' '.$request['prefix'].'.'
         ]);
 
 

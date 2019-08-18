@@ -76,6 +76,7 @@ class BookletController extends Controller
        
      }*/
      $count = Booklet::count();
+     $arr = [];
      $user =(int) $request['name_assign'];
     if($count==0){
         $pluck = StartFile::latest()->pluck('startbooklet');
@@ -97,8 +98,9 @@ class BookletController extends Controller
             'saNumber' => $val,
             'user_id' => $user
            ]);
-           return 'Success';
-    }
+           
+        }
+        return $arr;
     }
     else{
            $this->validate($request,[
@@ -120,8 +122,9 @@ class BookletController extends Controller
             'saNumber' => $val,
             'user_id' => $user
            ]);
-           return 'Success with count';
+           
        }
+       return $arr;
        
     }
 }

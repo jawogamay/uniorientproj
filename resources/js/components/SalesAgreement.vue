@@ -1,49 +1,79 @@
 <template>
-    <v-app>
-    <div class="container-fluid">
-      <div class="row pt-2">
-             <div class="col-md-12">
-                <div class="card">
-                      <div class="card-header">
-                        <h3 class="card-title">Sales Agreement Summaries </h3>
+  <v-app>
+ <div class="container-fluid">
+  <div class="row page-titles">
+                    <div class="col-md-5 col-8 align-self-center">
+                      <!--   <ol class="breadcrumb mt-2">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">SETUP FILES</a></li>
+                            <li class="breadcrumb-item active">CUSTOMER ACCOUNTS</li>
+                        </ol>
+ -->                    </div>
+                    <div class="col-md-7 col-4 align-self-center">
+              
+                    </div>
+                </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+                      <!-- <div class="card-header">
+                        <h3 class="card-title">CUSTOMER INFORMATION </h3>
                         <div class="card-tools">
                             
                          </div>
-                     </div>
+                     </div> -->
                      <template>
   <v-card>
     <v-card-title>
-      <button class="btn btn-warning" @click="newModal">Add<v-icon color="#fff">add_box</v-icon></button>
+      <h3 class="card-title">SALES AGREEMENT SUMMARIES </h3>
       <v-spacer></v-spacer>
       <v-text-field
         v-model="search"
         append-icon="search"
-        label="Search"
+        label="SEARCH"
         single-line
         hide-details
+        id="search"
       ></v-text-field>
     </v-card-title>
+
     <v-data-table
       :headers="headers"
-      :items="desserts"
+      :items="salesall"
       :search="search"
+      :rows-per-page="25" :rows-per-page-items="[25]"
+       :pagination.sync="pagination"
+      class="elevation-1 my-data-table"
     >
-      <template v-slot:items="props">
-        <td>{{ props.item.date }}</td>
-        <td class="text-xs-left">{{ props.item.airlane }}</td>
-        <td class="text-xs-left">{{ props.item.usdphp }}</td>
-        <td class="text-xs-left">{{ props.item.phpusd }}</td>
-        <td class="text-xs-left">{{ props.item.verified }}</td>
-        <td class="text-xs-left">{{ props.item.notes }}</td>
-        <td class="text-xs-left">{{ props.item.details }}</td>
-        <td class="text-xs-left">
+  <template slot="headers" slot-scope="props">
+  <tr style="height:30px; background:#000;">
+    <th>
+      <button class="btn btn-warning" @click="newModal">ADD &nbsp;<v-icon color="#fff">add_box</v-icon></button>
+    </th>
+     <th 
+    v-for="header in props.headers"
+     :key="header.text"
+            :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '']"
+            @click="changeSort(header.value)"
+    >
 
-            <a href="#" class="btn btn-success">View</a>
-            <a href="#" class="btn btn-warning">Edit</a> 
-        </td>
+        {{header.text}}
+        <v-icon small>arrow_upward</v-icon>
+    </th>
+  </tr>
+</template>
+      <template v-slot:items="props">
+        <td class="text-xs-left">  
+         <button  class="btn btn-success --primary" @click="viewCustomer(props.item)">VIEW <i class="fa fa-eye"></i></button> </td>
+        <td class="text-xs-left">{{ props.item.salesagreement | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.created_at | myDate}}</td>
+        <td class="text-xs-left">{{ props.item.soa | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.created_at | myDate}}</td>
+        <td class="text-xs-left">{{ props.item.customer.account_name | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.user.code |capitalize}}</td>  
+        <td class="text-xs-left">{{ props.item.payment |capitalize}}</td>    
       </template>
       <template v-slot:no-results>
-        <v-alert :value="true" color="error" icon="warning" style="background-color:red;">
+        <v-alert :value="true" color="error">
           Your search for "{{ search }}" found no results.
         </v-alert>
       </template>
@@ -52,158 +82,345 @@
 </template>
                 </div>
              </div>
-         </div>
+    </div>
 
 
            <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">Add Supplier</h5>
+                            <h5 class="modal-title" v-show="!editmode" id="addNewLabel">ADD SALES AGREEEMENT SUMMARIES</h5>
                             <h5 class="modal-title" v-show="editmode" id="addNewLabel">Update User's Info</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                             </button>   
                         </div>
-                       <form @submit.prevent="editmode ? updateUser() :createSupplier()">
-                        <div class="modal-body">
-                            <select class="form-control" name="category" v-model="form.category"> 
-                                <option value="" disabled selected>Select SA#</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                            </select>
-                            <br><br>
-                            <select class="form-control" name="purchasetype" v-model="form.purchasetype">
-                                <option value="" disabled selected>Select Customer Account</option>
-                                <option value="ticket-am-sb">TICKET-AM-SB</option>
-                            </select>
-                            <br><br>
-                              <select class="form-control" name="purchasetype" v-model="form.purchasetype">
-                                <option value="" disabled selected>Select Passenger Account</option>
-                                <option value="ticket-am-sb">TICKET-AM-SB</option>
-                            </select>
-                        </div>
+                       <form @submit.prevent="addSalesSummaries()" id="regForm">
+                        <div class="modal-body modal-add">
+                            <!--  <input type="text" class="form-control" v-model="salesagreement.saNumber" name="saNumber" disabled> -->
+                            <h6>SA #: {{salesagreement.saNumber}}</h6>
+                         
+                            <input type="text" class="form-control" v-model="form.soa" name="soa" placeholder="STATEMENT OF ACCOUNT">
+                           <!--   <div class="row">
+                              <div class="col-md-6">
+                              <input type="text" placeholder="NATURE OF SERVICE" class="form-control" name="service" 
+                              :class="{'is-invalid': form.errors.has('nature') }" v-model="form.nature">
+                              <br><has-error :form="form" field="nature"></has-error><br>
+                              </div>
+                              <div class="col-md-6">
+                              <input type="text" placeholder="ADDRESS" class="form-control" name="address" 
+                               :class="{'is-invalid': form.errors.has('address') }" v-model="form.address">
+                              <br><has-error :form="form" field="address"></has-error><br>
+                            </div>
+                           </div> -->
+                        <!--    <select v-model="customeria" @change="getPassengers()">
+                            <option value='0' >Select Country</option>
+                            <option v-for="data in customers" :value="data.id">{{data.account_name}}</option>
+                           </select>
+                           <select v-model="passengeria" >
+                            <option value='0' >Select Country</option>
+                            <option v-for="data in passengers"  :value='data.id'>{{data.firstname}}</option>
+                           </select> -->
+<!-- 
+                          <model-list-select :list="customers"
+                           name="account_name"
+                           class="mb-2"
+                           v-model="form.account_name"
+                           style="margin-top:8px;"
+                           option-value="id"
+                           option-text="account_name"
+                          placeholder="ACCOUNT NAME"
+                          :class="{'is-invalid': form.errors.has('account_name') }"
+                          @input="getPassengers()">
+                          </model-list-select> -->
+                          <br>
+                          <div style="margin-top:8px;">
+                            <multiselect v-model="form.account_name" :options="customers" :preselect-first="true" placeholder="Select one" label="account_name"
+                              :close-on-select="true" :clear-on-select="true" :disabled="isDisabled"  clearOnSelect="true" track-by="test" name="test" open-direction="bottom"
+                              @input="getPassengers()"></multiselect>
+                              <!-- <pre class="language-json"><code>{{ form.account_name  }}</code></pre> -->
+                              
+                           <!-- <span slot="noResult"><button class="btn btn-primary">TEST</button></span> -->
+                           
+                          </div>       
+                             <div>
+                       
+                          <multiselect v-model="form.passenger_name" :options="passengers" :multiple="true" :clear-on-select="true" :close-on-select="false" :preserve-search="true" placeholder="ENTER PASSENGER NAME" label="fullname" track-by="fullname" :preselect-first="true" name="account_name[]"  open-direction="bottom">
+                          <!--   <template slot="selection" slot-scope="{ values, search, isOpen }"><span class="multiselect__single" v-if="values.length &amp;&amp; !isOpen">{{ values.length }} options selected</span></template> -->
+                          <span slot="noResult"><button class="btn btn-warning" @click="addPassenger()">ADD &nbsp;<v-icon color="#fff">add_box</v-icon></button></span>
+                          </multiselect>
+                            <!-- <pre class="language-json"><code>{{ form.passenger_name  }}</code></pre> -->
+                          </div>     
+                                
+                                <select class="form-control" name="payment" v-model="form.payment">
+                                  <option value="" disabled selected>SELECT PAYMENT</option>
+                                  <option value="INSTALLMENT">INSTALLMENT</option>
+                                  <option value="UNPAID">UNPAID</option>
+                                  <option value="PAID">PAID</option>
+                                </select>
+                              <!-- <pre class="language-json"><code>{{ form.account_name  }}</code></pre> -->
+                              
+                           <!-- <span slot="noResult"><button class="btn btn-primary">TEST</button></span> -->
+                           
+                          </div> 
+                     <!--          <model-list-select :list="passengers"
+                           name="passenger_name"
+                           class="mb-2"
+                           v-model="form.passenger_name"
+                           style="margin-top:8px;"
+                           option-value="fullname"
+                           option-text="fullname"
+                          placeholder="PASSENGER NAME"
+                          :class="{'is-invalid': form.errors.has('passenger_name') }"
+                          >
+                          </model-list-select> -->
+                               <!-- <input type="text" placeholder="TYPE OF ACCOUNT" class="form-control" name="service" 
+                              :class="{'is-invalid': form.errors.has('nature') }" v-model="form.nature">
+                              <br><has-error :form="form" field="nature"></has-error><br> -->
+                                  
                      <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                        <button v-show="editmode" type="submit" class="btn btn-success">Update</button>
-                        <button v-show="!editmode" type="submit" class="btn btn-primary">Submit</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
+                        <button type="submit" class="btn btn-primary">SUBMIT <i v-if="spinner"class="fa fa-spinner fa-spin"></i></button>
                      </div>
                      </form>
                 </div>
             </div>
             </div>
-        </div>
-    </v-app>
+          <div class="modal fade" id="viewdetails" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                      <form @submit.prevent="updateCustomer()">
+                        <div class="modal-body">
+                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>  
+                            <br>
+                            <div class="form-inline">
+                              <h5 for="account_name">COMPANY NAME: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <input type="text" name="account_name"  class="form-control" :disabled="disabled == 0 ? true : false"
+                              :class="{'is-invalid': form.errors.has('account_name')}" v-model="form.account_name">
+                               
+                            </div>
+                            <div class="form-inline">
+                              <h5 for="address">COMPANY ADDRESS: &nbsp;&nbsp;</h5>
+                              <input type="text" name="address" v-model="form.address" class="form-control" :disabled="disabled == 0 ? true : false"
+                              :class="{'is-invalid': form.errors.has('address') }">
+                            </div>
+                          <div class="form-inline">
+                            <h5 for="nature">TYPE OF COMPANY: &nbsp;&nbsp;</h5>
+                             <select v-model="form.nature" name="nature" class="form-control" :disabled="disabled == 0 ? true : false" 
+                             :class="{'is-invalid': form.errors.has('address') }">
+                                <option value="PERSONAL">PERSONAL</option>
+                                 <option value="CORPORATE">CORPORATE</option>
+                                 <option value="RESELLER">RESELLER</option>
+                             </select>
+                           </div>
+                            <div class="form-inline">
+                              <h5 for="contact">TELEPHONE NUMBER: &nbsp;</h5>
+                            <input type="text" name="contact" v-model="form.contact" class="form-control" :disabled="disabled == 0 ? true : false">
+                          </div>
+                           <div class="form-inline">
+                              <h5 for="fax">FAX/MOBILE NUMBER:&nbsp;</h5>
+                            <input type="text" name="fax" v-model="form.fax" class="form-control" :disabled="disabled == 0 ? true : false">
+                          </div>
+                           <div class="form-inline">
+                            <h5 for="email">EMAIL-ADDRESS: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                            <input type="email" name="email" v-model="form.email" class="form-control" :disabled="disabled == 0 ? true : false" 
+                            :class="{'is-invalid': form.errors.has('address') }">
+                          </div>
+                          <div class="form-inline">
+                            <h5 for="term">CREDIT TERM: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                            <input type="text" name="term" v-model="form.term" class="form-control" :disabled="disabled == 0 ? true : false"
+                            :class="{'is-invalid': form.errors.has('address') }">
+                          </div>
+                          <div class="form-inline">
+                            <h5 for="limit">CREDIT LIMIT: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                            <input type="text" name="limit" v-model="form.limit" class="form-control" :disabled="disabled == 0 ? true : false"
+                            :class="{'is-invalid': form.errors.has('limit') }">
+                          </div>
+                          <h5>NOTES: </h5>
+                          <textarea v-model="form.notes"  :disabled="disabled == 0 ? true : false">
+                                    
+                          </textarea>
+                        </div>
+                     <div class="modal-footer">
+                         <button class="btn btn-success --danger" type="button" style="background:#000;">DELETE</button>
+                        <button type="submit" class="btn btn-warning"  v-show="disabled == 1" >UPDATE  <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
+                        <button @click="disabled = (disabled + 1) % 2" type="button" class="btn btn-success" v-show="disabled == 0">EDIT</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button> 
+                        
+                     </div>
+                   </form>
+              
+                </div>
+            </div>
+          </div>
+  </div>
+</v-app>
 </template>
 <script type="text/javascript">
+ import Multiselect from 'vue-multiselect'
     export default{
         data(){
             return{
                  search: '',
-                     editmode: false,
+                 spinner:false,
+                  customers:[],
+                  isDisabled: false,
+                 disabled:0,
+                 passengers:[],
+                 salesall:[],
+                 salesagreement:[],
+                pagination: {
+                  sortBy: 'name'
+                 },
+                        options1: [
+          { code: 'UNPAID', name: 'UNPAID', },
+          { code: 'INSTALLMENT', name: 'INSTALLMENT' },
+          { code: 'PAID', name: 'PAID' },
+      
+        ],
+        headers: [
+         
+          { text: 'SA#', value: 'account_name',sortable: !1 },
+          { text: 'DATE OF SA', value: 'address',sortable: !1 },
+          { text: 'SOA #', value: 'nature',sortable: !1 },
+          { text: 'DATE OF SOA', value: 'user.code',sortable: !1 },
+          { text: 'CUSTOMER ACCOUNT', value: 'term',sortable: !1 },
+          {text: 'TC', value: 'contact',sortable: !1},
+          {text: 'PAYMENT', value: 'contact',sortable: !1},
+          
+        ],
+                editmode: false,
                 form: new Form({
                     id: '',
-                    account:'',
-                    category:'',
-                    purchasetype:''
-                }),
-        
-        headers: [
-          {
-            text: '',
-            align: 'left',
-            sortable: false,
-            value: 'date'
-          },
-          { text: 'Account name', value: 'airlane' },
-          { text: 'Address', value: 'usdphp' },
-          { text: 'Nature', value: 'phpusd' },
-          { text: 'TC', value: 'verified' },
-          { text: 'Term', value: 'notes' },
-          {text: 'Contact Details', value: 'details'},
-          {text:'Actions',value:'actios'}
-        ],
-        desserts: [
-          {
-            date: '1',
-            airlane: '101 Restaurant City Inc',
-            usdphp: '',
-            phpusd: 'Private',
-            verified: 'RCO',
-            notes: '30 Days',
-            details: ' ',
-           
-          },
-
-           {
-            date: '2',
-            airlane: '3-1 Marketing',
-            usdphp: '',
-            phpusd: 'Private',
-            verified: 'LAL',
-            notes: 'CASH',
-            details: ' ',
-           
-          },
-          {
-            date: '3',
-            airlane: '77 Living Inc',
-            usdphp: '',
-            phpusd: 'Sub Agent',
-            verified: 'RMR',
-            notes: '30 Days',
-            details: ' ',
-           
-          },
-          {
-            date: '4',
-            airlane: 'Ame Travel & Tours',
-            usdphp: '',
-            phpusd: 'Private',
-            verified: 'MNH',
-            notes: 'CASH',
-            details: ' ',
-           
-          },
-          {
-            date: '5',
-            airlane: 'Amigo Travel & Tours',
-            usdphp: '',
-            phpusd: 'Sub Agent',
-            verified: 'LAL',
-            notes: 'CASH',
-            details: ' ',
-           
-          },
-            {
-            date: '6',
-            airlane: 'Amigo Travel & Tours',
-            usdphp: '',
-            phpusd: 'Sub Agent',
-            verified: 'LAL',
-            notes: 'CASH',
-            details: ' ',
-           
-          },
-        ],
-            
+                    status:'',
+                    notes:'',
+                    account_name:'',
+                    passenger_name:'',
+                    payment:''
+              
+                })
             }
         
         },
-
+        created(){
+            this.getCustomer()
+            this.getSalesAll()
+            this.createdSalesAgreement();
+            this.getSalesAgreement();
+          this.getPassengers();
+          this.createdSA();
+    
+        },
         methods: {
+           codeAndNameAndDesc (item) {
+        return `${item.account_name | capitalize } `
+        },
+        createdSA(){
+          this.getSalesAgreement()
+             Fire.$on('createdSA',()=>{
+                this.getSalesAgreement();
+              });
+        },
+        uppercaseInput(value){
+         return console.log(this.value = this.value.toUpperCase())
+        },
+            changeSort (column) {
+      if (this.pagination.sortBy === column) {
+        this.pagination.descending = !this.pagination.descending
+      } else {
+        this.pagination.sortBy = column
+        this.pagination.descending = false
+      }
+     },
             newModal(){
                 this.editmode = false;
                 this.form.reset();
+                this.isDisabled = false;
                 $('#addNew').modal('show');
             },
-            createSupplier(){
-                this.form.post('api/supplier')
-                .then((response)=>{
-                    
-                });
-            }
-        }
+            getPassengers(){
+               axios.get('api/getPassengers',{
+                 params: {
+                   customer_id: this.form.account_name.id 
+                 }
+              }).then(function(response){
+                if (response.data != 0) this.isDisabled = true     
+                    this.passengers = response.data; 
+                  }.bind(this));
+            },
+            addSalesSummaries(){
+              this.form.post('api/salesummaries')
+              .then((response)=>{
+                  this.spinner = true;
+                   $('#addNew').modal('hide')
+                   this.form.reset(); 
+                   Fire.$emit('createdSalesAgreement');
+                   Fire.$emit('createdSA');
+                     toast.fire({
+                      type: 'success',
+                      title: 'SALES SUMMARIES CREATED SUCCESSFULLY'
+                    });
+              })
+           
+              setTimeout(()=> {this.spinner = false},1000)
+            },
+            viewCustomer(customer){
+              this.form.id = customer.id
+              this.form.account_name = customer.account_name
+              this.form.address = customer.address
+              this.form.contact = customer.contact
+              this.form.email = customer.email
+              this.form.nature = customer.nature
+              this.form.limit = customer.limit
+              this.form.term = customer.term
+              this.form.fax = customer.fax
+              this.form.notes = customer.notes
+                $('#viewdetails').modal('show')
+
+            },
+            getSalesAgreement(){
+              axios.get('api/salesagreement').then(({data})=> this.salesagreement = data);
+            },
+            getCustomer(){
+                axios.get('api/getSalesCustomer')
+              .then(function (response) {
+                 this.customers = response.data;
+               
+              }.bind(this));
+            },
+            updateCustomer(){
+              this.form.put('api/customer/'+this.form.id)
+                .then(()=>{
+                  this.spinner = false
+                  $('#viewdetails').modal('hide')
+                   toast.fire(
+                        'Updated!',
+                        'Customer has been updated.',
+                        'success'
+                        )
+                       Fire.$emit('createdCustomer')
+                        setTimeout(()=> {this.spinner = false},1000)
+                    this.disabled = 0
+                })
+                .catch(()=>{
+                  $('#viewdetails').modal('show')
+                })
+            },
+            getSalesAll(){
+              axios.get('api/salesummaries').then(({data})=> this.salesall = data);
+            },
+            createdSalesAgreement(){
+              this.getSalesAll();
+              Fire.$on('createdSalesAgreement',()=>{
+                this.getSalesAll();
+              });
+            },
+        },
+          components:{
+          Multiselect
+        },
     };
 </script>
 <style type="text/css" scoped>
@@ -211,4 +428,48 @@
     font-weight: 300;
     font-size: 15px;
 }
+.v-icon{
+  font-size:18px;
+}
+table.v-table tbody td, table.v-table tbody th{
+  height: 26px;
+}
+.error{
+    background-color: #ffffff !important;
+    border-color:#ffffff !important;
+    border-color:#fff !important;
+    font-weight: 800;
+     text-align: center;
+}
+
+.v-alert.v-alert{
+  border-color:#ffffff !important;
+
+}
+.v-alert{
+    color:#f00;
+    border-color:#ffffff;
+    padding: 5px;
+
+}
+
+.modal-add input,.modal-add textarea,.modal-add select{
+  margin-top:0px;
+}
+::placeholder{
+ color:rgba(191, 191, 191, 0.87);
+}
+.form-control{
+  min-height: 20px !important;
+  height: 29px !important;
+}
+.ui.selection.dropdown[data-v-3a0c7bea]{
+  min-height: 20px;
+  height: 30px;
+  font-size: 15px !important;
+}
+.invalid-feedback{
+  margin-left: 11rem;
+}
+
 </style>
