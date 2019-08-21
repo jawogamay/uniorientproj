@@ -86,7 +86,7 @@
 
 
            <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="addNewLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" v-show="!editmode" id="addNewLabel">ADD SALES AGREEEMENT SUMMARIES</h5>
@@ -98,9 +98,9 @@
                        <form @submit.prevent="addSalesSummaries()" id="regForm">
                         <div class="modal-body modal-add">
                             <!--  <input type="text" class="form-control" v-model="salesagreement.saNumber" name="saNumber" disabled> -->
-                            <h6>SA #: {{salesagreement.saNumber}}</h6>
-                         
-                            <input type="text" class="form-control" v-model="form.soa" name="soa" placeholder="STATEMENT OF ACCOUNT">
+                           <!--  <h6>SA #: {{salesagreement.saNumber}}</h6> -->
+                            <input type="text" v-model="form.saNumber" class="form-control" placeholder="SA NUMBEER"><br>
+                            <input type="text" class="form-control" v-model="form.soa" name="soa" placeholder="STATEMENT OF ACCOUNT" style="margin-top:8px;">
                            <!--   <div class="row">
                               <div class="col-md-6">
                               <input type="text" placeholder="NATURE OF SERVICE" class="form-control" name="service" 
@@ -152,12 +152,24 @@
                             <!-- <pre class="language-json"><code>{{ form.passenger_name  }}</code></pre> -->
                           </div>     
                                 
-                                <select class="form-control" name="payment" v-model="form.payment">
-                                  <option value="" disabled selected>SELECT PAYMENT</option>
-                                  <option value="INSTALLMENT">INSTALLMENT</option>
-                                  <option value="UNPAID">UNPAID</option>
-                                  <option value="PAID">PAID</option>
-                                </select>
+                                <table class="table table-bordered" id="dynamic_field">  
+                                    <tr>  
+                                        <td><input type="text" name="itemcode[]" placeholder="Item Code" class="form-control name_list" /></td>  
+                                        <td><input type="text" name="description[]" placeholder="Description" class="form-control name_list" /></td>  
+                                        <td>
+                                          <select class="form-control name_list" style="width:150px;">
+                                            <option value="" selected disabled>CURRENCY</option>
+                                            <option value="USD">USD</option>
+                                            <option value="PHP">PHP</option>
+                                          </select>
+                                        </td>
+                                        <td><input type="text" name="cost[]" placeholder="Cost" class="form-control name_list" /></td>
+                                        <td><input type="text" name="qty[]" placeholder="Quantity" class="form-control name_list" /></td>
+                                    </tr>  
+                              
+                                </table>  
+                               <button type="button" name="add" id="add" class="btn btn-warning" @click="addInput()">Add More</button>
+    
                               <!-- <pre class="language-json"><code>{{ form.account_name  }}</code></pre> -->
                               
                            <!-- <span slot="noResult"><button class="btn btn-primary">TEST</button></span> -->
@@ -234,6 +246,7 @@
         data(){
             return{
                  search: '',
+                 initial:1,
                  spinner:false,
                   customers:[],
                   isDisabled: false,
@@ -383,6 +396,13 @@
                 this.getSalesAll();
               });
             },
+            addInput(){
+              $('#dynamic_field').append('<tr id="row'+this.initial+'" class="dynamic-added"><td><input type="text" name="itemcode[]" placeholder="Item Code" class="form-control name_list" /></td><td><input type="text" name="description[]" placeholder="Description" class="form-control name_list" /></td><td><select class="form-control name_list" style="width:150px;"><option value="" selected disabled>CURRENCY</option><option value="USD">USD</option><option value="PHP">PHP</option></select></td> <td><input type="text" name="cost[]" placeholder="Cost" class="form-control name_list" /></td> <td><input type="text" name="qty[]" placeholder="Quantity" class="form-control name_list" /></td></tr>');
+            },
+            removeInput(){
+              let button_id = this.attr("id");
+              $('#row'+button_id+'').remove
+            }
         },
           components:{
           Multiselect

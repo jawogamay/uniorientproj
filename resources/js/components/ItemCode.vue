@@ -97,17 +97,9 @@
                         </div>
                        <form @submit.prevent="createItemCode()">
                         <div class="modal-body" id="addmode">
-                          <input class="form-control" type="text" style="width:100%;" name="ticket" v-model="form.ticket" placeholder="ENTER TICKET">
-                            
-                             <input class="form-control" type="text" style="width:100%;" name="tax" v-model="form.tax" placeholder="ENTER TAX">
-                             
-                              <input class="form-control" type="text" style="width:100%;" name="hotel" v-model="form.hotel" placeholder="ENTER HOTEL">
-                              
-                               <input class="form-control" type="text" style="width:100%;" name="package" v-model="form.package" placeholder="ENTER PACKAGE">
-                               
-                              <input class="form-control" type="text" style="width:100%;" name="service_fee" v-model="form.service_fee" placeholder="ENTER SERVICE FEE">
-                              
-                              <input class="form-control" type="text" style="width:100%;" name="document" v-model="form.document" placeholder="ENTER DOCUMENTATION">
+                         <input type="text" name="itemcode" v-model="form.itemcode" placeholder="ENTER ITEM CODE" class="form-control">
+                         <br>
+                         <input type="text" name="itemname" v-model="form.itemname" placeholder="ENTER ITEM NAME" class="form-control">
                         </div>
                      <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button>
