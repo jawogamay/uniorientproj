@@ -26,6 +26,12 @@ class CreateSalesSummariesTable extends Migration
             $table->boolean('status')->default(0);
              $table->boolean('deletestatus')->default(FALSE);
             $table->string('payment');
+            $table->unsignedInteger('itemcode_id');
+            $table->string('description');
+            $table->string('currency');
+            $table->integer('quantity');
+            $table->double('cost');
+            $table->double('total');
             $table->timestamps();
         });
     }

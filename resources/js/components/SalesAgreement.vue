@@ -1,4 +1,4 @@
-<template>
+s<template>
   <v-app>
  <div class="container-fluid">
   <div class="row page-titles">
@@ -153,18 +153,22 @@
                           </div>     
                                 
                                 <table class="table table-bordered" id="dynamic_field">  
-                                    <tr>  
-                                        <td><input type="text" name="itemcode[]" placeholder="Item Code" class="form-control name_list" /></td>  
-                                        <td><input type="text" name="description[]" placeholder="Description" class="form-control name_list" /></td>  
+                                    <tr v-for="(sale,index) in sales">  
+                                        <td><input type="text" name="itemcode" placeholder="Item Code" class="form-control name_list" 
+                                          v-model="sale.itemcode" /></td>  
+                                        <td><input type="text" name="description[]" placeholder="Description" class="form-control name_list" 
+                                          v-model="sale.description" /></td>  
                                         <td>
-                                          <select class="form-control name_list" style="width:150px;">
+                                          <select class="form-control name_list" style="width:150px;" v-model="sale.currency">
                                             <option value="" selected disabled>CURRENCY</option>
                                             <option value="USD">USD</option>
                                             <option value="PHP">PHP</option>
                                           </select>
                                         </td>
-                                        <td><input type="text" name="cost[]" placeholder="Cost" class="form-control name_list" /></td>
-                                        <td><input type="text" name="qty[]" placeholder="Quantity" class="form-control name_list" /></td>
+                                        <td><input type="text" name="cost[]" placeholder="Cost" class="form-control name_list" 
+                                          v-model="sale.cost" /></td>
+                                        <td><input type="text" name="qty[]" placeholder="Quantity" class="form-control name_list"
+                                        v-model="sale.qty" /></td>
                                     </tr>  
                               
                                 </table>  
@@ -282,9 +286,17 @@
                     notes:'',
                     account_name:'',
                     passenger_name:'',
-                    payment:''
+                    payment:'',
+                
               
-                })
+                }),
+                sales:[{
+                   itemcode:'',
+                    description:'',
+                    currency:'',
+                    cost:'',
+                    qty:''
+                }]
             }
         
         },
@@ -396,9 +408,18 @@
                 this.getSalesAll();
               });
             },
-            addInput(){
+      /*      addInput(){
               $('#dynamic_field').append('<tr id="row'+this.initial+'" class="dynamic-added"><td><input type="text" name="itemcode[]" placeholder="Item Code" class="form-control name_list" /></td><td><input type="text" name="description[]" placeholder="Description" class="form-control name_list" /></td><td><select class="form-control name_list" style="width:150px;"><option value="" selected disabled>CURRENCY</option><option value="USD">USD</option><option value="PHP">PHP</option></select></td> <td><input type="text" name="cost[]" placeholder="Cost" class="form-control name_list" /></td> <td><input type="text" name="qty[]" placeholder="Quantity" class="form-control name_list" /></td></tr>');
-            },
+            },*/
+            addInput(){
+              this.sales.push({
+                itemcode:'',
+                description:'',
+                currency:'',
+                cost:'',
+                qty:''
+              })
+            },  
             removeInput(){
               let button_id = this.attr("id");
               $('#row'+button_id+'').remove
