@@ -59,20 +59,22 @@ class SalesSummariesController extends Controller
             'passenger_name' => 'required',
            
         ]);
-        $sanumber = SaleAgreement::latest()->where('is_used',0)->pluck('saNumber');
-        $int = (int)$sanumber[0];
-        $passenger =  $request->passenger_name;
-        $passenger = array_flatten($passenger);*/
+
       /*  foreach ($request['addmore'] as $key => $value){*/
-            /*SalesSummaries::create([
+
+    
+        $passenger =  $request->passenger_name;
+        $passenger = array_flatten($passenger);
+            $int = $request['saNumber'];
+            SalesSummaries::create([
             'salesagreement' =>   $int,
-            'soa' => $request['soa'],
+            'soa' => $int,
             'customer_id' =>  (int)$request->account_name['id'],
             'passenger_name' =>  implode(', ',$passenger),
             'user_id' => Auth::user()->id,
             'payment' => $request['payment'],
             'verified' => 'Not Verified'
-        ]);*/
+        ]);
        /*     Product::create([
                 'itemcode_id' => $value['quantity'],
                 'cost' => $value['cost'],
@@ -98,7 +100,6 @@ class SalesSummariesController extends Controller
         return foreach($request->input('sales') as $sale){
             Product::create($sale);
         }*/
-        $int = $request['saNumber'];
       return DB::table('sale_agreements')
                 ->where('saNumber',$int)
                 ->update(['is_used'=>1]);

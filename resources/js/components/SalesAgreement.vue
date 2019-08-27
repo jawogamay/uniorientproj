@@ -67,10 +67,8 @@ s<template>
         <td class="text-xs-left">{{ props.item.salesagreement | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.created_at | myDate}}</td>
         <td class="text-xs-left">{{ props.item.soa | capitalize}}</td>
-        <td class="text-xs-left">{{ props.item.created_at | myDate}}</td>
         <td class="text-xs-left">{{ props.item.customer.account_name | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.user.code |capitalize}}</td>  
-        <td class="text-xs-left">{{ props.item.payment |capitalize}}</td>    
       </template>
       <template v-slot:no-results>
         <v-alert :value="true" color="error">
@@ -300,10 +298,9 @@ import { ModelListSelect } from 'vue-search-select'
           { text: 'SA#', value: 'account_name',sortable: !1 },
           { text: 'DATE OF SA', value: 'address',sortable: !1 },
           { text: 'SOA #', value: 'nature',sortable: !1 },
-          { text: 'DATE OF SOA', value: 'user.code',sortable: !1 },
           { text: 'CUSTOMER ACCOUNT', value: 'term',sortable: !1 },
           {text: 'TC', value: 'contact',sortable: !1},
-          {text: 'PAYMENT', value: 'contact',sortable: !1},
+
           
         ],
              options1: [
@@ -387,7 +384,7 @@ import { ModelListSelect } from 'vue-search-select'
                   this.spinner = true;
                    $('#addNew').modal('hide')
                    this.form.reset(); 
-                   $('.default').css('display','block');
+                   $('.item').remove('display','block');
                    Fire.$emit('createdSalesAgreement');
                    Fire.$emit('createdSA');
                      toast.fire({
