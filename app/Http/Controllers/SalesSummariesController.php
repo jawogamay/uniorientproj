@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\SalesSummaries;
-use Illuminate\Http\Request;
+use App\ItemCode;
+use App\Product;
 use App\SaleAgreement;
+use App\SalesSummaries;
 use Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 class SalesSummariesController extends Controller
 {
@@ -38,6 +40,9 @@ class SalesSummariesController extends Controller
         //
     }
 
+    public function getItemCode(){
+        return ItemCode::latest()->get();
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -47,18 +52,19 @@ class SalesSummariesController extends Controller
     public function store(Request $request)
     {
         //
-        $this->validate($request,[
+  /*      $this->validate($request,[
            
             'soa' => 'required',
             'account_name' => 'required',
             'passenger_name' => 'required',
-            'payment' => 'required'
+           
         ]);
         $sanumber = SaleAgreement::latest()->where('is_used',0)->pluck('saNumber');
         $int = (int)$sanumber[0];
         $passenger =  $request->passenger_name;
-        $passenger = array_flatten($passenger);
-         SalesSummaries::create([
+        $passenger = array_flatten($passenger);*/
+      /*  foreach ($request['addmore'] as $key => $value){*/
+            /*SalesSummaries::create([
             'salesagreement' =>   $int,
             'soa' => $request['soa'],
             'customer_id' =>  (int)$request->account_name['id'],
@@ -66,7 +72,33 @@ class SalesSummariesController extends Controller
             'user_id' => Auth::user()->id,
             'payment' => $request['payment'],
             'verified' => 'Not Verified'
-        ]);
+        ]);*/
+       /*     Product::create([
+                'itemcode_id' => $value['quantity'],
+                'cost' => $value['cost'],
+                'quantity' => $value['quantity'],
+                'description' => $value['description'],
+                'currency' => $value['currency'],
+                'total' => 253
+            ]);*/
+       /*      Product::create([
+                'itemcode_id' => 2,
+                'cost' => 22,
+                'quantity' => 3,
+                'description' => "Test",
+                'currency' => "PHP",
+                'total' => 253
+            ]);*/
+
+       /* }*/
+      /*   return dd($request->input('sales'));*/
+       /*return Product::insert($request['sales']);*/
+       /*return $request->input('sales');*/
+       /* $wew = "hey";
+        return foreach($request->input('sales') as $sale){
+            Product::create($sale);
+        }*/
+        $int = $request['saNumber'];
       return DB::table('sale_agreements')
                 ->where('saNumber',$int)
                 ->update(['is_used'=>1]);

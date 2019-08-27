@@ -64,13 +64,8 @@
       <template v-slot:items="props">
         <td class="text-xs-left"><button class="btn btn-success --primary" @click="viewItemCode(props.item)">VIEW <i class="fa fa-eye"></i></button>
         </td>     
-        <td class="text-xs-left">{{ props.item.ticket | capitalize }}</td>
-        <td class="text-xs-left">{{ props.item.tax | capitalize }}</td>
-        <td class="text-xs-left">{{ props.item.hotel | capitalize }}</td>
-        <td class="text-xs-left">{{ props.item.package | capitalize }}</td>
-        <td class="text-xs-left">{{ props.item.service_fee | capitalize }}</td>
-        <td class="text-xs-left">{{ props.item.documentation | capitalize }}</td>
-        <td class="text-xs-left">{{ props.item.user.name | capitalize}}</td>
+        <td class="text-xs-left">{{ props.item.itemcode | capitalize }}</td>
+        <td class="text-xs-left">{{ props.item.itemname | capitalize }}</td>
         <td class="text-xs-left">{{ props.item.created_at | myDate | capitalize }}</td>
        
     
@@ -123,34 +118,15 @@
                         <form @submit.prevent = "updateItemCode()">
                           <div class="modal-body">
                               <div class="form-inline">
-                                  <h5 for="ticket">TICKETS: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
-                                  <input type="text" name="ticket" v-model="form.ticket" class="form-control" :disabled="disabled == 0 ? true : false"
-                                  :class="{'is-invalid': form.errors.has('ticket') }">
+                                  <h5 for="itemcode">ITEM CODE: &nbsp;</h5>
+                                  <input type="text" name="itemcode" v-model="form.itemcode" class="form-control" :disabled="disabled == 0 ? true : false"
+                                  :class="{'is-invalid': form.errors.has('itemcode') }">
                               </div>
 
                               <div class="form-inline">
-                                  <h5 for="tax">TAXES: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
-                                  <input type="text" name="tax" v-model="form.tax" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('tax') }">
-                              </div>
-
-                              <div class="form-inline">
-                                  <h5 for="hotel">HOTEL: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
-                                  <input type="text" name="hotel" v-model="form.hotel" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('hotel') }">
-                              </div>
-
-                              <div class="form-inline">
-                                  <h5 for="package">PACKAGE: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h5>
-                                  <input type="text" name="package" v-model="form.package" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('package') }">
-                              </div>
-
-                              <div class="form-inline">
-                                  <h5 for="service_fee">SERVICE FEE: &nbsp;&nbsp;&nbsp;&nbsp;</h5>
-                                  <input type="text" name="service_fee" v-model="form.service_fee" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('service_fee') }">
-                              </div>
-                                <div class="form-inline">
-                                  <h5 for="document">DOCUMENTATIONS: &nbsp;</h5>
-                                  <input type="text" name="document" v-model="form.document" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('document') }">
-                              </div>
+                                  <h5 for="itemname">ITEM NAME: &nbsp;</h5>
+                                  <input type="text" name="itemname" v-model="form.itemname" class="form-control" :disabled="disabled == 0 ? true : false" :class="{'is-invalid': form.errors.has('itemname') }">
+                             </div>
                           </div>
                          <div class="modal-footer">
                         <button class="btn btn-success --danger" style="background:#000;" type="button">DELETE</button>
@@ -178,22 +154,13 @@
     },
                  form: new Form({
                     id:'',
-                    ticket:'',
-                    tax:'',
-                    hotel:'',
-                    package:'',
-                    service_fee:'',
-                    document:''
+                    itemcode:'',
+                    itemname:'',
                  }),
         headers: [
          
-          { text: 'TICKETS', value: 'ticket',sortable: !1},
-          {text:'TAXES',value:'tax',sortable:!1},
-          {text:'HOTEL',value:'hotel',sortable:!1},
-          {text:'Package',value:'package',sortable:!1},
-          {text:'SERVICE FEE',value:'service_fee',sortable:!1},
-          {text:'DOCUMENTATIONS',value:'documentation',sortable:!1},
-          { text: 'ADDED BY', value: 'user.name',sortable: !1 },
+          { text: 'ITRM CODE', value: 'itemcode',sortable: !1},
+          {text:'ITEM NAME',value:'itemname',sortable:!1},
           { text: 'DATE CREATED', value: 'created_at',sortable: !1 },
        
       
@@ -238,12 +205,8 @@
             },
             viewItemCode(item){
               this.form.id = item.id
-              this.form.ticket = item.ticket
-              this.form.hotel = item.hotel
-              this.form.tax = item.tax
-              this.form.package = item.package
-              this.form.service_fee = item.service_fee
-              this.form.document = item.documentation
+              this.form.itemcode = item.itemcode
+              this.form.itemname = item.itemname
                $('#viewdetails').modal('show')
 
             },

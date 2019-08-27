@@ -15,12 +15,8 @@ class CreateItemCodesTable extends Migration
     {
         Schema::create('item_codes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('ticket');
-            $table->string('tax');
-            $table->string('hotel');
-            $table->string('package');
-            $table->integer('service_fee');
-            $table->string('documentation');
+            $table->string('itemcode');
+            $table->string('itemname');
             $table->unsignedInteger('user_id');
             $table->boolean('deletestatus')->default(FALSE);
             $table->timestamps();

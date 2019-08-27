@@ -17,7 +17,7 @@ class SaleAgreementController extends Controller
     public function index()
     {
         //
-       return SaleAgreement::where('is_used',0)->first('saNumber');
+       return SaleAgreement::where('is_used',0)->get('saNumber');
     }
     public function getPassenger(Request $request){
          $data = Passenger::select('fullname')->where('customer_id',$request->customer_id)->get();

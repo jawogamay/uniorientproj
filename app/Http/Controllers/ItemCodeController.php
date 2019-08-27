@@ -41,21 +41,15 @@ class ItemCodeController extends Controller
     {
         //
         $this->validate($request,[
-            'ticket' => 'required',
-            'tax' => 'required',
-            'hotel' => 'required',
-            'package' => 'required',
-            'service_fee' => 'required',
-            'document' => 'required'
+            'itemcode' => 'required',
+            'itemname' => 'required',
+         
         ]);
         return ItemCode::create([
             'user_id' => Auth::user()->id,
-            'ticket' => $request['ticket'],
-            'tax' => $request['tax'],
-            'hotel' => $request['hotel'],
-            'package' => $request['package'],
-            'service_fee' => $request['service_fee'],
-            'documentation' => $request['document']
+            'itemcode' => $request['itemcode'],
+            'itemname' => $request['itemname'],
+        
         ]);
 
     }
@@ -94,21 +88,13 @@ class ItemCodeController extends Controller
         //
             $itemcode = ItemCode::findOrFail($id);
            $this->validate($request,[
-            'ticket' => 'required',
-            'tax' => 'required',
-            'hotel' => 'required',
-            'package' => 'required',
-            'service_fee' => 'required',
-            'document' => 'required'
+            'itemcode' => 'required',
+            'itemname' => 'required', 
         ]);
         $itemcode->update([
             'user_id' => Auth::user()->id,
-            'ticket' => $request['ticket'],
-            'tax' => $request['tax'],
-            'hotel' => $request['hotel'],
-            'package' => $request['package'],
-            'service_fee' => $request['service_fee'],
-            'documentation' => $request['document']
+             'itemcode' => $request['itemcode'],
+            'itemname' => $request['itemname'],
         ]);
     }
 

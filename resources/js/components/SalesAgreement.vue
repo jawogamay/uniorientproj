@@ -99,8 +99,15 @@ s<template>
                         <div class="modal-body modal-add">
                             <!--  <input type="text" class="form-control" v-model="salesagreement.saNumber" name="saNumber" disabled> -->
                            <!--  <h6>SA #: {{salesagreement.saNumber}}</h6> -->
-                            <input type="text" v-model="form.saNumber" class="form-control" placeholder="SA NUMBEER"><br>
-                            <input type="text" class="form-control" v-model="form.soa" name="soa" placeholder="STATEMENT OF ACCOUNT" style="margin-top:8px;">
+                          <!--   <input type="text" v-model="form.saNumber" class="form-control" placeholder="SA NUMBEER"><br> -->
+                            <model-list-select :list="salesagreement"
+                                v-model="form.saNumber"
+                                option-value="saNumber"
+                                option-text="saNumber"
+                               placeholder="SALES AGREEMENT NUMBER"
+                              :class="{'is-invalid': form.errors.has('prefix') }">
+                          </model-list-select>
+                            <!-- <input type="text" class="form-control" v-model="form.soa" name="soa" placeholder="STATEMENT OF ACCOUNT" style="margin-top:8px;"> -->
                            <!--   <div class="row">
                               <div class="col-md-6">
                               <input type="text" placeholder="NATURE OF SERVICE" class="form-control" name="service" 
@@ -133,9 +140,8 @@ s<template>
                           :class="{'is-invalid': form.errors.has('account_name') }"
                           @input="getPassengers()">
                           </model-list-select> -->
-                          <br>
                           <div style="margin-top:8px;">
-                            <multiselect v-model="form.account_name" :options="customers" :preselect-first="true" placeholder="Select one" label="account_name"
+                            <multiselect v-model="form.account_name" :options="customers" :preselect-first="true" placeholder="ENTER CUSTOMER ACCOUNT" label="account_name"
                               :close-on-select="true" :clear-on-select="true" :disabled="isDisabled"  clearOnSelect="true" track-by="test" name="test" open-direction="bottom"
                               @input="getPassengers()"></multiselect>
                               <!-- <pre class="language-json"><code>{{ form.account_name  }}</code></pre> -->
@@ -153,26 +159,46 @@ s<template>
                           </div>     
                                 
                                 <table class="table table-bordered" id="dynamic_field">  
-                                    <tr v-for="(sale,index) in sales">  
-                                        <td><input type="text" name="itemcode" placeholder="Item Code" class="form-control name_list" 
-                                          v-model="sale.itemcode" /></td>  
-                                        <td><input type="text" name="description[]" placeholder="Description" class="form-control name_list" 
-                                          v-model="sale.description" /></td>  
+                                    <tr v-for="(sale,index) in form.sales">  
+                                      <td>
+                                        <!-- <select class="form-control" v-model="sale.itemcode" style="width:100px;">
+                                          <option disabled selected value="">ITEM CODE</option>
+                                          <option v-for="itemcode in itemcodes" :value="itemcode.itemcode">{{itemcode.itemcode | capitalize}}</option>
+                                        </select> -->
+                                           <model-list-select :list="itemcodes"
+                                           v-model="sale.itemcode"
+                                           option-value="itemcode"
+                                           option-text="itemcode"
+                                           placeholder="ITEMCODE"
+                                           style="width:120px;"
+                                           :class="{'is-invalid': form.errors.has('prefix') }">
+                                           </model-list-select>
+                                      </td>
+                                        <td><input type="text" name="description" placeholder="Description" class="form-control name_list" 
+                                          v-model="sale.description"style="width:260px;"/></td>  
                                         <td>
-                                          <select class="form-control name_list" style="width:150px;" v-model="sale.currency">
-                                            <option value="" selected disabled>CURRENCY</option>
+                                          <!-- <select class="form-control name_list" style="width:85px;" name="currency" v-model="sale.currency">
+                                            <option disabled selected value="">CURRENCY</option>
                                             <option value="USD">USD</option>
                                             <option value="PHP">PHP</option>
-                                          </select>
+                                          </select> -->
+                                          <model-list-select :list="options1"
+                                         v-model="sale.currency"
+                                         style="width:97px;"
+                                         option-value="code"
+                                         option-text="name"
+                                         placeholder="CURRENCY"
+                                         :class="{'is-invalid': form.errors.has('prefix') }">
+                                         </model-list-select>
+
                                         </td>
-                                        <td><input type="text" name="cost[]" placeholder="Cost" class="form-control name_list" 
-                                          v-model="sale.cost" /></td>
-                                        <td><input type="text" name="qty[]" placeholder="Quantity" class="form-control name_list"
-                                        v-model="sale.qty" /></td>
+                                        <td><input type="text" name="cost" placeholder="Cost" class="form-control name_list" style
+                                          ="width:120px;" v-model="sale.cost"/></td>
+                                        <td><input type="text" name="quantity" placeholder="QTY" class="form-control name_list" v-model="sale.quantity" /></td>
                                     </tr>  
                               
                                 </table>  
-                               <button type="button" name="add" id="add" class="btn btn-warning" @click="addInput()">Add More</button>
+                               <button type="button" name="add" id="add" class="btn btn-warning" @click="addInput()">ADD MORE</button>
     
                               <!-- <pre class="language-json"><code>{{ form.account_name  }}</code></pre> -->
                               
@@ -245,14 +271,16 @@ s<template>
 </v-app>
 </template>
 <script type="text/javascript">
+import { ModelListSelect } from 'vue-search-select'
  import Multiselect from 'vue-multiselect'
     export default{
         data(){
             return{
                  search: '',
-                 initial:1,
+                 initial:0,
                  spinner:false,
                   customers:[],
+                  itemcodes:[],
                   isDisabled: false,
                  disabled:0,
                  passengers:[],
@@ -278,6 +306,10 @@ s<template>
           {text: 'PAYMENT', value: 'contact',sortable: !1},
           
         ],
+             options1: [
+          { code: 'USD', name: 'USD', },
+          { code: 'PHP', name: 'PHP' }
+          ],
                 editmode: false,
                 form: new Form({
                     id: '',
@@ -287,16 +319,15 @@ s<template>
                     account_name:'',
                     passenger_name:'',
                     payment:'',
-                
+                    sales:[{
+                      itemcode:'',
+                        quantity:'',
+                        desc:'',
+                        cost:'',
+                        quantity:'',
+                    }]
               
-                }),
-                sales:[{
-                   itemcode:'',
-                    description:'',
-                    currency:'',
-                    cost:'',
-                    qty:''
-                }]
+                })
             }
         
         },
@@ -307,11 +338,15 @@ s<template>
             this.getSalesAgreement();
           this.getPassengers();
           this.createdSA();
+          this.getItemCode();
     
         },
         methods: {
            codeAndNameAndDesc (item) {
         return `${item.account_name | capitalize } `
+        },
+        getItemCode(){
+          axios.get('api/getItemCode').then(({data}) => this.itemcodes = data)
         },
         createdSA(){
           this.getSalesAgreement()
@@ -352,14 +387,15 @@ s<template>
                   this.spinner = true;
                    $('#addNew').modal('hide')
                    this.form.reset(); 
+                   $('.default').css('display','block');
                    Fire.$emit('createdSalesAgreement');
                    Fire.$emit('createdSA');
                      toast.fire({
                       type: 'success',
                       title: 'SALES SUMMARIES CREATED SUCCESSFULLY'
                     });
+
               })
-           
               setTimeout(()=> {this.spinner = false},1000)
             },
             viewCustomer(customer){
@@ -408,25 +444,25 @@ s<template>
                 this.getSalesAll();
               });
             },
-      /*      addInput(){
-              $('#dynamic_field').append('<tr id="row'+this.initial+'" class="dynamic-added"><td><input type="text" name="itemcode[]" placeholder="Item Code" class="form-control name_list" /></td><td><input type="text" name="description[]" placeholder="Description" class="form-control name_list" /></td><td><select class="form-control name_list" style="width:150px;"><option value="" selected disabled>CURRENCY</option><option value="USD">USD</option><option value="PHP">PHP</option></select></td> <td><input type="text" name="cost[]" placeholder="Cost" class="form-control name_list" /></td> <td><input type="text" name="qty[]" placeholder="Quantity" class="form-control name_list" /></td></tr>');
-            },*/
             addInput(){
-              this.sales.push({
-                itemcode:'',
-                description:'',
-                currency:'',
-                cost:'',
-                qty:''
+              /*++this.initial
+              $('#dynamic_field').append('<tr id="row'+this.initial+'" class="dynamic-added"><td><input type="text" name="addmore['+this.initial+'][itemcode]" placeholder="Item Code" class="form-control name_list" /></td><td><input type="text" name="addmore['+this.initial+'][description]" placeholder="Description" class="form-control name_list" /></td><td><select class="form-control name_list" style="width:150px;" name="addmore['+this.initial+'][currency]"><option value="" selected disabled>CURRENCY</option><option value="USD">USD</option><option value="PHP">PHP</option></select></td> <td><input type="text" name="addmore['+this.initial+'][cost]" placeholder="Cost" class="form-control name_list" /></td> <td><input type="text" name="addmore['+this.initial+'][quantity]" placeholder="Quantity" class="form-control name_list" /></td></tr>');*/
+              this.form.sales.push({
+                   /* itemcode:'',*/
+                    description:'',
+                    currency:'',
+                    cost:'',
+                    quantity:'',
               })
-            },  
+            },
             removeInput(){
               let button_id = this.attr("id");
               $('#row'+button_id+'').remove
             }
         },
           components:{
-          Multiselect
+          Multiselect,
+          ModelListSelect
         },
     };
 </script>
