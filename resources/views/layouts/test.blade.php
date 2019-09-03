@@ -457,6 +457,7 @@ tbody tr:nth-of-type(odd) {
     <script src="/assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.min.js"></script> --}}
     <!--c3 JavaScript -->
     <script src="/assets/plugins/d3/d3.min.js"></script>
+    
     <script src="/assets/plugins/c3-master/c3.min.js"></script>
     <!-- Chart JS -->
     <script src="/js/dashboard6.js"></script>

@@ -65,7 +65,7 @@ s<template>
         <td class="text-xs-left">  
          <button  class="btn btn-success --primary" @click="viewCustomer(props.item)">VIEW <i class="fa fa-eye"></i></button> </td>
         <td class="text-xs-left">{{ props.item.salesagreement | capitalize}}</td>
-        <td class="text-xs-left">{{ props.item.created_at | myDate}}</td>
+        <td class="text-xs-left">{{ salesagreement.created_at | myDate}}</td>
         <td class="text-xs-left">{{ props.item.soa | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.customer.account_name | capitalize}}</td>
         <td class="text-xs-left">{{ props.item.user.code |capitalize}}</td>  
@@ -101,11 +101,16 @@ s<template>
                             <model-list-select :list="salesagreement"
                                 v-model="form.saNumber"
                                 option-value="saNumber"
-                                option-text="saNumber"
+                                :custom-text="codeAndNameAndDesc"
                                placeholder="SALES AGREEMENT NUMBER"
-                              :class="{'is-invalid': form.errors.has('prefix') }">
+                              :class="{'is-invalid': form.errors.has('saNumber') }">
                           </model-list-select>
-                            <!-- <input type="text" class="form-control" v-model="form.soa" name="soa" placeholder="STATEMENT OF ACCOUNT" style="margin-top:8px;"> -->
+
+                      <!--      <select v-model="form.saNumber" class="form-control" required>
+                              <option value="" disabled selected>Select something...</option>
+                              <option v-for="saleagreement in salesagreement" :value="saleagreement.saNumber">{{saleagreement.saNumber}}</option>
+                            </select> -->
+                            <!-- <input type=""e="text" class="form-control" v-model="form.soa" name="soa" placeholder="STATEMENT OF ACCOUNT" style="margin-top:8px;"> -->
                            <!--   <div class="row">
                               <div class="col-md-6">
                               <input type="text" placeholder="NATURE OF SERVICE" class="form-control" name="service" 
@@ -138,6 +143,18 @@ s<template>
                           :class="{'is-invalid': form.errors.has('account_name') }"
                           @input="getPassengers()">
                           </model-list-select> -->
+                             <div class="form-check" style="margin-top:8px;">
+                              <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="form.child">
+                              <label class="form-check-label" for="exampleCheck1">CHILD SOA {{form.child}}</label>
+                            </div>
+                                 <model-list-select :list="usedsa"
+                                v-model="form.parent"
+                                 option-value="saNumber"
+                                :custom-text="codeAndNameAndDesc"
+                               placeholder="PARENT SALES AGREEMENT NUMBER"
+                               v-show="form.child==true"
+                              :class="{'is-invalid': form.errors.has('saNumber') }">
+                          </model-list-select>
                           <div style="margin-top:8px;">
                             <multiselect v-model="form.account_name" :options="customers" :preselect-first="true" placeholder="ENTER CUSTOMER ACCOUNT" label="account_name"
                               :close-on-select="true" :clear-on-select="true" :disabled="isDisabled"  clearOnSelect="true" track-by="test" name="test" open-direction="bottom"
@@ -159,6 +176,7 @@ s<template>
                                 <table class="table table-bordered" id="dynamic_field">  
                                     <tr v-for="(sale,index) in form.sales">  
                                       <td>
+
                                         <!-- <select class="form-control" v-model="sale.itemcode" style="width:100px;">
                                           <option disabled selected value="">ITEM CODE</option>
                                           <option v-for="itemcode in itemcodes" :value="itemcode.itemcode">{{itemcode.itemcode | capitalize}}</option>
@@ -175,24 +193,26 @@ s<template>
                                         <td><input type="text" name="description" placeholder="Description" class="form-control name_list" 
                                           v-model="sale.description"style="width:260px;"/></td>  
                                         <td>
-                                          <!-- <select class="form-control name_list" style="width:85px;" name="currency" v-model="sale.currency">
-                                            <option disabled selected value="">CURRENCY</option>
-                                            <option value="USD">USD</option>
+                                         <!--  <select class="form-control name_list" style="width:55px;" name="currency" v-model="sale.currency">
+                                            <option value="USD" selected>USD</option>
                                             <option value="PHP">PHP</option>
                                           </select> -->
                                           <model-list-select :list="options1"
                                          v-model="sale.currency"
-                                         style="width:97px;"
+                                         style="width:75px;"
                                          option-value="code"
                                          option-text="name"
-                                         placeholder="CURRENCY"
+                                         placeholder="RATE"
                                          :class="{'is-invalid': form.errors.has('prefix') }">
                                          </model-list-select>
 
                                         </td>
                                         <td><input type="text" name="cost" placeholder="Cost" class="form-control name_list" style
-                                          ="width:120px;" v-model="sale.cost"/></td>
+                                          ="width:100px;" v-model="sale.cost"/></td>
                                         <td><input type="text" name="quantity" placeholder="QTY" class="form-control name_list" v-model="sale.quantity" /></td>
+                                        <td>
+                                          <button class="btn btn-danger" @click="removeInput(index)">X</button>
+                                        </td>
                                     </tr>  
                               
                                 </table>  
@@ -251,6 +271,7 @@ s<template>
                               <input type="text" name="payment"  class="form-control" :disabled="disabled == 0 ? true : false"
                               :class="{'is-invalid': form.errors.has('payment')}" v-model="form.payment">
                             </div>
+                            <button class="btn btn-primary">VIEW ITEMS</button>
     
                         </div>
                      <div class="modal-footer">
@@ -282,6 +303,7 @@ import { ModelListSelect } from 'vue-search-select'
                   isDisabled: false,
                  disabled:0,
                  passengers:[],
+                 usedsa:[],
                  salesall:[],
                  salesagreement:[],
                 pagination: {
@@ -308,21 +330,18 @@ import { ModelListSelect } from 'vue-search-select'
           { code: 'PHP', name: 'PHP' }
           ],
                 editmode: false,
+                datenow: new Date(),
                 form: new Form({
                     id: '',
                     status:'',
                     soa:'',
                     notes:'',
+                    saNumber:'',
+                    child:false,
                     account_name:'',
                     passenger_name:'',
                     payment:'',
-                    sales:[{
-                      itemcode:'',
-                        quantity:'',
-                        desc:'',
-                        cost:'',
-                        quantity:'',
-                    }]
+                    sales:[]
               
                 })
             }
@@ -333,14 +352,16 @@ import { ModelListSelect } from 'vue-search-select'
             this.getSalesAll()
             this.createdSalesAgreement();
             this.getSalesAgreement();
-          this.getPassengers();
-          this.createdSA();
-          this.getItemCode();
-    
+            this.getPassengers();
+            this.createdSA();
+            this.getItemCode();
+           axios.get('api/getUsedSA').then(({data})=> this.usedsa = data);  
+           
+
         },
         methods: {
            codeAndNameAndDesc (item) {
-        return `${item.account_name | capitalize } `
+        return `${item.saNumber} `
         },
         getItemCode(){
           axios.get('api/getItemCode').then(({data}) => this.itemcodes = data)
@@ -368,6 +389,7 @@ import { ModelListSelect } from 'vue-search-select'
                 this.isDisabled = false;
                 $('#addNew').modal('show');
             },
+           
             getPassengers(){
                axios.get('api/getPassengers',{
                  params: {
@@ -379,12 +401,17 @@ import { ModelListSelect } from 'vue-search-select'
                   }.bind(this));
             },
             addSalesSummaries(){
+              this.form.busy = true
+
               this.form.post('api/salesummaries')
               .then((response)=>{
                   this.spinner = true;
                    $('#addNew').modal('hide')
                    this.form.reset(); 
-                   $('.item').remove('display','block');
+                   this.form.clear();
+              /*     $('.ui.dropdown:not(.button)').addClass('default');
+                   $('.item').remove('display','block');*/
+                   this.form.sales = []
                    Fire.$emit('createdSalesAgreement');
                    Fire.$emit('createdSA');
                      toast.fire({
@@ -394,6 +421,7 @@ import { ModelListSelect } from 'vue-search-select'
 
               })
               setTimeout(()=> {this.spinner = false},1000)
+
             },
             viewCustomer(customer){
               this.form.id = customer.id
@@ -445,16 +473,15 @@ import { ModelListSelect } from 'vue-search-select'
               /*++this.initial
               $('#dynamic_field').append('<tr id="row'+this.initial+'" class="dynamic-added"><td><input type="text" name="addmore['+this.initial+'][itemcode]" placeholder="Item Code" class="form-control name_list" /></td><td><input type="text" name="addmore['+this.initial+'][description]" placeholder="Description" class="form-control name_list" /></td><td><select class="form-control name_list" style="width:150px;" name="addmore['+this.initial+'][currency]"><option value="" selected disabled>CURRENCY</option><option value="USD">USD</option><option value="PHP">PHP</option></select></td> <td><input type="text" name="addmore['+this.initial+'][cost]" placeholder="Cost" class="form-control name_list" /></td> <td><input type="text" name="addmore['+this.initial+'][quantity]" placeholder="Quantity" class="form-control name_list" /></td></tr>');*/
               this.form.sales.push({
-                   /* itemcode:'',*/
+                    itemcode:'',
                     description:'',
                     currency:'',
                     cost:'',
                     quantity:'',
               })
             },
-            removeInput(){
-              let button_id = this.attr("id");
-              $('#row'+button_id+'').remove
+            removeInput(index){
+                this.form.sales.splice(index,1)
             }
         },
           components:{

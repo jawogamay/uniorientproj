@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Customer;
 use App\Passenger;
-use App\SaleAgreement;
+use App\SaleAgreement;  
 use Illuminate\Http\Request;
 
 class SaleAgreementController extends Controller
@@ -27,6 +27,9 @@ class SaleAgreementController extends Controller
         $data = Customer::select('account_name','id')->get();
    
         return response()->json($data);
+    }
+    public function getUsedSA(){
+        return SaleAgreement::where('is_used',1)->get('saNumber');
     }
     /**
      * Show the form for creating a new resource.

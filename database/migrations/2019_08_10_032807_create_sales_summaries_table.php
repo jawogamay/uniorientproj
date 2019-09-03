@@ -22,6 +22,8 @@ class CreateSalesSummariesTable extends Migration
             $table->unsignedInteger('customer_id');
             $table->string('passenger_name');
             $table->unsignedInteger('user_id');
+            $table->string('parentsa')->nullable();
+            $table->boolean('child')->default(FALSE);
             $table->string('verified');
             $table->boolean('status')->default(0);
              $table->boolean('deletestatus')->default(FALSE);

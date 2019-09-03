@@ -92,6 +92,25 @@ class SalesSummariesController extends Controller
                 'total' => 253
             ]);*/
 
+        $data = $this->validate($request, [
+          'sales' => 'required|array',
+          'sales.*.itemcode' => 'required',
+          'sales.*.quantity' => 'required',
+          'sales.*.description' => 'required',
+          'sales.*.currency' => 'string',
+          'sales.*.cost'=>'required'
+        ]);
+         foreach ($data['sales'] as $sale){
+            Product::create([
+               'saNumber' => $request['saNumber'],
+              'itemcode' => $sale['itemcode'],
+              'quantity' => $sale['quantity'],
+              'description' => $sale['description'],
+              'cost' => $sale['cost'],
+              'currency' => $sale['currency']
+            
+            ]);
+        }
        /* }*/
       /*   return dd($request->input('sales'));*/
        /*return Product::insert($request['sales']);*/
