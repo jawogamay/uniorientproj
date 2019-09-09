@@ -6,6 +6,8 @@ use App\ItemCode;
 use App\Product;
 use App\SaleAgreement;
 use App\SalesSummaries;
+use App\SoaSeries;
+use App\StartFile;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +30,13 @@ class SalesSummariesController extends Controller
         $names = explode('.',$name);
         $fullname= SalesSummaries::with('customer')->get();
         return $names;*/
-        return SalesSummaries::with('customer','user')->get();
+        if(\Gate::allows('admin')){
+                return SalesSummaries::with('customer','user')->get();
+        }
+        else if(\Gate::allows('consultant')){
+                return SalesSummaries::with('customer','user')->where('user_id',Auth::user()->id)->get();
+        }
+        
     }
     /**
      * Show the form for creating a new resource.
@@ -62,19 +70,38 @@ class SalesSummariesController extends Controller
 
       /*  foreach ($request['addmore'] as $key => $value){*/
 
-    
-        $passenger =  $request->passenger_name;
-        $passenger = array_flatten($passenger);
             $int = $request['saNumber'];
+            $passenger =  $request->passenger_name;
+        $passenger = array_flatten($passenger);
+          $count = SalesSummaries::count();
+        if($count == 0 ){
+            $pluck = StartFile::latest()->pluck('startsoa');
+            $soa = (int)$pluck[0];
             SalesSummaries::create([
-            'salesagreement' =>   $int,
-            'soa' => $int,
-            'customer_id' =>  (int)$request->account_name['id'],
-            'passenger_name' =>  implode(', ',$passenger),
-            'user_id' => Auth::user()->id,
-            'payment' => $request['payment'],
-            'verified' => 'Not Verified'
-        ]);
+                'salesagreement' =>   $int,
+                'soa' => $soa,
+                'customer_id' =>  (int)$request->account_name['id'],
+                'passenger_name' =>  implode('^',$passenger),
+                'user_id' => Auth::user()->id,
+                'payment' => $request['payment'],
+                'verified' => 'Not Verified'
+            ]);
+        }else{
+            $pluck = SalesSummaries::latest()->pluck('soa');
+            $soa = (int)$pluck[0]+1;
+          SalesSummaries::create([
+                'salesagreement' =>   $int,
+                'soa' => $soa,
+                'customer_id' =>  (int)$request->account_name['id'],
+                'passenger_name' =>  implode('^',$passenger),
+                'user_id' => Auth::user()->id,
+                'payment' => $request['payment'],
+                'verified' => 'Not Verified'
+            ]);
+        }
+  
+   
+          
        /*     Product::create([
                 'itemcode_id' => $value['quantity'],
                 'cost' => $value['cost'],
@@ -119,6 +146,7 @@ class SalesSummariesController extends Controller
         return foreach($request->input('sales') as $sale){
             Product::create($sale);
         }*/
+      
       return DB::table('sale_agreements')
                 ->where('saNumber',$int)
                 ->update(['is_used'=>1]);

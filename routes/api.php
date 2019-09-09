@@ -36,6 +36,7 @@ Route::get('getSalesCustomer','SaleAgreementController@getCustomer');
 Route::get('getsalesagreement','AirlineIataController@getsalesagreement');
 Route::get('getItemCode','SalesSummariesController@getItemCode');
 Route::get('getUsedSA','SaleAgreementController@getUsedSA');
+Route::get('getProducts','ProductController@index');
 /*Route::apiResources(['soa' => 'SOAController']);
 Route::apiResources(['cv' => 'CVController']);
 Route::apiResources(['chv' => 'CHVController']);

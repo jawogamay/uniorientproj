@@ -145,7 +145,7 @@ s<template>
                           </model-list-select> -->
                              <div class="form-check" style="margin-top:8px;">
                               <input type="checkbox" class="form-check-input" id="exampleCheck1" v-model="form.child">
-                              <label class="form-check-label" for="exampleCheck1">CHILD SOA {{form.child}}</label>
+                              <label class="form-check-label" for="exampleCheck1">CHILD SOA</label>
                             </div>
                                  <model-list-select :list="usedsa"
                                 v-model="form.parent"
@@ -216,7 +216,7 @@ s<template>
                                     </tr>  
                               
                                 </table>  
-                               <button type="button" name="add" id="add" class="btn btn-warning" @click="addInput()">ADD MORE</button>
+                               <button type="button" name="add" id="add" class="btn btn-warning" @click="addInput()">ADD ITEM</button>
     
                               <!-- <pre class="language-json"><code>{{ form.account_name  }}</code></pre> -->
                               
@@ -267,12 +267,32 @@ s<template>
                                
                             </div>
                             <div class="form-inline">
-                              <h5 for="payment">PAYMENT: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</h5>
-                              <input type="text" name="payment"  class="form-control" :disabled="disabled == 0 ? true : false"
-                              :class="{'is-invalid': form.errors.has('payment')}" v-model="form.payment">
+                              <h5 for="passenger_name">PASSENGER: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;</h5>
+                              <input type="text" name="passenger_name"  class="form-control" :disabled="disabled == 0 ? true : false"
+                              :class="{'is-invalid': form.errors.has('passenger_name')}" v-model="form.passenger_name">
                             </div>
-                            <button class="btn btn-primary">VIEW ITEMS</button>
-    
+                           <!--  {{splitedpassenger[0]}} -->
+                        <!--    <input type="text" name="saNumber" v-model="form.saNumber" class="form-control"> -->
+
+                            <button class="btn btn-primary" @click="makePassengerArray(form.saNumber)" type="button" v-show="!tableview">VIEW ITEMS</button>
+                            <button class="btn btn-primary" @click="showless()" type="button" v-show="tableview">SHOW LESS</button>
+                            <br><br>
+                            <table class="table table-bordered" v-show="tableview">
+                              <tr>
+                                <th>ITEMCODE</th>
+                                <th>DESCRIPTION</th>
+                                <th>RATE</th>
+                                <th>COST</th>
+                                <th>QUANTITY</th>
+                              </tr>
+                              <tr v-for="iteminsa in itemsinsa">
+                                <td>{{iteminsa.itemcode}}</td>
+                                 <td>{{iteminsa.description}}</td>
+                                  <td>{{iteminsa.currency}}</td>
+                                 <td>{{iteminsa.cost}}</td>
+                                 <td>{{iteminsa.quantity}}</td>
+                              </tr>
+                            </table>
                         </div>
                      <div class="modal-footer">
                          <button class="btn btn-success --danger" type="button" style="background:#000;">DELETE</button>
@@ -298,6 +318,7 @@ import { ModelListSelect } from 'vue-search-select'
                  search: '',
                  initial:0,
                  spinner:false,
+                 tableview:false,
                   customers:[],
                   itemcodes:[],
                   isDisabled: false,
@@ -306,6 +327,8 @@ import { ModelListSelect } from 'vue-search-select'
                  usedsa:[],
                  salesall:[],
                  salesagreement:[],
+                 splitedpassenger:[],   
+                 itemsinsa:[],
                 pagination: {
                   sortBy: 'name'
                  },
@@ -355,6 +378,7 @@ import { ModelListSelect } from 'vue-search-select'
             this.getPassengers();
             this.createdSA();
             this.getItemCode();
+            this.makePassengerArray();
            axios.get('api/getUsedSA').then(({data})=> this.usedsa = data);  
            
 
@@ -362,6 +386,9 @@ import { ModelListSelect } from 'vue-search-select'
         methods: {
            codeAndNameAndDesc (item) {
         return `${item.saNumber} `
+        },
+        showless(){
+            this.tableview = false;
         },
         getItemCode(){
           axios.get('api/getItemCode').then(({data}) => this.itemcodes = data)
@@ -372,6 +399,22 @@ import { ModelListSelect } from 'vue-search-select'
                 this.getSalesAgreement();
               });
         },
+        makePassengerArray(saNumber){
+          /*this.splitedpassenger = this.form.passenger_name.split('^')*/
+         /* axios.get('api/getProducts').then(({data})=> this.itemsinsa = data);*/
+          axios.get('api/getProducts',{
+                 params: {
+                   saNumber: this.form.saNumber 
+                 }
+              }).then(function(response){
+                this.tableview = true
+                if (response.data != 0) this.isDisabled = true     
+                    this.itemsinsa = response.data; 
+                  }.bind(this));
+        },
+/*        printSplittedData(item,index){
+          this.$refs.myId.innerHTML = this.$refs.myId.innerHTML + "<p>"+item+"</p>";
+        },*/
         uppercaseInput(value){
          return console.log(this.value = this.value.toUpperCase())
         },
@@ -429,6 +472,9 @@ import { ModelListSelect } from 'vue-search-select'
               this.form.passenger_name = customer.passenger_name
               this.form.soa = customer.soa
               this.form.payment = customer.payment
+              this.form.saNumber = customer.salesagreement
+              this.disabled = 0;
+              this.tableview = false;
                 $('#viewdetails').modal('show')
 
             },
@@ -482,12 +528,18 @@ import { ModelListSelect } from 'vue-search-select'
             },
             removeInput(index){
                 this.form.sales.splice(index,1)
-            }
+            },
+           
         },
           components:{
           Multiselect,
           ModelListSelect
         },
+        filters:{
+          splitPassenger(value){
+            return value.split(',')
+          }
+        }
     };
 </script>
 <style type="text/css" scoped>

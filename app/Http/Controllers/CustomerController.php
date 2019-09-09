@@ -20,7 +20,13 @@ class CustomerController extends Controller
     {
         //
         $user = Auth::user()->id;
-        return Customer::where('user_id',$user)->with('user')->get();
+         if(\Gate::allows('admin')){
+                return Customer::latest()->with('user')->get();
+         }
+         else if(\Gate::allows('consultant')){
+            return Customer::where('user_id',$user)->with('user')->get();
+         }
+       
 
     }
 

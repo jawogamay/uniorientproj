@@ -361,10 +361,14 @@ tbody tr:nth-of-type(odd) {
                                 <li><a href="/customer" class="dropdown-item">CUSTOMER ACCOUNTS</a></li>
                                 <li><a href="/passenger" class="dropdown-item">PASSENGER DETAILS</a></li>
                                 <li><a href="/itemcode" class="dropdown-item">ITEM CODE</a></li>
+                                @can('admin')
                                 <li><a href="/booklet" class="dropdown-item">SA BOOKLET SERIES</a></li>
                                 <li><a href="/employee" class="dropdown-item">USER</a></li>
+                                 @endcan
                                 <li><a href="/supplier" class="dropdown-item">SUPPLIER</a></li>
+                                 @can('admin')
                                 <li><a href="/startfiles" class="dropdown-item">START SERIES</a></li>
+                                  @endcan
                             {{--     <li><a href="#" class="has-arrow" href="#" aria-expanded="false">
                                     <span class="hide-menu">START SERIES</span></a>
                                     <ul aria-expanded="false" class="collapse left-nanv">

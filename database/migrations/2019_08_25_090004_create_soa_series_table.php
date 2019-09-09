@@ -17,6 +17,7 @@ class CreateSoaSeriesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('soaNumber')->unique();
             $table->unsignedInteger('user_id');
+            /*$table->unsignedInteger('soaseries_id');*/
             $table->boolean('is_used')->default(FALSE);
             $table->boolean('deletestatus')->default(FALSE);
             $table->timestamps();

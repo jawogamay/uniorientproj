@@ -6,7 +6,7 @@ use App\Customer;
 use App\Passenger;
 use App\SaleAgreement;  
 use Illuminate\Http\Request;
-
+use Auth;
 class SaleAgreementController extends Controller
 {
     /**
@@ -14,10 +14,18 @@ class SaleAgreementController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+      public function __construct(){
+        $this->middleware('auth:api');
+    }
     public function index()
     {
         //
-       return SaleAgreement::where('is_used',0)->get('saNumber');
+        if(\Gate::allows('admin')){
+            return SaleAgreement::where('is_used',0)->get('saNumber');
+        }else if(\Gate::allows('consultant')){
+             return SaleAgreement::where('is_used',0)->where('user_id',Auth::user()->id)->get('saNumber');
+        }
+
     }
     public function getPassenger(Request $request){
          $data = Passenger::select('fullname')->where('customer_id',$request->customer_id)->get();
@@ -29,7 +37,12 @@ class SaleAgreementController extends Controller
         return response()->json($data);
     }
     public function getUsedSA(){
-        return SaleAgreement::where('is_used',1)->get('saNumber');
+        if(\Gate::allows('admin')){
+            return SaleAgreement::where('is_used',1)->get('saNumber');
+        }else if(\Gate::allows('consultant')){
+            return SaleAgreement::where('is_used',1)->where('user_id',Auth::user())->get('saNumber');
+        }
+        
     }
     /**
      * Show the form for creating a new resource.

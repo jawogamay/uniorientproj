@@ -22,7 +22,12 @@ class PassengerController extends Controller
     }
     public function index()
     {
-        return Passenger::latest()->with('user','customer')->get();
+        if(\Gate::allows('admin')){
+            return Passenger::latest()->with('user','customer')->get();
+        }
+        else if(\Gate::allows('consultant')){
+             return Passenger::latest()->with('user','customer')->where('user_id',Auth::user()->id)->get();
+        }
     }
     public function getCustomer(){
         return Customer::latest()->get();

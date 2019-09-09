@@ -29,6 +29,8 @@ import swal from 'sweetalert2'
 import moment from 'moment'
 import vSelect from 'vue-select'
 import 'vue-select/dist/vue-select.css';
+import Gate from "./Gate";
+Vue.prototype.$gate = new Gate(window.user);
 Vue.component('v-select', vSelect)
 /*import AutoComplete from './components/AutoComplete'*/
 import { Form, HasError, AlertError } from 'vform';

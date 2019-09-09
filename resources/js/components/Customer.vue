@@ -220,7 +220,7 @@
                           </textarea>
                         </div>
                      <div class="modal-footer">
-                         <button class="btn btn-success --danger" type="button" style="background:#000;">DELETE</button>
+                         <button class="btn btn-success --danger" type="button" style="background:#000;" @click="deleteCustomer(form.id)">DELETE</button>
                         <button type="submit" class="btn btn-warning"  v-show="disabled == 1" >UPDATE  <i v-if="spinner" class="fa fa-spinner fa-spin"></i></button>
                         <button @click="disabled = (disabled + 1) % 2" type="button" class="btn btn-success" v-show="disabled == 0">EDIT</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">CLOSE</button> 
@@ -315,6 +315,31 @@
               })
               setTimeout(()=> {this.spinner = false},1000)
             },
+            deleteCustomer(id){
+               swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        // Send request to the server
+                         if (result.value) {
+                                this.form.delete('api/posts/'+id).then(()=>{
+                                        swal.fire(
+                                        'Deleted!',
+                                        'Your file has been deleted.',
+                                        'success'
+                                        )
+                                    Fire.$emit('createdPost');
+                                }).catch(()=> {
+                                    swal.fire("Failed!", "There was something wronge.", "warning");
+                                });
+                         }
+                    })
+                  },
             viewCustomer(customer){
               this.form.id = customer.id
               this.form.account_name = customer.account_name
